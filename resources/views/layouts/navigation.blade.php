@@ -43,7 +43,7 @@ switch ($userRole){
     $redirectUrlagenda = 'admin.agenda';
     $redirectUrlsar = 'admin.saranpengaduan';
     $redirectUrlpub = 'admin.publikasi';
-    $redirectUrlvisi = 'admin.visimisi';
+    $redirectUrlvisi = 'admin.visimisi.index';
     $redirectUrlcat = 'admin.categories.index';
     $redirectUrlcont = 'admin.contents.index';
     break;
@@ -212,12 +212,12 @@ switch ($userRole){
             <x-side-nav :href="route($redirectUrlpub)" :active="request()->routeIs($redirectUrlpub)">
             {{ __('Publikasi') }}
             </x-side-nav>
-        </li>
+        </li> --->
         <li>
             <x-side-nav :href="route($redirectUrlvisi)" :active="request()->routeIs($redirectUrlvisi)">
             {{ __('Visi Misi') }}
             </x-side-nav>
-        </li> -->
+        </li>
         <li>
             <x-side-nav :href="route($redirectUrlcat)" :active="request()->routeIs($redirectUrlcat)">
                 {{ __('Categories') }}

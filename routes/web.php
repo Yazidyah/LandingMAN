@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\VisiMisiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\KontenController;
@@ -28,7 +29,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::view('/news', 'admin.news')->name('news');
     Route::view('/prestasi', 'admin.prestasi')->name('prestasi');
     Route::view('/publikasi', 'admin.publikasi')->name('publikasi');
-    Route::view('/visimisi', 'admin.visimisi')->name('visimisi');
     Route::view('/saranpengaduan', 'admin.saranpengaduan')->name('saranpengaduan');
     Route::view('/agenda', 'admin.agenda')->name('agenda');
     Route::view('/profilsekolah', 'admin.profilsekolah')->name('profilsekolah');
@@ -37,6 +37,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
+    Route::resource('visimisi', VisiMisiController::class)->except(['show', 'create']);
 });
 
 // Profile Routes (Requires Authentication)
