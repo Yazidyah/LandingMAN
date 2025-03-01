@@ -2,51 +2,52 @@
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div class="container mx-auto text-center pt-7">
-                <h1 class="font-bold text-[32px] pt-7 pb-7 ">Posting Kegiatan</h1>
+                <h1 class="font-bold text-[32px] pt-7 pb-7">Posting Kegiatan</h1>
                 <div class="flex w-3/4 items-center justify-center border-2 border-dasar2 rounded-lg py-2 mx-auto my-6">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-7 h-7">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                     </svg>
-                    <h1 class=" block text-xs lg:text-base items-center text-center justify-center font-semibold">
+                    <h1 class="block text-xs lg:text-base items-center text-center justify-center font-semibold">
                         Peringatan : Isi Kegiatan dengan data yang benar.</h1>
                 </div>
-                <div class="flex justify-end">
-                <button onclick="openCreateModal()" class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
-                    Buat Postingan
-                </button>
-            </div>
-                <!-- Ini untuk memunculkan konten yang di db meenggunakan foreach -->
+                <div class="flex justify-between items-center mb-4">
+                    <button onclick="openCreateModal()" class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
+                        Buat Postingan
+                    </button>
+                    <form method="GET" action="{{ route('admin.contents.index') }}">
+                        <select name="category_id" onchange="this.form.submit()" class="border rounded px-4 py-2">
+                            <option value="">Semua Kategori</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ strtoupper($category->category_name) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+                <!-- Foreach Konten -->
                 @foreach ($contents as $content)
-                    <div name="konten" class="flex bg-green-50 p-4 rounded-lg shadow-md mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105" onclick="openEditModal({{ $content->id }})">
-                        <!-- Gambar di kiri -->
+                    <div name="konten" data-id="{{ $content->id }}" class="flex bg-green-50 p-4 rounded-lg shadow-md mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105">
                         <div class="w-1/4 pr-2">
                             @if ($content->images->isNotEmpty())
                                 <img src="{{ $content->image_url }}" alt="Deskripsi Gambar"
                                     class="rounded-lg shadow-md w-full mb-2 object-cover aspect-square max-w-[100px]">
                             @endif
                         </div>
-                        <!-- Konten di kanan -->
                         <div class="w-3/4 flex flex-col justify-start pl-2">
-                            <!-- Label kategori -->
                             <div class="mb-1 text-left">
                                 <span class="{{ $content->category_color }} text-xs font-semibold px-2 py-1 rounded uppercase">
                                     {{ $content->category->category_name }}
                                 </span>
                             </div>
-
-                            <!-- Judul -->
                             <h2 class="text-lg font-bold text-blue-700 leading-tight text-left">
                                 {{ Str::limit($content->title, 50) }}
                             </h2>
-
-                            <!-- Deskripsi -->
                             <p class="text-sm text-gray-900 mt-1 leading-relaxed text-left">
                                 {{ Str::limit($content->body, 100) }}
                             </p>
-
-                            <!-- Tanggal diupload -->
                             <div class="mt-2 text-gray-600 text-xs flex items-center">
                                 <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" stroke-width="2"
                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -68,34 +69,67 @@
 @include('admin.contents.create')
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('[name="konten"]').forEach(item => {
+        item.addEventListener('click', function() {
+            let contentId = this.getAttribute('data-id');
+            openEditModal(contentId);
+        });
+    });
+});
+
+function openCreateModal() {
+    document.getElementById('createModal').classList.remove('hidden');
+}
+
 function openEditModal(contentId) {
-    // Ambil data konten dari daftar yang sudah ada di halaman
-    let content = @json($contents).find(c => c.id == contentId);
+    console.log("Content ID yang diklik:", contentId);
 
-    if (content) {
-        document.getElementById('editContentId').value = content.id;
-        document.getElementById('editContentTitle').value = content.title;
-        document.getElementById('editContentBody').value = content.body;
-        document.getElementById('editCategoryId').value = content.category_id;
+    let contents = @json($contents);
+    let content = contents.find(c => c.id == contentId);
 
-        // Update form action untuk mengarah ke konten yang benar
-        document.getElementById('editForm').action = `/admin/contents/${content.id}`;
-
-        // Tampilkan modal
-        document.getElementById('editModal').classList.remove('hidden');
+    if (!content) {
+        console.error("Konten tidak ditemukan untuk ID:", contentId);
+        return;
     }
+
+    // Pastikan elemen ada sebelum mengaksesnya
+    let editContentId = document.getElementById('editContentId');
+    let editContentTitle = document.getElementById('editContentTitle');
+    let editContentBody = document.getElementById('editContentBody');
+    let editCategoryId = document.getElementById('editCategoryId');
+    let editForm = document.getElementById('editForm');
+    let editModal = document.getElementById('editModal');
+    let imageContainer = document.getElementById('editContentImages');
+
+    if (!editContentId || !editContentTitle || !editContentBody || !editCategoryId || !editForm || !editModal || !imageContainer) {
+        console.error("Salah satu elemen modal edit tidak ditemukan!");
+        return;
+    }
+
+    editContentId.value = content.id;
+    editContentTitle.value = content.title;
+    editContentBody.value = content.body;
+    editCategoryId.value = content.category_id;
+    editForm.action = `/admin/contents/${content.id}`;
+
+    // Bersihkan dan tambahkan gambar
+    imageContainer.innerHTML = '';
+    if (content.images && content.images.length > 0) {
+        content.images.forEach(image => {
+            let imgElement = document.createElement('img');
+            imgElement.src = `/storage/${image.image_url}`;
+            imgElement.classList.add('w-36', 'h-36', 'object-cover', 'rounded', 'mr-2');
+            imageContainer.appendChild(imgElement);
+        });
+    }
+
+    // Tampilkan modal edit
+    editModal.classList.remove('hidden');
 }
 
 function closeModal() {
     document.getElementById('editModal').classList.add('hidden');
     document.getElementById('createModal').classList.add('hidden');
-}
-
-function openCreateModal() {
-    // Reset form create
-    document.getElementById('createForm').reset();
-
-    // Tampilkan modal create
-    document.getElementById('createModal').classList.remove('hidden');
 }
 </script>

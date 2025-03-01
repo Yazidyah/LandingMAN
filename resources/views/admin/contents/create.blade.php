@@ -1,6 +1,6 @@
 <!-- Main modal for Create -->
 <div id="createModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-sm bg-gray-900 bg-opacity-50">
-    <div class="relative p-4 w-full max-w-md">
+    <div class="relative p-4 w-full max-w-2xl"> <!-- Adjusted max-width to match edit.blade.php -->
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow-sm">
             <!-- Modal header -->
@@ -16,7 +16,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form id="createForm" class="p-4 md:p-5" method="POST" action="{{ route('admin.contents.store') }}">
+            <form id="createForm" class="p-4 md:p-5" method="POST" action="{{ route('admin.contents.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
@@ -34,6 +34,10 @@
                                 <option value="{{ $category->id }}">{{ strtoupper($category->category_name) }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label for="contentFiles" class="block mb-2 text-sm font-medium text-gray-900">Upload Gambar</label>
+                        <input type="file" name="contentFile[]" id="contentFiles" multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                     </div>
                 </div>
                 <div class="flex justify-end">
