@@ -9,7 +9,6 @@ switch ($userRole){
     $redirectUrlp = 'admin.persyaratan';
     $redirectUrlk = 'admin.alur-pendaftaran';
     $redirectUrlpk = 'admin.data-afirmasi-prestasi';
-    $redirectUrlpk = 'admin.data-afirmasi-prestasi';
     $redirectUrlc = 'admin.data-afirmasi-abk';
     $redirectUrlrr = 'admin.data-afirmasi-ketm';
     $redirectUrldk = 'admin.data-tidaklulus';
@@ -22,27 +21,7 @@ switch ($userRole){
     $redirectUrljalur = 'admin.dashboard';
     $redirectUrlpot = 'pekerjaan-ortu.index';
     $redirectUrltes = 'admin.dashboard';
-    # $redirectUrlcrud = 'admin.tambah-persyaratan';
-    break;
-    //Pembina
-    case 'operator':
-    $redirectUrl = 'operator.dashboard';
-    $redirectUrlp = 'operator.persyaratan';
-    $redirectUrlk = 'operator.alur-pendaftaran';
-    $redirectUrlpk = 'operator.data-afirmasi-prestasi';
-    $redirectUrlpk = 'operator.data-afirmasi-prestasi';
-    $redirectUrlc = 'operator.data-afirmasi-abk';
-    $redirectUrlrr = 'operator.data-afirmasi-ketm';
-    $redirectUrldk = 'operator.data-tidaklulus';
-    $redirectUrlst = 'operator.data-reguler';
-    $redirectUrls = 'operator.datasiswa';
-    $redirectUrlls = 'operator.data-lulus';
-    $redirectUrstep1 = 'operator.data-lulus';
-    $redirectUrstep2 = 'operator.data-lulus';
-    $redirectUrlsyarat = 'operator.konfigurasi-persyaratan';
-    $redirectUrljalur = 'operator.konfigurasi-jalur';
-    $redirectUrlpot = 'pekerjaan-ortu.index';
-    $redirectUrltes = 'operator.konfigurasi-tes';
+    $redirectUrlcat = 'admin.categories';
     break;
 
     default:
@@ -55,6 +34,17 @@ switch ($userRole){
     $redirectUrldk = 'admin.dashboard';
     $redirectUrlst = 'admin.dashboard';
     $redirectUrls = 'admin.dashboard';
+    $redirectUrlcar = 'admin.carousel';
+    $redirectUrlps = 'admin.profilsekolah';
+    $redirectUrlnews = 'admin.news';
+    $redirectUrlfas = 'admin.fasilitas';
+    $redirectUrlpres = 'admin.prestasi';
+    $redirectUrlfaq = 'admin.faq';
+    $redirectUrlagenda = 'admin.agenda';
+    $redirectUrlsar = 'admin.saranpengaduan';
+    $redirectUrlpub = 'admin.publikasi';
+    $redirectUrlvisi = 'admin.visimisi';
+    $redirectUrlcat = 'admin.categories.index';
     break;
 
 }
@@ -178,53 +168,58 @@ switch ($userRole){
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.carousel')" :active="request()->routeIs('admin.carousel')">
-            {{ __('Banner') }}
+            <x-side-nav :href="route($redirectUrlcar)" :active="request()->routeIs($redirectUrlcar)">
+            {{ __('Carrousel Banner') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.profilsekolah')" :active="request()->routeIs('admin.profilsekolah')">
+            <x-side-nav :href="route($redirectUrlps)" :active="request()->routeIs($redirectUrlps)">
             {{ __('Profil Sekolah') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.news')" :active="request()->routeIs('admin.news')">
+            <x-side-nav :href="route($redirectUrlnews)" :active="request()->routeIs($redirectUrlnews)">
             {{ __('Berita Sekolah') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.fasilitas')" :active="request()->routeIs('admin.fasilitas')">
+            <x-side-nav :href="route($redirectUrlfas)" :active="request()->routeIs($redirectUrlfas)">
             {{ __('Fasilitas') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.prestasi')" :active="request()->routeIs('admin.prestasi')">
+            <x-side-nav :href="route($redirectUrlpres)" :active="request()->routeIs($redirectUrlpres)">
             {{ __('Prestasi') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.faq')" :active="request()->routeIs('admin.faq')">
+            <x-side-nav :href="route($redirectUrlfaq)" :active="request()->routeIs($redirectUrlfaq)">
             {{ __('FAQ') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.agenda')" :active="request()->routeIs('admin.agenda')">
+            <x-side-nav :href="route($redirectUrlagenda)" :active="request()->routeIs($redirectUrlagenda)">
             {{ __('Agenda Kegiatan') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.saranpengaduan')" :active="request()->routeIs('admin.saranpengaduan')">
+            <x-side-nav :href="route($redirectUrlsar)" :active="request()->routeIs($redirectUrlsar)">
             {{ __('Saran & Pengaduan') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.publikasi')" :active="request()->routeIs('admin.publikasi')">
+            <x-side-nav :href="route($redirectUrlpub)" :active="request()->routeIs($redirectUrlpub)">
             {{ __('Publikasi') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route('admin.visimisi')" :active="request()->routeIs('admin.visimisi')">
+            <x-side-nav :href="route($redirectUrlvisi)" :active="request()->routeIs($redirectUrlvisi)">
             {{ __('Visi Misi') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlcat)" :active="request()->routeIs($redirectUrlcat)">
+                {{ __('Categories') }}
             </x-side-nav>
         </li>
         </ul>
