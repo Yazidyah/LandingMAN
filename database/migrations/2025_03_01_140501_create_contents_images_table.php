@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contents_images', function (Blueprint $table) {
+        Schema::create('content_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('content_id');
             $table->string('image_url', 255)->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contents_images');
+        Schema::dropIfExists('content_images');
     }
 };

@@ -45,6 +45,7 @@ switch ($userRole){
     $redirectUrlpub = 'admin.publikasi';
     $redirectUrlvisi = 'admin.visimisi';
     $redirectUrlcat = 'admin.categories.index';
+    $redirectUrlcont = 'admin.contents.index';
     break;
 
 }
@@ -162,7 +163,7 @@ switch ($userRole){
 <aside x-show="cheat" id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full border-r border-gray-200 sm:translate-x-0" aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-tertiary">
         <ul class="space-y-2 font-medium">
-        <li>
+        <!-- <li>
             <x-side-nav :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
             {{ __('Home') }}
             </x-side-nav>
@@ -216,10 +217,15 @@ switch ($userRole){
             <x-side-nav :href="route($redirectUrlvisi)" :active="request()->routeIs($redirectUrlvisi)">
             {{ __('Visi Misi') }}
             </x-side-nav>
-        </li>
+        </li> -->
         <li>
             <x-side-nav :href="route($redirectUrlcat)" :active="request()->routeIs($redirectUrlcat)">
                 {{ __('Categories') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlcont)" :active="request()->routeIs($redirectUrlcont)">
+                {{ __('Contents') }}
             </x-side-nav>
         </li>
         </ul>

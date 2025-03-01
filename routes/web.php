@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\KategoriController;
+use App\Http\Controllers\Admin\KontenController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes
@@ -35,6 +36,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
+    Route::resource('contents', KontenController::class)->except(['show', 'create']);
 });
 
 // Profile Routes (Requires Authentication)
