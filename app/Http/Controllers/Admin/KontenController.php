@@ -90,6 +90,7 @@ class KontenController extends Controller
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'category_id' => 'required|integer|exists:categories,id',
+            'contentFile.*' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
         $content->update([
@@ -97,6 +98,16 @@ class KontenController extends Controller
             'body' => $request->body,
             'category_id' => $request->category_id,
         ]);
+
+        if ($request->hasFile('contentFile')) {
+            foreach ($request->file('contentFile') as $file) {
+                $filePath = $file->store('assets/content', 'public');
+                ContentImage::create([
+                    'content_id' => $content->id,
+                    'image_url' => $filePath,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.contents.index')->with('success', 'Content updated successfully.');
     }

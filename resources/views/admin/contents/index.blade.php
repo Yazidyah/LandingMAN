@@ -13,7 +13,8 @@
                         Peringatan : Isi Kegiatan dengan data yang benar.</h1>
                 </div>
                 <div class="flex justify-between items-center mb-4">
-                    <button onclick="openCreateModal()" class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
+                    <button onclick="openCreateModal()"
+                        class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
                         Buat Postingan
                     </button>
                     <form method="GET" action="{{ route('admin.contents.index') }}">
@@ -29,7 +30,8 @@
                 </div>
                 <!-- Foreach Konten -->
                 @foreach ($contents as $content)
-                    <div name="konten" data-id="{{ $content->id }}" class="flex bg-green-50 p-4 rounded-lg shadow-md mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                    <button name="konten" data-id="{{ $content->id }}"
+                        class="flex bg-green-50 p-4 rounded-lg shadow-md mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 w-full text-left overflow-visible">
                         <div class="w-1/4 pr-2">
                             @if ($content->images->isNotEmpty())
                                 <img src="{{ $content->image_url }}" alt="Deskripsi Gambar"
@@ -38,7 +40,8 @@
                         </div>
                         <div class="w-3/4 flex flex-col justify-start pl-2">
                             <div class="mb-1 text-left">
-                                <span class="{{ $content->category_color }} text-xs font-semibold px-2 py-1 rounded uppercase">
+                                <span
+                                    class="{{ $content->category_color }} text-xs font-semibold px-2 py-1 rounded uppercase">
                                     {{ $content->category->category_name }}
                                 </span>
                             </div>
@@ -58,7 +61,7 @@
                                 {{ $content->created_at->format('d M Y') }}
                             </div>
                         </div>
-                    </div>
+                    </button>
                 @endforeach
             </div>
         </div>
@@ -68,68 +71,114 @@
 @include('admin.contents.edit')
 @include('admin.contents.create')
 
+<style>
+    .image-wrapper {
+        position: relative;
+    }
+    .delete-button {
+        display: none;
+    }
+    .image-wrapper:hover .delete-button {
+        display: flex;
+    }
+</style>
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('[name="konten"]').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             let contentId = this.getAttribute('data-id');
+            console.log("Klik konten ID:", contentId); // Cek apakah event berjalan
             openEditModal(contentId);
         });
     });
-});
 
-function openCreateModal() {
-    document.getElementById('createModal').classList.remove('hidden');
-}
-
-function openEditModal(contentId) {
-    console.log("Content ID yang diklik:", contentId);
-
-    let contents = @json($contents);
-    let content = contents.find(c => c.id == contentId);
-
-    if (!content) {
-        console.error("Konten tidak ditemukan untuk ID:", contentId);
-        return;
+    function openCreateModal() {
+        document.getElementById('createModal').classList.remove('hidden');
     }
 
-    // Pastikan elemen ada sebelum mengaksesnya
-    let editContentId = document.getElementById('editContentId');
-    let editContentTitle = document.getElementById('editContentTitle');
-    let editContentBody = document.getElementById('editContentBody');
-    let editCategoryId = document.getElementById('editCategoryId');
-    let editForm = document.getElementById('editForm');
-    let editModal = document.getElementById('editModal');
-    let imageContainer = document.getElementById('editContentImages');
+    function openEditModal(contentId) {
+        console.log("Content ID yang diklik:", contentId);
 
-    if (!editContentId || !editContentTitle || !editContentBody || !editCategoryId || !editForm || !editModal || !imageContainer) {
-        console.error("Salah satu elemen modal edit tidak ditemukan!");
-        return;
+        let contents = @json($contents);
+        let content = contents.find(c => c.id == contentId);
+
+        if (!content) {
+            console.error("Konten tidak ditemukan untuk ID:", contentId);
+            return;
+        }
+        console.log("Data konten ditemukan:", content); // Debug
+
+        // Pastikan elemen ada sebelum mengaksesnya
+        let editContentId = document.getElementById('editContentId');
+        let editContentTitle = document.getElementById('editContentTitle');
+        let editContentBody = document.getElementById('editContentBody');
+        let editCategoryId = document.getElementById('editCategoryId');
+        let editForm = document.getElementById('editForm');
+        let editModal = document.getElementById('editModal');
+        let imageContainer = document.getElementById('editContentImages');
+
+        if (!editContentId || !editContentTitle || !editContentBody || !editCategoryId || !editForm || !editModal || !imageContainer) {
+            console.error("Salah satu elemen modal edit tidak ditemukan!");
+            return;
+        }
+
+        if (!editModal) {
+            console.error("Modal Edit tidak ditemukan di DOM!");
+            return;
+        }
+        console.log("Modal ditemukan, menghapus hidden...");
+
+        editContentId.value = content.id;
+        editContentTitle.value = content.title;
+        editContentBody.value = content.body;
+        editCategoryId.value = content.category_id;
+        editForm.action = `/admin/contents/${content.id}`;
+
+        // Bersihkan dan tambahkan gambar
+        imageContainer.innerHTML = '';
+        if (content.images && content.images.length > 0) {
+            content.images.forEach(image => {
+                let imgWrapper = document.createElement('div');
+                imgWrapper.classList.add('relative', 'image-wrapper');
+
+                let imgElement = document.createElement('img');
+                imgElement.src = `/storage/${image.image_url}`;
+                imgElement.classList.add('w-36', 'h-36', 'object-cover', 'rounded', 'mr-2');
+
+                let deleteButton = document.createElement('button');
+                deleteButton.classList.add('absolute', 'top-0', 'right-0', 'bg-red-600', 'text-white', 'rounded-full', 'w-6', 'h-6', 'flex', 'items-center', 'justify-center', 'delete-button');
+                deleteButton.innerHTML = '✕';
+                deleteButton.onclick = function() {
+                    deleteImage(image.id);
+                };
+
+                imgWrapper.appendChild(imgElement);
+                imgWrapper.appendChild(deleteButton);
+                imageContainer.appendChild(imgWrapper);
+            });
+        }
+
+        // Tampilkan modal edit
+        editModal.classList.remove('hidden');
     }
 
-    editContentId.value = content.id;
-    editContentTitle.value = content.title;
-    editContentBody.value = content.body;
-    editCategoryId.value = content.category_id;
-    editForm.action = `/admin/contents/${content.id}`;
-
-    // Bersihkan dan tambahkan gambar
-    imageContainer.innerHTML = '';
-    if (content.images && content.images.length > 0) {
-        content.images.forEach(image => {
-            let imgElement = document.createElement('img');
-            imgElement.src = `/storage/${image.image_url}`;
-            imgElement.classList.add('w-36', 'h-36', 'object-cover', 'rounded', 'mr-2');
-            imageContainer.appendChild(imgElement);
-        });
+    function closeModal() {
+        document.getElementById('editModal').classList.add('hidden');
+        document.getElementById('createModal').classList.add('hidden');
     }
 
-    // Tampilkan modal edit
-    editModal.classList.remove('hidden');
-}
-
-function closeModal() {
-    document.getElementById('editModal').classList.add('hidden');
-    document.getElementById('createModal').classList.add('hidden');
-}
+    function deleteImage(imageId) {
+        if (confirm('Are you sure you want to delete this image?')) {
+            fetch(`/admin/contents/images/${imageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                }
+            });
+        }
+    }
 </script>
