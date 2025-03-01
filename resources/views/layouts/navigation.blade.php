@@ -39,7 +39,7 @@ switch ($userRole){
     $redirectUrlnews = 'admin.news';
     $redirectUrlfas = 'admin.fasilitas';
     $redirectUrlpres = 'admin.prestasi';
-    $redirectUrlfaq = 'admin.faq';
+    $redirectUrlfaq = 'admin.faq.index';
     $redirectUrlagenda = 'admin.agenda';
     $redirectUrlsar = 'admin.saranpengaduan';
     $redirectUrlpub = 'admin.publikasi';
@@ -194,11 +194,6 @@ switch ($userRole){
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route($redirectUrlfaq)" :active="request()->routeIs($redirectUrlfaq)">
-            {{ __('FAQ') }}
-            </x-side-nav>
-        </li>
-        <li>
             <x-side-nav :href="route($redirectUrlagenda)" :active="request()->routeIs($redirectUrlagenda)">
             {{ __('Agenda Kegiatan') }}
             </x-side-nav>
@@ -213,6 +208,11 @@ switch ($userRole){
             {{ __('Publikasi') }}
             </x-side-nav>
         </li> --->
+        <li>
+            <x-side-nav :href="route($redirectUrlfaq)" :active="request()->routeIs($redirectUrlfaq)">
+            {{ __('FAQ') }}
+            </x-side-nav>
+        </li>
         <li>
             <x-side-nav :href="route($redirectUrlvisi)" :active="request()->routeIs($redirectUrlvisi)">
             {{ __('Visi Misi') }}

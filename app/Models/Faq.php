@@ -10,9 +10,4 @@ class Faq extends Model
     use HasFactory;
 
     protected $fillable = ['content_id', 'question', 'answer'];
-
-    public function content()
-    {
-        return $this->belongsTo(Content::class);
-    }
 }

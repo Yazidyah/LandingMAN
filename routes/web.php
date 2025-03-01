@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\VisiMisiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\KontenController;
+use App\Http\Controllers\Admin\FaqController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes
@@ -37,7 +38,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
-    Route::resource('visimisi', VisiMisiController::class)->except(['show', 'create']);
+    Route::resource('visimisi', VisiMisiController::class);
+    Route::resource('faq', FaqController::class);
 });
 
 // Profile Routes (Requires Authentication)

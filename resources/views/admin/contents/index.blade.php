@@ -21,9 +21,11 @@
                         <select name="category_id" onchange="this.form.submit()" class="border rounded px-4 py-2">
                             <option value="">Semua Kategori</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                    {{ strtoupper($category->category_name) }}
-                                </option>
+                                @if (!in_array($category->category_name, ['visimisi']))
+                                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ strtoupper($category->category_name) }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                     </form>
