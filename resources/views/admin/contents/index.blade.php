@@ -12,7 +12,7 @@
                     <h1 class="block text-xs lg:text-base items-center text-center justify-center font-semibold">
                         Peringatan : Isi Kegiatan dengan data yang benar.</h1>
                 </div>
-                <div class="flex justify-between items-center mb-4">
+                <div class="flex justify-between items-center mb-4 justify-end">
                     <button onclick="openCreateModal()"
                         class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
                         Buat Postingan
@@ -21,7 +21,7 @@
                         <select name="category_id" onchange="this.form.submit()" class="border rounded px-4 py-2">
                             <option value="">Semua Kategori</option>
                             @foreach ($categories as $category)
-                                @if (!in_array($category->category_name, ['visimisi']))
+                                @if (!in_array($category->id, [1, 2]))
                                     <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
                                         {{ strtoupper($category->category_name) }}
                                     </option>
