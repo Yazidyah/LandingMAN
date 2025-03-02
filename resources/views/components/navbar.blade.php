@@ -91,43 +91,43 @@
         <ul class=" text-sm text-center text-white font-bold gap-8 bg-gradient-to-b from-primary to-tertiary">
                     <li
                      class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/">Home</a>
+                        <a href="{{ route('home') }}">Home</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/persyaratan">Profil Sekolah</a>
+                        <a href="{{ route('guest.profilsekolah') }}">Profil Sekolah</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">Berita Sekolah</a>
+                        <a href="{{ route('guest.news') }}">Berita Sekolah</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">Fasilitas</a>
+                        <a href="{{ route('guest.fasilitas') }}">Fasilitas</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">Prestasi</a>
+                        <a href="{{ route('guest.prestasi') }}">Prestasi</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">FAQ</a>
+                        <a href="{{ route('guest.faq') }}">FAQ</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">Agenda Kegiatan</a>
+                        <a href="{{ route('guest.agenda') }}">Agenda Kegiatan</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">Saran & Pengaduan</a>
+                        <a href="{{ route('guest.saranpengaduan') }}">Saran & Pengaduan</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">PPDB</a>
+                        <a href="/ppdb">PPDB</a>
                     </li>
                     <li
                         class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/alurpendaftaran">Publikasi</a>
+                        <a href="{{ route('guest.publikasi') }}">Publikasi</a>
                     </li>
         </ul>
         <div class=" flex gap-4 px-4 pb-4 mt-4">

@@ -15,7 +15,7 @@ class KontenController extends Controller
     {
         $categories = Category::all();
         $query = Content::with(['category', 'images'])
-            ->whereNotIn('category_id', [1, 2]);
+            ->whereNotIn('category_id', [1, 2, 3]);
 
         if ($request->has('category_id') && $request->category_id != '') {
             $query->where('category_id', $request->category_id);
@@ -87,6 +87,7 @@ class KontenController extends Controller
             'category_id' => $request->category_id,
             'title' => $request->title,
             'body' => $request->body,
+            'slug' => \Str::slug($request->title),
         ]);
 
         if ($request->hasFile('contentFile')) {
@@ -122,6 +123,7 @@ class KontenController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'category_id' => $request->category_id,
+            'slug' => \Str::slug($request->title),
         ]);
 
         if ($request->hasFile('contentFile')) {

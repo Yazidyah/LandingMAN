@@ -31,7 +31,11 @@
                         <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
                         <select name="category_id" id="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ strtoupper($category->category_name) }}</option>
+                                @if (!in_array($category->id, [1, 2]))
+                                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ strtoupper($category->category_name) }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

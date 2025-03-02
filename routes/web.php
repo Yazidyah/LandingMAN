@@ -11,18 +11,17 @@ use Illuminate\Support\Facades\Route;
 
 // Guest Routes
 Route::get('/', [\App\Http\Controllers\BannerController::class, 'index'])->name('home');
-Route::prefix('guest')->group(function () {
-    Route::get('/profilsekolah', 'guest.profilsekolah')->name('guest.profilsekolah');
-    Route::get('/agenda', 'guest.agenda')->name('guest.agenda');
-    Route::get('/prestasi', 'guest.prestasi')->name('guest.prestasi');
-    Route::get('/faq', 'guest.faq')->name('guest.faq');
-    Route::get('/fasilitas', 'guest.fasilitas')->name('guest.fasilitas');
-    Route::get('/news', 'guest.news')->name('guest.news');
-    Route::get('/saranpengaduan', 'guest.saranpengaduan')->name('guest.saranpengaduan');
-    Route::get('/sejarah', 'guest.sejarah')->name('guest.sejarah');
-    Route::get('/visimisi', 'guest.visimisi')->name('guest.visimisi');
-    Route::get('/publikasi', 'guest.publikasi')->name('guest.publikasi');
-});
+Route::get('/profilsekolah', [\App\Http\Controllers\GuestController::class, 'profilsekolah'])->name('guest.profilsekolah');
+Route::get('/agenda', [\App\Http\Controllers\GuestController::class, 'agenda'])->name('guest.agenda');
+Route::get('/prestasi', [\App\Http\Controllers\GuestController::class, 'prestasi'])->name('guest.prestasi');
+Route::get('/faq', [\App\Http\Controllers\GuestController::class, 'faq'])->name('guest.faq');
+Route::get('/fasilitas', [\App\Http\Controllers\GuestController::class, 'fasilitas'])->name('guest.fasilitas');
+Route::get('/news', [\App\Http\Controllers\GuestController::class, 'news'])->name('guest.news');
+Route::get('/news/{slug}', [\App\Http\Controllers\GuestController::class, 'newsDetail'])->name('guest.newsDetail');
+Route::get('/saranpengaduan', [\App\Http\Controllers\GuestController::class, 'saranpengaduan'])->name('guest.saranpengaduan');
+Route::get('/sejarah', [\App\Http\Controllers\GuestController::class, 'sejarah'])->name('guest.sejarah');
+Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi'])->name('guest.visimisi');
+Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');
 
 // Admin Routes (Protected by Authentication & Verification)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
