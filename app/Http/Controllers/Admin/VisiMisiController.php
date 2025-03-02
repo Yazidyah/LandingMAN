@@ -11,9 +11,9 @@ class VisiMisiController extends Controller
 {
     public function index()
     {
-        $visimisi = Content::where('category_id', 6)->get();
-        $visi = Content::where('category_id', 6)->where('title', 'visi')->first();
-        $misi = Content::where('category_id', 6)->where('title', 'misi')->first();
+        $visimisi = Content::where('category_id', 2)->get();
+        $visi = Content::where('category_id', 2)->where('title', 'visi')->first();
+        $misi = Content::where('category_id', 2)->where('title', 'misi')->first();
         return view('admin.visimisi.index', compact('visimisi', 'visi', 'misi'));
     }
 
@@ -27,12 +27,12 @@ class VisiMisiController extends Controller
         $userId = Auth::id();
 
         $visi = Content::updateOrCreate(
-            ['category_id' => 6, 'title' => 'visi'],
+            ['category_id' => 2, 'title' => 'visi'],
             ['content' => $request->visi, 'user_id' => $userId, 'body' => $request->visi]
         );
 
         $misi = Content::updateOrCreate(
-            ['category_id' => 6, 'title' => 'misi'],
+            ['category_id' => 2, 'title' => 'misi'],
             ['content' => $request->misi, 'user_id' => $userId, 'body' => $request->misi]
         );
 

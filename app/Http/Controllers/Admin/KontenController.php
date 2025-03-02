@@ -14,7 +14,8 @@ class KontenController extends Controller
     public function index(Request $request)
     {
         $categories = Category::all();
-        $query = Content::with(['category', 'images']);
+        $query = Content::with(['category', 'images'])
+            ->whereNotIn('category_id', [1, 2]);
 
         if ($request->has('category_id') && $request->category_id != '') {
             $query->where('category_id', $request->category_id);

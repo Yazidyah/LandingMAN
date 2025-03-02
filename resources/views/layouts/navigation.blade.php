@@ -34,7 +34,7 @@ switch ($userRole){
     $redirectUrldk = 'admin.dashboard';
     $redirectUrlst = 'admin.dashboard';
     $redirectUrls = 'admin.dashboard';
-    $redirectUrlcar = 'admin.carousel';
+    $redirectUrlbar = 'admin.banner.index';
     $redirectUrlps = 'admin.profilsekolah';
     $redirectUrlnews = 'admin.news';
     $redirectUrlfas = 'admin.fasilitas';
@@ -169,7 +169,7 @@ switch ($userRole){
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route($redirectUrlcar)" :active="request()->routeIs($redirectUrlcar)">
+            <x-side-nav :href="route($redirectUrlbar)" :active="request()->routeIs($redirectUrlbar)">
             {{ __('Carrousel Banner') }}
             </x-side-nav>
         </li>
@@ -208,6 +208,11 @@ switch ($userRole){
             {{ __('Publikasi') }}
             </x-side-nav>
         </li> --->
+        <li>
+            <x-side-nav :href="route($redirectUrlbar)" :active="request()->routeIs($redirectUrlbar)">
+            {{ __('Carrousel Banner') }}
+            </x-side-nav>
+        </li>
         <li>
             <x-side-nav :href="route($redirectUrlfaq)" :active="request()->routeIs($redirectUrlfaq)">
             {{ __('FAQ') }}
