@@ -22,6 +22,7 @@ class BannerController extends Controller
         })->sortBy('basename');
 
         return view('admin.banner.index', compact('contents'));
+
     }
 
     public function store(Request $request)

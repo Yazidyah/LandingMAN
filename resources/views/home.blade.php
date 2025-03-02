@@ -5,9 +5,11 @@
         </div>
     </div>
     <div class="mx-auto items-center mt-10 justify-center w-3/4" data-flickity>
-            <h1 class=" shadow-xl carousel-cell font-bold mx-20 flex justify-center items-center text-center text-base lg:text-2xl text-white bg-tertiary">SATYAKU KU DARMAKAN DARMAKU KU BAKTIKAN</h1>
-            <h1 class=" shadow-xl carousel-cell font-bold mx-20 flex justify-center items-center text-center text-base lg:text-2xl text-white bg-tertiary ">GALANG SATYA DHARMA BAWA BAKTI HING BUMI PERTIWI</h1>
-            <h1 class=" shadow-xl carousel-cell font-bold mx-20 flex justify-center items-center text-center text-base lg:text-2xl text-white bg-tertiary ">WE ARE SCOUT BUT WE ARE MOSLEM</h1>
-            <h1 class=" shadow-xl carousel-cell font-bold mx-20 flex justify-center items-center text-center text-base lg:text-2xl text-white bg-tertiary ">ABDIKU ABADI</h1>
+    @foreach ($contents as $content)
+                        @foreach ($content->images as $image)
+                            <img src="{{ asset('storage/' . $image->image_url) }}" alt="Deskripsi Gambar"
+                                class="rounded-b-lg shadow-md w-full object-cover aspect-video" style="max-height: 150px;">
+                        @endforeach
+            @endforeach
         </div>
 

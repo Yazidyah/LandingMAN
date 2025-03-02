@@ -27,7 +27,7 @@
                                 <td class="px-6 py-4">{{ $faq->answer }}</td>
                                 <td class="px-6 py-4">
                                     <button onclick="openEditModal({{ $faq->id }})"
-                                        class="bg-tertiary text-white px-4 py-2 hover:bg-secondary rounded">Edit</button>
+                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
                                     <form action="{{ route('admin.faq.destroy', $faq->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')

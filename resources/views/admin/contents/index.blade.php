@@ -2,7 +2,7 @@
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div class="container mx-auto text-center pt-7">
-                <h1 class="font-bold text-[32px] pt-7 pb-7">Posting Kegiatan</h1>
+                <h1 class="font-bold text-[32px] pt-7 pb-7">Posting Konten</h1>
                 <div class="flex w-3/4 items-center justify-center border-2 border-dasar2 rounded-lg py-2 mx-auto my-6">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-7 h-7">
@@ -12,9 +12,9 @@
                     <h1 class="block text-xs lg:text-base items-center text-center justify-center font-semibold">
                         Peringatan : Isi Kegiatan dengan data yang benar.</h1>
                 </div>
-                <div class="flex justify-between items-center mb-4 justify-end">
+                <div class="flex justify-between items-center mb-4">
                     <button onclick="openCreateModal()"
-                        class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
+                        class="bg-tertiary text-white px-4 py-2 hover:bg-secondary hover:text-tertiary rounded">
                         Buat Postingan
                     </button>
                     <form method="GET" action="{{ route('admin.contents.index') }}">

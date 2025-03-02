@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\VisiMisiController;
+use App\Http\Controllers\ControllerBanner;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\KontenController;
@@ -9,18 +10,18 @@ use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes
-Route::view('/', 'home')->name('home');
+Route::get('/', [\App\Http\Controllers\BannerController::class, 'index'])->name('home');
 Route::prefix('guest')->group(function () {
-    Route::view('/profilsekolah', 'guest.profilsekolah')->name('guest.profilsekolah');
-    Route::view('/agenda', 'guest.agenda')->name('guest.agenda');
-    Route::view('/prestasi', 'guest.prestasi')->name('guest.prestasi');
-    Route::view('/faq', 'guest.faq')->name('guest.faq');
-    Route::view('/fasilitas', 'guest.fasilitas')->name('guest.fasilitas');
-    Route::view('/news', 'guest.news')->name('guest.news');
-    Route::view('/saranpengaduan', 'guest.saranpengaduan')->name('guest.saranpengaduan');
-    Route::view('/sejarah', 'guest.sejarah')->name('guest.sejarah');
-    Route::view('/visimisi', 'guest.visimisi')->name('guest.visimisi');
-    Route::view('/publikasi', 'guest.publikasi')->name('guest.publikasi');
+    Route::get('/profilsekolah', 'guest.profilsekolah')->name('guest.profilsekolah');
+    Route::get('/agenda', 'guest.agenda')->name('guest.agenda');
+    Route::get('/prestasi', 'guest.prestasi')->name('guest.prestasi');
+    Route::get('/faq', 'guest.faq')->name('guest.faq');
+    Route::get('/fasilitas', 'guest.fasilitas')->name('guest.fasilitas');
+    Route::get('/news', 'guest.news')->name('guest.news');
+    Route::get('/saranpengaduan', 'guest.saranpengaduan')->name('guest.saranpengaduan');
+    Route::get('/sejarah', 'guest.sejarah')->name('guest.sejarah');
+    Route::get('/visimisi', 'guest.visimisi')->name('guest.visimisi');
+    Route::get('/publikasi', 'guest.publikasi')->name('guest.publikasi');
 });
 
 // Admin Routes (Protected by Authentication & Verification)

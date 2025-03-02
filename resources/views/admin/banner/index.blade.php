@@ -33,7 +33,7 @@
                     <form action="{{ route('admin.banner.destroy', $content->id) }}" method="POST" class="absolute top-0 right-0 mt-2 mr-2">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white p-2 rounded-full hover:bg-red-700">
+                        <button type="submit" class="bg-red-900 text-white p-2 rounded-full hover:bg-red-500">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                             </svg>

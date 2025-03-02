@@ -10,7 +10,7 @@
                 <h1 class=" block text-xs lg:text-base items-center text-center justify-center font-semibold">Peringatan : Isi Kegiatan dengan data yang benar.</h1>
             </div>
             <div class="flex justify-end">
-                <button onclick="openCreateModal()" class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
+                <button onclick="openCreateModal()" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">
                     Buat Kategori
                 </button>
             </div>
@@ -24,11 +24,11 @@
                 </thead>
                 <tbody>
                     @foreach ($categories as $index => $category)
-                        <tr class="bg-white border-b">
-                            <td class="px-6 py-4">{{ $index + 1 }}</td>
-                            <td class="px-6 py-4">{{ strtoupper($category->category_name) }}</td>
-                            <td class="px-6 py-4">
-                                <button onclick="openEditModal({{ $category->id }})" class="bg-tertiary text-white px-4 py-2 hover:bg-secondary rounded">Edit</button>
+                        <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
+                            <td class="px-6 py-4 text-tertiary">{{ $index + 1 }}</td>
+                            <td class="px-6 py-4 text-tertiary">{{ strtoupper($category->category_name) }}</td>
+                            <td class="px-6 py-4 text-tertiary">
+                                <button onclick="openEditModal({{ $category->id }})" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
                                 <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
