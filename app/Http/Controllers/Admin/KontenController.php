@@ -32,6 +32,30 @@ class KontenController extends Controller
                 case 2:
                     $content->category_color = 'bg-blue-300 text-white-800';
                     break;
+                case 3:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
+                case 4:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
+                case 5:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
+                case 6:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
+                case 7:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
+                case 8:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
+                case 9:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
+                case 10:
+                    $content->category_color = 'bg-blue-300 text-white-800';
+                    break;
                 default:
                     $content->category_color = 'bg-gray-300 text-white-800';
                     break;

@@ -15,7 +15,7 @@
                     <a href="{{ route('admin.dashboard') }}"
                         class="text-white outline px-9 py-4 rounded-full font-bold text-sm hover:bg-secondary hover:text-primary">Dashboard</a>
                 @else
-                    <a href="login"
+                    <a href="/login"
                         class="flex items-center justify-center w-full text-sm font-bold px-9 py-4 bg-white rounded-full hover:bg-secondary hover:text-primary text-primary">Masuk</a>
                     
                 @endif

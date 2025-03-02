@@ -47,7 +47,7 @@
                                     {{ $content->category->category_name }}
                                 </span>
                             </div>
-                            <h2 class="text-lg font-bold text-blue-700 leading-tight text-left">
+                            <h2 class="text-lg font-bold text-tertiary leading-tight text-left">
                                 {{ Str::limit($content->title, 50) }}
                             </h2>
                             <p class="text-sm text-gray-900 mt-1 leading-relaxed text-left">

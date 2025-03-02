@@ -9,17 +9,17 @@
                     <div class="mb-4">
                         <label for="visi" class="block text-gray-700 text-2xl font-bold mb-2">Visi:</label>
                         <textarea name="visi" id="visi" rows="6"
-                            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-lg">{{ $visi->body ?? '' }}</textarea>
+                            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-lg ring-2 ring-tertiary">{{ $visi->body ?? '' }}</textarea>
                     </div>
                     <div class="mb-4">
                         <label for="misi" class="block text-gray-700 text-2xl font-bold mb-2">Misi:</label>
                         <textarea name="misi" id="misi" rows="6"
-                            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-lg">{{ $misi->body ?? '' }}</textarea>
+                            class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-lg ring-2 ring-tertiary">{{ $misi->body ?? '' }}</textarea>
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="w-full flex justify-center">
                             <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">
+                                class="bg-tertiary hover:bg-secondary text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">
                                 Simpan
                             </button>
                         </div>
