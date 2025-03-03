@@ -8,6 +8,7 @@ use App\Models\Content;
 use App\Models\ContentImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
@@ -32,10 +33,14 @@ class BannerController extends Controller
             'contentFile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $title = strtolower($request->title);
+        $slug = Str::slug($title, '-');
+
         $content = Content::create([
             'user_id' => Auth::id(),
             'category_id' => 1,
-            'title' => $request->title,
+            'title' => $title,
+            'slug' => $slug,
         ]);
 
         if ($request->hasFile('contentFile')) {

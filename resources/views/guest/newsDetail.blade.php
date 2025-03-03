@@ -1,6 +1,6 @@
 <x-layout>
 <div class="container mx-auto pt-5 px-4">
-    <div id="gallery" class="relative w-full max-w-3xl mx-auto" data-carousel="slide">
+    <div id="gallery" class="relative w-full max-w-3xl mx-auto" data-carousel="slide" style="z-index: 1;">
         <!-- Carousel wrapper -->
         <div class="relative h-0 pb-[100%] overflow-hidden rounded-lg">
             @foreach($news->images as $index => $image)
