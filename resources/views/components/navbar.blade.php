@@ -14,10 +14,6 @@
                 @if (Auth::check())
                     <a href="{{ route('admin.dashboard') }}"
                         class="text-white outline px-9 py-4 rounded-full font-bold text-sm hover:bg-secondary hover:text-primary">Dashboard</a>
-                @else
-                    <a href="/login"
-                        class="flex items-center justify-center w-full text-sm font-bold px-9 py-4 bg-white rounded-full hover:bg-secondary hover:text-primary text-primary">Masuk</a>
-                    
                 @endif
             </div>
         </div>
@@ -39,9 +35,16 @@
                         </x-side-nav>
                     </li>
                     <li>
-                        <x-side-nav :href="route('guest.profilsekolah')" :active="request()->routeIs('guest.profilsekolah')">
-                        {{ __('Profil Sekolah') }}
-                        </x-side-nav>
+                    <div class="relative  items-center   text-sm font-medium leading-5 text-white focus:outline-none px-1 focus:border-indigo-700   hover:text-tertiary " x-data="{dropdown:false}">
+                        <button @click="dropdown = !dropdown" class="inline-flex hover:bg-white focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg " >Profil Sekolah</button>
+                        <!-- Dropdown -->
+                        <div class="lg:absolute bg-secondary z-10 text-tertiary rounded-md right-0 my-2 p-2" x-show="dropdown" @click.outside="dropdown = false">
+                            <ul class="space-y-2 w-48">
+                                <li><a href="/sejarah" class="flex p-2 font-medium text-tertiary rounded-md hover:bg-white hover:text-tertiary">Sejarah</a></li>
+                                <li><a href="/visimisi" class="flex p-2 font-medium text-tertiary rounded-md hover:bg-white hover:text-tertiary">Visi Misi</a></li>
+                           </ul>
+                        </div>
+                    </div> 
                     </li>
                     <li>
                         <x-side-nav :href="route('guest.news')" :active="request()->routeIs('guest.news')">
