@@ -85,6 +85,7 @@
     }
 </style>
 
+<script src="{{ asset('js/content-handler.js') }}"></script>
 <script>
     document.querySelectorAll('[name="konten"]').forEach(item => {
         item.addEventListener('click', function () {
@@ -139,25 +140,7 @@
         // Bersihkan dan tambahkan gambar
         imageContainer.innerHTML = '';
         if (content.images && content.images.length > 0) {
-            content.images.forEach(image => {
-                let imgWrapper = document.createElement('div');
-                imgWrapper.classList.add('relative', 'image-wrapper');
-
-                let imgElement = document.createElement('img');
-                imgElement.src = `/storage/${image.image_url}`;
-                imgElement.classList.add('w-36', 'h-36', 'object-cover', 'rounded', 'mr-2');
-
-                let deleteButton = document.createElement('button');
-                deleteButton.classList.add('absolute', 'top-0', 'right-0', 'bg-red-600', 'text-white', 'rounded-full', 'w-6', 'h-6', 'flex', 'items-center', 'justify-center', 'delete-button');
-                deleteButton.innerHTML = '✕';
-                deleteButton.onclick = function() {
-                    deleteImage(image.id);
-                };
-
-                imgWrapper.appendChild(imgElement);
-                imgWrapper.appendChild(deleteButton);
-                imageContainer.appendChild(imgWrapper);
-            });
+            populateImages(imageContainer, content.images);
         }
 
         // Tampilkan modal edit
@@ -167,20 +150,5 @@
     function closeModal() {
         document.getElementById('editModal').classList.add('hidden');
         document.getElementById('createModal').classList.add('hidden');
-    }
-
-    function deleteImage(imageId) {
-        if (confirm('Are you sure you want to delete this image?')) {
-            fetch(`/admin/contents/images/${imageId}`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
-            }).then(response => {
-                if (response.ok) {
-                    location.reload();
-                }
-            });
-        }
     }
 </script>
