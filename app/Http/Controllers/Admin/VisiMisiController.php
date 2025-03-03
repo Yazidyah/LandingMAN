@@ -6,6 +6,7 @@ use App\Models\Content;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class VisiMisiController extends Controller
 {
@@ -28,12 +29,12 @@ class VisiMisiController extends Controller
 
         $visi = Content::updateOrCreate(
             ['category_id' => 2, 'title' => 'visi'],
-            ['content' => $request->visi, 'user_id' => $userId, 'body' => $request->visi, 'slug' => \Str::slug($request->visi)]
+            ['content' => $request->visi, 'user_id' => $userId, 'body' => $request->visi, 'slug' => Str::slug($request->visi)]
         );
 
         $misi = Content::updateOrCreate(
             ['category_id' => 2, 'title' => 'misi'],
-            ['content' => $request->misi, 'user_id' => $userId, 'body' => $request->misi, 'slug' => \Str::slug($request->misi)]
+            ['content' => $request->misi, 'user_id' => $userId, 'body' => $request->misi, 'slug' => Str::slug($request->misi)]
         );
 
         return redirect()->route('admin.visimisi.index')->with('success', 'Visi dan Misi berhasil disimpan.');
@@ -50,7 +51,7 @@ class VisiMisiController extends Controller
             'content' => $request->content,
             'user_id' => Auth::id(),
             'body' => $request->content,
-            'slug' => \Str::slug($request->content),
+            'slug' => Str::slug($request->content),
         ]);
 
         return redirect()->route('admin.visimisi.index')->with('success', 'Konten berhasil diperbarui.');
