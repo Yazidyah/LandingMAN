@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class KontenController extends Controller
 {
@@ -65,5 +66,21 @@ class KontenController extends Controller
         });
 
         return view('admin.contents.index', compact('contents', 'categories'));
+    }
+
+    public function deleteImage($id)
+    {
+        try {
+            $image = ContentImage::findOrFail($id);
+            Storage::delete('public/' . $image->image_url);
+            $image->delete();
+
+            Log::info('Image deleted successfully: ' . $id);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            Log::error('Error deleting image: ' . $e->getMessage());
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        }
     }
 }
