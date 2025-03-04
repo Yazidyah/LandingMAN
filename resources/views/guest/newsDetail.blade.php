@@ -1,11 +1,34 @@
-<x-layout>
-<div class="container mx-auto pt-5 px-4">
-    <div id="gallery" class="relative w-full max-w-3xl mx-auto" data-carousel="slide" style="z-index: 1;">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/flickity.css" rel="stylesheet" media="screen">
+    <link href="logoman.png" type="image/png" rel="icon">
+    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script> --}}
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <title>MAN 1 KOTA BOGOR</title>
+</head>
+
+<body>
+
+
+    <main>
+        <div class="container mx-auto pt-5 px-4 my-10">
+                <a href="/news" class="flex justify-center bg-tertiary hover:bg-secondary hover:text-tertiary text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">BACK TO HOME</a>
+    <div class="my-4 text-left gap-4 leading-tight flex justify-center items-center flex-col">
+        <h2 class="font-bold text-3xl md:text-4xl">{{ $news->title }}</h2>
+        <h2 class=" text-xl ">Diterbitkan Pada: {{($news->created_at)->isoFormat('dddd, D MMMM YYYY')}}</h2>
+    </div>
+    <div id="gallery" class="block w-full max-w-3xl mx-auto" data-carousel="slide" style="z-index: 1;">
         <!-- Carousel wrapper -->
-        <div class="relative h-0 pb-[100%] overflow-hidden rounded-lg">
+        <div class="relative pb-[75%] overflow-hidden rounded-lg">
             @foreach($news->images as $index => $image)
             <div class="hidden duration-700 ease-in-out" data-carousel-item="{{ $index === 0 ? 'active' : '' }}">
-                <img src="{{ asset('storage/' . $image->image_url) }}" class="absolute block w-full h-full object-cover" alt="">
+                <img src="{{ asset('storage/' . $image->image_url) }}" class="absolute block w-full object-cover" alt="">
             </div>
             @endforeach
         </div>
@@ -26,14 +49,23 @@
                 <span class="sr-only">Next</span>
             </span>
         </button>
+        <div class="mt-4 text-gray-700 text-lg">
+        Admin MAN 1 Kota Bogor
     </div>
-
-    <div class="my-4 text-left leading-tight">
-        <h2 class="font-bold text-3xl md:text-4xl">{{ $news->title }}</h2>
-    </div>
-
     <div class="mt-4 text-gray-700 text-lg">
         {!! nl2br(e($news->body)) !!}
     </div>
+    </div>
+
+    
+
+    
 </div>
-</x-layout>
+
+        <x-javascript></x-javascript>
+    </main>
+    
+</body>
+
+</html>
+

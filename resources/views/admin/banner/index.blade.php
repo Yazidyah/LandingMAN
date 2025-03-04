@@ -11,7 +11,7 @@
             </div>
             <div class="flex justify-end">
                 <button onclick="openCreateModal()"
-                        class="bg-green-900 text-white px-4 py-2 hover:bg-green-500 rounded">
+                        class="bg-tertiary text-white px-4 py-2 hover:text-tertiary hover:bg-secondary rounded">
                         Tambah Banner
                 </button>
             </div>

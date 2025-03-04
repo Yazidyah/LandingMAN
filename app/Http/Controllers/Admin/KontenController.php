@@ -15,7 +15,7 @@ class KontenController extends Controller
     {
         $categories = Category::all();
         $query = Content::with(['category', 'images'])
-            ->whereNotIn('category_id', [1, 2, 3]);
+            ->whereNotIn('category_id', [1, 2]);
 
         if ($request->has('category_id') && $request->category_id != '') {
             $query->where('category_id', $request->category_id);

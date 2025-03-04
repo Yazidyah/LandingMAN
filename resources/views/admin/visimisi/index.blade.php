@@ -19,7 +19,7 @@
                     <div class="flex items-center justify-between">
                         <div class="w-full flex justify-center">
                             <button type="submit"
-                                class="bg-tertiary hover:bg-secondary text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">
+                                class="bg-tertiary hover:bg-secondary hover:text-tertiary text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">
                                 Simpan
                             </button>
                         </div>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Content;
+use App\Http\Controllers\Controller;
+use App\Models\Faq;
+
 
 class GuestController extends Controller
 {
@@ -14,22 +17,38 @@ class GuestController extends Controller
 
     public function agenda()
     {
-        return view('guest.agenda');
+        $news = Content::where('category_id', 3)->with('images')->get()->map(function ($item) {
+            $item->image_url = $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('storage/assets/content/default-image.jpg');
+            return $item;
+        });
+        return view('guest.agenda', compact('news'));
     }
 
     public function prestasi()
     {
-        return view('guest.prestasi');
+        $news = Content::where('category_id', 6)->with('images')->get()->map(function ($item) {
+            $item->image_url = $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('storage/assets/content/default-image.jpg');
+            return $item;
+        });
+        return view('guest.prestasi',compact('news'));
     }
 
     public function faq()
     {
-        return view('guest.faq');
-    }
+        {
+            $news = Faq::all();
+            return view('guest.faq', compact('news'));
+    };
+        }
+        
 
     public function fasilitas()
     {
-        return view('guest.fasilitas');
+        $news = Content::where('category_id', 4)->with('images')->get()->map(function ($item) {
+            $item->image_url = $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('storage/assets/content/default-image.jpg');
+            return $item;
+        });
+        return view('guest.fasilitas',compact('news'));
     }
 
     public function news()
@@ -59,7 +78,10 @@ class GuestController extends Controller
 
     public function visimisi()
     {
-        return view('guest.visimisi');
+        $visimisi = Content::where('category_id', 2)->get();
+        $visi = Content::where('category_id', 2)->where('title', 'visi')->first();
+        $misi = Content::where('category_id', 2)->where('title', 'misi')->first();
+        return view('guest.visimisi', compact('visimisi', 'visi', 'misi'));
     }
 
     public function publikasi()

@@ -18,6 +18,7 @@
     <x-navbar></x-navbar>
     <main>
         {{ $slot }}
+        <x-footer></x-footer>
         <x-javascript></x-javascript>
     </main>
     
