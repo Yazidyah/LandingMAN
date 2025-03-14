@@ -50,8 +50,6 @@
 
 <script>
     function openCreateModal() {
-        const createForm = document.getElementById('createForm');
-        createForm.reset(); // Reset the form fields
         document.getElementById('createModal').classList.remove('hidden');
     }
 

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
-use App\Models\Element; // Change this line
+use App\Models\Element;
+use App\Models\Survey; // Add this line
 use Illuminate\Http\Request;
 
 class KuesionerController extends Controller
@@ -12,18 +13,18 @@ class KuesionerController extends Controller
     public function index()
     {
         $kuesioners = Question::orderBy('question_order', 'asc')->get();
-        $elements = Element::all(); // Change this line
-        return view('admin.kuesioner.index', compact('kuesioners', 'elements')); // Change this line
+        $elements = Element::all();
+        $surveys = Survey::all(); // Add this line
+        return view('admin.kuesioner.index', compact('kuesioners', 'elements', 'surveys')); // Change this line
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $request->validate([
             'question_text' => 'required|string',
             'question_order' => 'nullable|integer',
-            'element_id' => 'required|integer', // Change this line
+            'element_id' => 'required|integer',
+            'survey_id' => 'required|integer', // Add this line
         ]);
 
         try {
@@ -43,9 +44,10 @@ class KuesionerController extends Controller
         $request->validate([
             'question_text' => 'required|string',
             'question_order' => 'nullable|integer',
-            'element_id' => 'required|integer', // Change this line
+            'element_id' => 'required|integer',
+            'survey_id' => 'required|integer', // Add this line
         ]);
-
+        
         $request->merge(['question_order' => $request->question_order ?? $kuesioner->question_order]);
 
         $kuesioner->update($request->all());

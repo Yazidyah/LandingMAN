@@ -14,6 +14,7 @@
                     <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
                         <tr class="text-sm text-tertiary uppercase bg-gray-50 text-center">
                             <th scope="col" class="px-6 py-3">ID</th>
+                            <th scope="col" class="px-6 py-3">Survey</th>
                             <th scope="col" class="px-6 py-3">Unsur</th>
                             <th scope="col" class="px-6 py-3">Pertanyaan</th>
                             <th scope="col" class="px-6 py-3">Urutan Pertanyaan</th>
@@ -24,6 +25,7 @@
                         @foreach ($kuesioners as $kuesioner)
                         <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
                                 <td class="py-2">{{ $kuesioner->question_id }}</td>
+                                <td class="py-2">{{ $kuesioner->survey->survey_name }}</td>
                                 <td class="py-2">{{ $kuesioner->element->element_name }}</td>
                                 <td class="py-2">{{ $kuesioner->question_text }}</td>
                                 <td class="py-2">{{ $kuesioner->question_order }}</td>
@@ -65,11 +67,13 @@
         const editForm = document.getElementById('editForm');
         const questionText = document.getElementById('questionText');
         const questionOrder = document.getElementById('questionOrder');
-        const elementId = document.getElementById('elementId'); // Add this line
+        const elementId = document.getElementById('elementId'); 
+        const surveyId = document.getElementById('surveyId'); // Add this line
 
         questionText.value = kuesioner.question_text;
         questionOrder.value = kuesioner.question_order;
-        elementId.value = kuesioner.element_id; // Add this line
+        elementId.value = kuesioner.element_id; 
+        surveyId.value = kuesioner.survey_id; // Add this line
         editForm.action = `/admin/kuesioner/${kuesioner.question_id}`;
 
         editModal.classList.remove('hidden');
