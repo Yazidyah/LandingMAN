@@ -7,10 +7,11 @@ use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\KontenController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\BannerController;
-use App\Http\Controllers\Admin\IkmController;
 use App\Http\Controllers\Admin\KritsarController;
 use App\Http\Controllers\Admin\KuesionerController;
+use App\Http\Controllers\Admin\SurveyController;
 use App\Http\Controllers\Admin\RespondenController;
+use App\Http\Controllers\Admin\IkmController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes
@@ -43,9 +44,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
-    Route::resource('ikm', IkmController::class)->except(['show', 'create']);
+    Route::resource('survey', SurveyController::class)->except(['show', 'create']);
     Route::resource('kuesioner', KuesionerController::class)->except(['show', 'create']);
     Route::resource('responden', RespondenController::class)->except(['show', 'create']);
+    Route::resource('ikm', IkmController::class)->except(['show', 'create']);
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('faq', FaqController::class);
     Route::resource('banner', BannerController::class);

@@ -49,6 +49,7 @@ switch ($userRole){
     $redirectUrlikm = 'admin.ikm.index';
     $redirectUrlkue = 'admin.kuesioner.index';
     $redirectUrlresp = 'admin.responden.index';
+    $redirectUrlsurv = 'admin.survey.index';
     break;
 
 }
@@ -234,6 +235,11 @@ switch ($userRole){
         <li>
             <x-side-nav :href="route($redirectUrlkritsar)" :active="request()->routeIs($redirectUrlkritsar)">
             {{ __('Kritik & Saran') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlsurv)" :active="request()->routeIs($redirectUrlsurv)">
+            {{ __('Survey') }}
             </x-side-nav>
         </li>
         <li>
