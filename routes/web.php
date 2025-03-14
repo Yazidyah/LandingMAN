@@ -40,13 +40,13 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::view('/profilsekolah', 'admin.profilsekolah')->name('profilsekolah');
     Route::view('/carousel', 'admin.carousel')->name('carousel');
     Route::get('/kritiksaran', [KritsarController::class, 'index'])->name('kritiksaran.index');
+    Route::get('/responden', [RespondenController::class, 'index'])->name('responden.index');
     
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
     Route::resource('survey', SurveyController::class);
     Route::resource('kuesioner', KuesionerController::class);
-    Route::resource('responden', RespondenController::class)->except(['show', 'create']);
     Route::resource('ikm', IkmController::class)->except(['show', 'create']);
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('faq', FaqController::class);
