@@ -28,6 +28,9 @@ Route::get('/saranpengaduan', [\App\Http\Controllers\GuestController::class, 'sa
 Route::get('/sejarah', [\App\Http\Controllers\GuestController::class, 'sejarah'])->name('guest.sejarah');
 Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi'])->name('guest.visimisi');
 Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');
+Route::get('/ppdb/survey', [\App\Http\Controllers\RespondenController::class, 'index'])->name('ppdb.survey');
+Route::get('/ppdb/survey', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('ppdb.survey');
+
 
 // Admin Routes (Protected by Authentication & Verification)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
@@ -63,5 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/respondents', [App\Http\Controllers\RespondenController::class, 'store'])->name('respondents.store');
 
 require __DIR__.'/auth.php';
