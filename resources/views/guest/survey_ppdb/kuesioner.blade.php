@@ -1,4 +1,6 @@
-<div class="space-y-8 flex flex-col items-center">
+<form action="{{ route('kuesioner.store') }}" method="POST" class="space-y-8 flex flex-col items-center">
+    @csrf
+    <input type="hidden" name="respondent_id" value="{{ $respondent_id }}">
     @foreach ($questions as $question)
         <div class="p-6 bg-white rounded-lg shadow w-full max-w-2xl">
             <p class="mb-6 text-xl font-semibold text-gray-800">
@@ -17,4 +19,5 @@
             </div>
         </div>
     @endforeach
-</div>
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+</form>

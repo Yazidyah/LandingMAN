@@ -30,7 +30,7 @@ Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi
 Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');
 Route::get('/ppdb/survey', [\App\Http\Controllers\RespondenController::class, 'index'])->name('ppdb.survey');
 Route::get('/ppdb/survey', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('ppdb.survey');
-
+Route::post('/kuesioner', [\App\Http\Controllers\KuesionerController::class, 'store'])->name('kuesioner.store');
 
 // Admin Routes (Protected by Authentication & Verification)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
