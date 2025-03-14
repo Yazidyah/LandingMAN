@@ -1,40 +1,44 @@
 <x-app-layout>
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-            <div class="container mx-auto pt-5 px-4">
-                <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
-                    <h2 class="font-bold text-3xl md:text-4xl">Survey List</h2>
+            <div class="container mx-auto text-center pt-7">
+                <h1 class="font-bold text-[32px] pt-7 pb-7 ">Konfigurasi Survey</h1>
+                <div class="flex justify-end">
+                    <button onclick="openCreateModal()"
+                        class="bg-tertiary text-white px-4 py-2 hover:bg-secondary hover:text-tertiary rounded">
+                        Buat Survey
+                    </button>
                 </div>
-                <button onclick="openCreateModal()"
-                    class="bg-tertiary text-white px-4 py-2 hover:bg-secondary hover:text-tertiary rounded">
-                    Buat Survey
-                </button>
-                <table class="min-w-full bg-white">
-                    <thead>
-                        <tr class="text-center">
-                            <th class="py-2">ID</th>
-                            <th class="py-2">Name</th>
-                            <th class="py-2">Description</th>
-                            <th class="py-2">Start Date</th>
-                            <th class="py-2">End Date</th>
-                            <th class="py-2">Actions</th>
+                <table
+                    class="table-auto overflow-x-auto mx-auto items-center relative shadow-md sm:rounded-lg my-6 w-full max-w-full rtl:justify-left text-sm text-left text-gray-500">
+                    <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
+                        <tr class="text-sm text-tertiary uppercase bg-gray-50 text-center">
+                            <th scope="col" class="px-6 py-3">ID</th>
+                            <th scope="col" class="px-6 py-3">Name</th>
+                            <th scope="col" class="px-6 py-3">Description</th>
+                            <th scope="col" class="px-6 py-3">Start Date</th>
+                            <th scope="col" class="px-6 py-3">End Date</th>
+                            <th scope="col" class="px-6 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
                         @foreach ($surveys as $survey)
-                            <tr>
+                            <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
                                 <td class="py-2">{{ $survey->survey_id }}</td>
                                 <td class="py-2">{{ $survey->survey_name }}</td>
                                 <td class="py-2">{{ $survey->description }}</td>
                                 <td class="py-2">{{ $survey->start_date }}</td>
                                 <td class="py-2">{{ $survey->end_date }}</td>
                                 <td class="py-2">
-                                <button onclick="openEditModal({{ $survey->survey_id }})" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
-                                <form action="{{ route('admin.survey.destroy', $survey->survey_id) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded" >Delete</button>
-                                </form>
+                                    <button onclick="openEditModal({{ $survey->survey_id }})"
+                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
+                                    <form action="{{ route('admin.survey.destroy', $survey->survey_id) }}" method="POST"
+                                        class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
