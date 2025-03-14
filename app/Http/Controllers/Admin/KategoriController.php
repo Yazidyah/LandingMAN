@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('id', 'asc')->get();
+        $categories = Category::where('id', '>=', 3)->orderBy('id', 'asc')->get();
         return view('admin.categories.index', compact('categories'));
     }
 

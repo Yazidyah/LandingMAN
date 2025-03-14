@@ -7,6 +7,10 @@ use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\KontenController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\IkmController;
+use App\Http\Controllers\Admin\KritsarController;
+use App\Http\Controllers\Admin\KuesionerController;
+use App\Http\Controllers\Admin\RespondenController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes
@@ -31,14 +35,17 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::view('/news', 'admin.news')->name('news');
     Route::view('/prestasi', 'admin.prestasi')->name('prestasi');
     Route::view('/publikasi', 'admin.publikasi')->name('publikasi');
-    Route::view('/saranpengaduan', 'admin.saranpengaduan')->name('saranpengaduan');
     Route::view('/agenda', 'admin.agenda')->name('agenda');
     Route::view('/profilsekolah', 'admin.profilsekolah')->name('profilsekolah');
     Route::view('/carousel', 'admin.carousel')->name('carousel');
+    Route::get('/kritiksaran', [KritsarController::class, 'index'])->name('kritiksaran.index');
     
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
+    Route::resource('ikm', IkmController::class)->except(['show', 'create']);
+    Route::resource('kuesioner', KuesionerController::class)->except(['show', 'create']);
+    Route::resource('responden', RespondenController::class)->except(['show', 'create']);
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('faq', FaqController::class);
     Route::resource('banner', BannerController::class);

@@ -41,11 +41,14 @@ switch ($userRole){
     $redirectUrlpres = 'admin.prestasi';
     $redirectUrlfaq = 'admin.faq.index';
     $redirectUrlagenda = 'admin.agenda';
-    $redirectUrlsar = 'admin.saranpengaduan';
     $redirectUrlpub = 'admin.publikasi';
+    $redirectUrlkritsar = 'admin.kritiksaran.index';
     $redirectUrlvisi = 'admin.visimisi.index';
     $redirectUrlcat = 'admin.categories.index';
     $redirectUrlcont = 'admin.contents.index';
+    $redirectUrlikm = 'admin.ikm.index';
+    $redirectUrlkue = 'admin.kuesioner.index';
+    $redirectUrlresp = 'admin.responden.index';
     break;
 
 }
@@ -199,11 +202,6 @@ switch ($userRole){
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route($redirectUrlsar)" :active="request()->routeIs($redirectUrlsar)">
-            {{ __('Saran & Pengaduan') }}
-            </x-side-nav>
-        </li>
-        <li>
             <x-side-nav :href="route($redirectUrlpub)" :active="request()->routeIs($redirectUrlpub)">
             {{ __('Publikasi') }}
             </x-side-nav>
@@ -231,6 +229,26 @@ switch ($userRole){
         <li>
             <x-side-nav :href="route($redirectUrlcont)" :active="request()->routeIs($redirectUrlcont)">
                 {{ __('Contents') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlkritsar)" :active="request()->routeIs($redirectUrlkritsar)">
+            {{ __('Kritik & Saran') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlkue)" :active="request()->routeIs($redirectUrlkue)">
+                {{ __('Kuesioner') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlresp)" :active="request()->routeIs($redirectUrlresp)">
+                {{ __('Responden') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlikm)" :active="request()->routeIs($redirectUrlikm)">
+                {{ __('Indeks Kepuasan Masyarakat') }}
             </x-side-nav>
         </li>
         </ul>
