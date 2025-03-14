@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\KuesionerController;
 use App\Http\Controllers\Admin\SurveyController;
 use App\Http\Controllers\Admin\RespondenController;
 use App\Http\Controllers\Admin\IkmController;
+use App\Http\Controllers\Admin\UnsurController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('visimisi', VisiMisiController::class);
     Route::resource('faq', FaqController::class);
     Route::resource('banner', BannerController::class);
+    Route::resource('unsur', UnsurController::class);
     Route::delete('/admin/banner/{id}', [App\Http\Controllers\Admin\BannerController::class, 'destroy'])->name('admin.banner.destroy');
     Route::delete('/contents/images/{id}', [\App\Http\Controllers\KontenController::class, 'deleteImage'])->name('contents.images.destroy');
 });

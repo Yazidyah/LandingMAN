@@ -7,7 +7,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b border-gray-200 rounded-t">
                 <h3 class="text-lg font-semibold text-gray-900">
-                    Edit Kuesioner
+                    Edit Unsur
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -21,27 +21,24 @@
                 </button>
             </div>
             <!-- Modal body -->
-            @if(isset($kuesioner))
-            <form id="editForm" class="p-4 md:p-5" method="POST"
-                action="{{ route('admin.kuesioner.update', $kuesioner->question_id) }}" enctype="multipart/form-data">
+            <form id="editForm" class="p-4 md:p-5" method="POST" action="" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
-                        <label for="elementId" class="block mb-2 text-sm font-medium text-gray-900">Unsur</label>
-                        <select name="element_id" id="elementId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            @foreach($elements as $element)
-                                <option value="{{ $element->element_id }}" {{ $element->element_id == $kuesioner->element_id ? 'selected' : '' }}>{{ $element->element_name }}</option>
-                            @endforeach
-                        </select>
+                        <label for="editElementName" class="block mb-2 text-sm font-medium text-gray-900">Element
+                            Name</label>
+                        <input type="text" name="element_name" id="editElementName"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            required>
                     </div>
                     <div class="col-span-1">
-                        <label for="questionText" class="block mb-2 text-sm font-medium text-gray-900">Pertanyaan</label>
-                        <textarea name="question_text" id="questionText" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>{{ $kuesioner->question_text }}</textarea>
-                    </div>
-                    <div class="col-span-1">
-                        <label for="questionOrder" class="block mb-2 text-sm font-medium text-gray-900">Urutan Pertanyaan</label>
-                        <input type="number" name="question_order" id="questionOrder" value="{{ $kuesioner->question_order }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <label for="editDescription"
+                            class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                        <textarea type="text" name="description" id="editDescription"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            required>
+                        </textarea>
                     </div>
                 </div>
                 <div class="flex justify-end">
@@ -51,7 +48,6 @@
                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Update</button>
                 </div>
             </form>
-            @endif
         </div>
     </div>
 </div>

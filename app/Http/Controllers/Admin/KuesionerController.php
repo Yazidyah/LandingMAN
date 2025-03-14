@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
-use App\Models\Survey;
+use App\Models\Element; // Change this line
 use Illuminate\Http\Request;
 
 class KuesionerController extends Controller
 {
     public function index()
     {
-        $kuesioners = Question::orderBy('survey_id', 'asc')->orderBy('question_order', 'asc')->get();
-        $surveys = Survey::all(); 
-        return view('admin.kuesioner.index', compact('kuesioners', 'surveys'));
+        $kuesioners = Question::orderBy('question_order', 'asc')->get();
+        $elements = Element::all(); // Change this line
+        return view('admin.kuesioner.index', compact('kuesioners', 'elements')); // Change this line
     }
 
     public function store(Request $request)
@@ -21,13 +21,13 @@ class KuesionerController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'survey_id' => 'required|integer',
             'question_text' => 'required|string',
             'question_order' => 'nullable|integer',
+            'element_id' => 'required|integer', // Change this line
         ]);
 
         try {
-            $maxOrder = Question::where('survey_id', $request->survey_id)->max('question_order');
+            $maxOrder = Question::max('question_order');
             $request->merge(['question_order' => $maxOrder + 1]);
 
             Question::create($request->all());
@@ -41,17 +41,12 @@ class KuesionerController extends Controller
     public function update(Request $request, Question $kuesioner)
     {
         $request->validate([
-            'survey_id' => 'required|integer',
             'question_text' => 'required|string',
             'question_order' => 'nullable|integer',
+            'element_id' => 'required|integer', // Change this line
         ]);
 
-        if ($request->survey_id != $kuesioner->survey_id) {
-            $maxOrder = Question::where('survey_id', $request->survey_id)->max('question_order');
-            $request->merge(['question_order' => $maxOrder + 1]);
-        } else {
-            $request->merge(['question_order' => $request->question_order ?? $kuesioner->question_order]);
-        }
+        $request->merge(['question_order' => $request->question_order ?? $kuesioner->question_order]);
 
         $kuesioner->update($request->all());
 

@@ -50,6 +50,7 @@ switch ($userRole){
     $redirectUrlkue = 'admin.kuesioner.index';
     $redirectUrlresp = 'admin.responden.index';
     $redirectUrlsurv = 'admin.survey.index';
+    $redirectUrlunsur = 'admin.unsur.index';
     break;
 
 }
@@ -240,6 +241,11 @@ switch ($userRole){
         <li>
             <x-side-nav :href="route($redirectUrlsurv)" :active="request()->routeIs($redirectUrlsurv)">
             {{ __('Survey') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlunsur)" :active="request()->routeIs($redirectUrlunsur)">
+            {{ __('Unsur') }}
             </x-side-nav>
         </li>
         <li>

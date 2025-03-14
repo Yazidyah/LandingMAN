@@ -12,13 +12,13 @@ class Question extends Model
     protected $primaryKey = 'question_id';
 
     protected $fillable = [
-        'survey_id',
+        'element_id',
         'question_text',
         'question_order',
     ];
 
-    public function survey()
+    public function element()
     {
-        return $this->belongsTo(Survey::class);
+        return $this->belongsTo(Element::class);
     }
 }
