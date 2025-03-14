@@ -25,8 +25,8 @@
                         @foreach ($kuesioners as $kuesioner)
                         <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
                                 <td class="py-2">{{ $kuesioner->question_id }}</td>
-                                <td class="py-2">{{ $kuesioner->survey->survey_name }}</td>
-                                <td class="py-2">{{ $kuesioner->element->element_name }}</td>
+                                <td class="py-2">{{ $kuesioner->survey_name ?? 'N/A' }}</td>
+                                <td class="py-2">{{ $kuesioner->element_name ?? 'N/A' }}</td>
                                 <td class="py-2">{{ $kuesioner->question_text }}</td>
                                 <td class="py-2">{{ $kuesioner->question_order }}</td>
                                 <td class="py-2">
@@ -54,7 +54,10 @@
 
 <script>
     function openCreateModal() {
-        document.getElementById('createModal').classList.remove('hidden');
+        const createModal = document.getElementById('createModal');
+        const createForm = document.getElementById('createForm');
+        createForm.reset();
+        createModal.classList.remove('hidden');
     }
 
     function closeModal() {
