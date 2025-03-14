@@ -7,7 +7,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b border-gray-200 rounded-t">
                 <h3 class="text-lg font-semibold text-gray-900">
-                    Edit Survey
+                    Edit Kuesioner
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -21,34 +21,28 @@
                 </button>
             </div>
             <!-- Modal body -->
-            @if(isset($survey))
+            @if(isset($kuesioner))
             <form id="editForm" class="p-4 md:p-5" method="POST"
-                action="{{ route('admin.survey.update', $survey->survey_id) }}" enctype="multipart/form-data">
+                action="{{ route('admin.kuesioner.update', $kuesioner->question_id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
-                        <label for="surveyName" class="block mb-2 text-sm font-medium text-gray-900">Survey Name</label>
-                        <input type="text" name="survey_name" id="surveyName" value="{{ $survey->survey_name }}"
+                        <label for="surveyId" class="block mb-2 text-sm font-medium text-gray-900">Survey ID</label>
+                        <input type="text" name="survey_id" id="surveyId" value="{{ $kuesioner->survey_id }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>
                     </div>
                     <div class="col-span-1">
-                        <label for="description"
-                            class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-                        <textarea name="description" id="description"
+                        <label for="questionText"
+                            class="block mb-2 text-sm font-medium text-gray-900">Question Text</label>
+                        <textarea name="question_text" id="questionText"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                            required>{{ $survey->description }}</textarea>
+                            required>{{ $kuesioner->question_text }}</textarea>
                     </div>
                     <div class="col-span-1">
-                        <label for="startDate" class="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
-                        <input type="date" name="start_date" id="startDate" value="{{ $survey->start_date }}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                            required>
-                    </div>
-                    <div class="col-span-1">
-                        <label for="endDate" class="block mb-2 text-sm font-medium text-gray-900">End Date</label>
-                        <input type="date" name="end_date" id="endDate" value="{{ $survey->end_date }}"
+                        <label for="questionOrder" class="block mb-2 text-sm font-medium text-gray-900">Question Order</label>
+                        <input type="number" name="question_order" id="questionOrder" value="{{ $kuesioner->question_order }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>
                     </div>

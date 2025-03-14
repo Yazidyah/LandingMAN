@@ -45,8 +45,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
     Route::resource('survey', SurveyController::class);
-    // Route::resource('survey', SurveyController::class)->except(['show', 'create']);
-    Route::resource('kuesioner', KuesionerController::class)->except(['show', 'create']);
+    Route::resource('kuesioner', KuesionerController::class);
     Route::resource('responden', RespondenController::class)->except(['show', 'create']);
     Route::resource('ikm', IkmController::class)->except(['show', 'create']);
     Route::resource('visimisi', VisiMisiController::class);

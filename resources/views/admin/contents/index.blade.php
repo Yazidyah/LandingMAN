@@ -90,7 +90,6 @@
     document.querySelectorAll('[name="konten"]').forEach(item => {
         item.addEventListener('click', function () {
             let contentId = this.getAttribute('data-id');
-            console.log("Klik konten ID:", contentId); // Cek apakah event berjalan
             openEditModal(contentId);
         });
     });
