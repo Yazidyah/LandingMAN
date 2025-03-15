@@ -18,7 +18,6 @@ return new class extends Migration
             $table->primary(['response_id', 'question_id']);
             $table->foreign('response_id')->references('response_id')->on('responses')->onDelete('cascade');
             $table->foreign('question_id')->references('question_id')->on('questions')->onDelete('cascade');
-            $table->foreign('likert_value')->references('likert_value')->on('likert_scale')->onDelete('cascade');
             $table->timestamps();
         });
     }

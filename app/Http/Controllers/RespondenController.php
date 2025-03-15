@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Respondent;
+use App\Models\Question;
 
 class RespondenController extends Controller
 {
     public function index(Request $request)
     {
         $step = $request->query('step');
-        return view('guest.survey_ppdb.index', compact('step'));
+        $respondent_id = $request->query('respondent_id');
+        return view('guest.survey_ppdb.responden', compact('step', 'respondent_id'));
     }
 
     public function store(Request $request)
@@ -24,8 +26,14 @@ class RespondenController extends Controller
             'pekerjaan' => 'required|string',
         ]);
 
-        Respondent::create($validatedData);
+        $respondent = Respondent::create($validatedData);
 
-        return redirect()->route('ppdb.survey', ['step' => 1])->with('success', 'Data has been submitted successfully.');
+        // Fetch the first question of survey_id = 2
+        $firstQuestion = Question::where('survey_id', 2)->first();
+
+        return redirect()->route('guest.survey_ppdb.index', [
+            'step' => 2,
+            'respondent_id' => $respondent->id
+        ]);
     }
 }

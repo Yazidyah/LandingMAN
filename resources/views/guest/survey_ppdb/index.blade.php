@@ -3,7 +3,7 @@
         @if($step == 1)
             @include('guest.survey_ppdb.responden')
         @elseif($step == 2)
-            @include('guest.survey_ppdb.kuesioner', ['respondent_id' => $respondent_id])
+            @include('guest.survey_ppdb.kuesioner', ['respondent_id' => $respondent_id, 'questions' => $questions])
         @endif
     </div>
 </x-layout>
