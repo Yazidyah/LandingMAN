@@ -1,9 +1,6 @@
 <form id="respondentForm" action="{{ route('respondents.store') }}" method="POST" class="max-w-xl mx-auto">
     @csrf
     <input type="hidden" name="step" value="2">
-    @if(isset($respondent_id))
-        <input type="hidden" name="respondent_id" value="{{ $respondent_id }}">
-    @endif
     <div class="mb-5">
         <label for="nama_lengkap" class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap:</label>
         <input type="text" id="nama_lengkap" name="nama_lengkap" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>

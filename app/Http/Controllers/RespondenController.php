@@ -10,30 +10,30 @@ class RespondenController extends Controller
 {
     public function index(Request $request)
     {
-        $step = $request->query('step');
-        $respondent_id = $request->query('respondent_id');
-        return view('guest.survey_ppdb.responden', compact('step', 'respondent_id'));
+        $step = $request->input('step', 1);
+        return view('guest.survey_ppdb.index', compact('step'));
     }
 
     public function store(Request $request)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|string',
+            'jenis_kelamin' => 'required|string|max:1',
             'usia' => 'required|integer',
-            'pendidikan' => 'required|string',
-            'pekerjaan' => 'required|string',
+            'pendidikan' => 'required|string|max:255',
+            'pekerjaan' => 'required|string|max:255',
         ]);
 
         $respondent = Respondent::create($validatedData);
 
-        // Fetch the first question of survey_id = 2
-        $firstQuestion = Question::where('survey_id', 2)->first();
+        // Store respondent_id in session
+        $request->session()->put('respondent_id', $respondent->id);
 
-        return redirect()->route('guest.survey_ppdb.index', [
-            'step' => 2,
-            'respondent_id' => $respondent->id
-        ]);
+        // Debugging: Check if respondent_id is stored in session
+        if ($request->session()->has('respondent_id')) {
+            return redirect()->route('ppdb.survey', ['step' => 2]);
+        } else {
+            return redirect()->route('ppdb.survey', ['step' => 1])->withErrors('Failed to store respondent_id in session.');
+        }
     }
 }

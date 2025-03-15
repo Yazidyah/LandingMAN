@@ -1,8 +1,6 @@
 <form action="{{ route('kuesioner.store', ['respondent_id' => $respondent_id]) }}" method="POST" class="space-y-8 flex flex-col items-center">
     @csrf
     <input type="hidden" name="respondent_id" value="{{ $respondent_id }}">
-    <input type="hidden" name="survey_id" value="2">
-    <input type="hidden" name="localStorageRespondentId" id="localStorageRespondentId">
     @foreach ($questions as $question)
         <div class="p-6 bg-white rounded-lg shadow w-full max-w-2xl">
             <p class="mb-6 text-xl font-semibold text-gray-800">
