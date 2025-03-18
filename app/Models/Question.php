@@ -9,18 +9,16 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'question_id';
-
     protected $fillable = [
         'survey_id',
-        'element_id',
+        'unsur_id',
         'question_text',
         'question_order',
     ];
 
-    public function element()
+    public function unsur()
     {
-        return $this->belongsTo(Element::class);
+        return $this->belongsTo(Unsur::class);
     }
 
     public function survey()

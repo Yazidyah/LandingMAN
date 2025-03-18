@@ -12,11 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('response_details', function (Blueprint $table) {
-            $table->increments('response_detail_id');
-            $table->string('response_id')->nullable();
-            $table->string('question_id')->nullable();
+            $table->increments('id');
+            $table->unsignedBigInteger('response_id'); // Change to unsignedBigInteger for foreign key
+            $table->unsignedBigInteger('question_id'); // Change to unsignedBigInteger for foreign key
             $table->string('likert_value')->nullable();
             $table->timestamps();
+
+            // Add foreign key constraints
+            $table->foreign('response_id')->references('id')->on('responses')->onDelete('cascade');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
         });
     }
 

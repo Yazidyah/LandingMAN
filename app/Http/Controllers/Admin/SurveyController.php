@@ -52,8 +52,9 @@ class SurveyController extends Controller
         return redirect()->route('admin.survey.index')->with('success', 'Survey updated successfully.');
     }
 
-    public function destroy(Survey $survey)
+    public function destroy($id)
     {
+        $survey = Survey::findOrFail($id);
         $survey->delete();
 
         return redirect()->route('admin.survey.index')->with('success', 'Survey deleted successfully.');

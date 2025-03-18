@@ -3,50 +3,56 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Element;
+use App\Models\Unsur;
 use Illuminate\Http\Request;
 
 class UnsurController extends Controller
 {
     public function index()
     {
-        $unsurs = Element::all();
+        $unsurs = Unsur::all();
         return view('admin.unsur.index', compact('unsurs'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'element_name' => 'required|string|max:255',
+            'unsur_name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
         ]);
 
-        Element::create($request->all());
+        Unsur::create([
+            'unsur_name' => $request->unsur_name,
+            'description' => $request->description,
+        ]);
 
-        return redirect()->route('admin.unsur.index')->with('success', 'Element created successfully.');
+        return redirect()->route('admin.unsur.index')->with('success', 'Unsur created successfully.');
     }
 
-    public function edit(Element $unsur)
+    public function edit(Unsur $unsur)
     {
         return view('admin.unsur.edit', compact('unsur'));
     }
 
-    public function update(Request $request, Element $unsur)
+    public function update(Request $request, Unsur $unsur)
     {
         $request->validate([
-            'element_name' => 'required|string|max:255',
+            'unsur_name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
         ]);
 
-        $unsur->update($request->all());
+        $unsur->update([
+            'unsur_name' => $request->unsur_name,
+            'description' => $request->description,
+        ]);
 
-        return redirect()->route('admin.unsur.index')->with('success', 'Element updated successfully.');
+        return redirect()->route('admin.unsur.index')->with('success', 'Unsur updated successfully.');
     }
 
-    public function destroy(Element $unsur)
+    public function destroy(Unsur $unsur)
     {
         $unsur->delete();
 
-        return redirect()->route('admin.unsur.index')->with('success', 'Element deleted successfully.');
+        return redirect()->route('admin.unsur.index')->with('success', 'Unsur deleted successfully.');
     }
 }

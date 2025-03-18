@@ -22,16 +22,18 @@
                     <div class="col-span-1">
                         <label for="surveyId" class="block mb-2 text-sm font-medium text-gray-900">Survey</label>
                         <select name="survey_id" id="surveyId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                            <option value="" disabled selected>Pilih Survey</option>
                             @foreach($surveys as $survey)
-                                <option value="{{ $survey->survey_id }}">{{ $survey->survey_name }}</option>
+                                <option value="{{ $survey->id }}">{{ $survey->survey_name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-span-1">
-                        <label for="elementId" class="block mb-2 text-sm font-medium text-gray-900">Unsur</label>
-                        <select name="element_id" id="elementId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            @foreach($elements as $element)
-                                <option value="{{ $element->element_id }}">{{ $element->element_name }}</option>
+                        <label for="unsurId" class="block mb-2 text-sm font-medium text-gray-900">Unsur</label>
+                        <select name="unsur_id" id="unsurId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                            <option value="" disabled selected>Pilih Unsur</option>
+                            @foreach($unsurs as $unsur) <!-- Updated variable name -->
+                                <option value="{{ $unsur->id }}">{{ $unsur->unsur_name }}</option>
                             @endforeach
                         </select>
                     </div>

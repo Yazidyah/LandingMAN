@@ -14,7 +14,7 @@
                     <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
                         <tr class="text-sm text-tertiary uppercase bg-gray-50 text-center">
                             <th scope="col" class="px-6 py-3">ID</th>
-                            <th scope="col" class="px-6 py-3">Element Name</th>
+                            <th scope="col" class="px-6 py-3">Unsur Name</th>
                             <th scope="col" class="px-6 py-3">Description</th>
                             <th scope="col" class="px-6 py-3">Actions</th>
                         </tr>
@@ -22,13 +22,13 @@
                     <tbody class="text-center">
                         @foreach ($unsurs as $unsur)
                             <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
-                                <td class="py-2">{{ $unsur->element_id }}</td>
-                                <td class="py-2">{{ $unsur->element_name }}</td>
+                                <td class="py-2">{{ $unsur->id }}</td>
+                                <td class="py-2">{{ $unsur->unsur_name }}</td>
                                 <td class="py-2">{{ $unsur->description }}</td>
                                 <td class="py-2">
                                     <button onclick="openEditModal({{ $unsur }})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
-                                    <form action="{{ route('admin.unsur.destroy', $unsur->element_id) }}" method="POST"
+                                    <form action="{{ route('admin.unsur.destroy', $unsur->id) }}" method="POST"
                                         class="inline">
                                         @csrf
                                         @method('DELETE')
@@ -64,9 +64,9 @@
         const elementName = document.getElementById('editElementName');
         const description = document.getElementById('editDescription');
 
-        elementName.value = unsur.element_name;
+        elementName.value = unsur.unsur_name;
         description.value = unsur.description;
-        editForm.action = `/admin/unsur/${unsur.element_id}`;
+        editForm.action = `/admin/unsur/${unsur.id}`;
 
         editModal.classList.remove('hidden');
     }

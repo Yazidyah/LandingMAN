@@ -24,15 +24,15 @@
                     <tbody class="text-center">
                         @foreach ($surveys as $survey)
                             <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
-                                <td class="py-2">{{ $survey->survey_id }}</td>
+                                <td class="py-2">{{ $survey->id}}</td>
                                 <td class="py-2">{{ $survey->survey_name }}</td>
                                 <td class="py-2">{{ $survey->description }}</td>
                                 <td class="py-2">{{ $survey->start_date }}</td>
                                 <td class="py-2">{{ $survey->end_date }}</td>
                                 <td class="py-2">
-                                    <button onclick="openEditModal({{ $survey->survey_id }})"
+                                    <button onclick="openEditModal({{ $survey->id}})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
-                                    <form action="{{ route('admin.survey.destroy', $survey->survey_id) }}" method="POST"
+                                    <form action="{{ route('admin.survey.destroy', $survey->id) }}" method="POST"
                                         class="inline">
                                         @csrf
                                         @method('DELETE')
@@ -76,7 +76,7 @@
         description.value = survey.description;
         startDate.value = survey.start_date;
         endDate.value = survey.end_date;
-        editForm.action = `/admin/survey/${survey.survey_id}`;
+        editForm.action = `/admin/survey/${survey.id}`;
 
         editModal.classList.remove('hidden');
     }

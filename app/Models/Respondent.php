@@ -11,8 +11,6 @@ class Respondent extends Model
 
     protected $table = 'respondents';
 
-    protected $primaryKey = 'respondent_id';
-
     protected $fillable = [
         'nama_lengkap',
         'jenis_kelamin',

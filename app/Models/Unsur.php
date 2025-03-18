@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Element extends Model
+class Unsur extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'element_id';
-
+    protected $table = 'unsur';
     protected $fillable = [
-        'element_name',
+        'unsur_name',
         'description',
     ];
 }

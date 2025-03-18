@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('elements', function (Blueprint $table) {
-            $table->id('element_id');
-            $table->string('element_name', 255)->nullable();
+        Schema::create('unsur', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('unsur_name', 255)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('elements');
+        Schema::dropIfExists('unsur');
     }
 };

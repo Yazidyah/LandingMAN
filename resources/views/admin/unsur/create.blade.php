@@ -26,9 +26,9 @@
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
-                        <label for="element_name" class="block mb-2 text-sm font-medium text-gray-900">Element
+                        <label for="unsur_name" class="block mb-2 text-sm font-medium text-gray-900">Unsur
                             Name</label>
-                        <input type="text" name="element_name" id="element_name"
+                        <input type="text" name="unsur_name" id="unsur_name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>
                     </div>

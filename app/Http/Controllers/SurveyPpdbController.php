@@ -10,63 +10,64 @@ use App\Models\ResponseDetail;
 
 class SurveyPpdbController extends Controller
 {
-    function index(Request $request)
+    function index()
     {
-        $step = $request->query('step', 1);
-        $respondent_id = $request->query('respondent_id');
-        $questions = ($step == 2) ? Question::where('survey_id', 2)->get() : [];
-
-        return view('guest.survey_ppdb.index', compact('step', 'respondent_id', 'questions'));
+        $questions = Question::where('survey_id', 2)->get();
+        return view('guest.survey_ppdb.index', compact('questions'));
     }
 
-    public function storeRespondent(Request $request)
+    function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'jenis_kelamin' => 'required|string|max:1',
-            'usia' => 'required|integer',
-            'pendidikan' => 'required|string|max:255',
-            'pekerjaan' => 'required|string|max:255',
-        ]);
-
-        $respondent = Respondent::create($validatedData);
-
-        return redirect()->route('ppdb.survey', ['step' => 2, 'respondent_id' => $respondent->id]);
-    }
-
-    public function storeResponse(Request $request)
-    {
-        $respondent_id = $request->query('respondent_id');
-
-        // Validate the responses
-        $validatedData = $request->validate([
-            'question_*' => 'required|in:1,2,3,4,5',
-        ]);
-
-        // Ensure respondent_id is not null
-        if (!$respondent_id) {
-            return redirect()->route('ppdb.survey', ['step' => 2])->withErrors('Respondent ID is required.');
+        $respondentData = $request->only(['nama_lengkap', 'jenis_kelamin', 'usia', 'pendidikan', 'pekerjaan']);
+        
+        // Check if the respondent already exists
+        $respondent = Respondent::where($respondentData)->first();
+        if (!$respondent) {
+            $respondent = $this->createRespondent($respondentData);
         }
 
-        // Create a new response
-        $response = Response::create([
+        // Check if the respondent already has a response for the survey
+        $response = Response::where('respondent_id', $respondent->id)
+                            ->where('survey_id', 2)
+                            ->first();
+
+        if (!$response) {
+            $response = $this->createResponse($respondent->id);
+        }
+
+        // Update or create response details
+        $this->createOrUpdateResponseDetails(
+            $request->except(['_token', 'nama_lengkap', 'jenis_kelamin', 'usia', 'pendidikan', 'pekerjaan']),
+            $response->id
+        );
+
+        return redirect()->route('ppdb.survey')->with('success', 'Survey submitted successfully.');
+    }
+
+    private function createRespondent(array $data)
+    {
+        return Respondent::create($data);
+    }
+
+    private function createResponse(int $respondentId)
+    {
+        return Response::create([
             'survey_id' => 2,
-            'respondent_id' => $respondent_id,
+            'respondent_id' => $respondentId,
             'response_date' => now(),
         ]);
+    }
 
-        // Save each response detail
-        foreach ($validatedData as $key => $value) {
-            if (strpos($key, 'question_') === 0) {
-                $question_id = str_replace('question_', '', $key);
-                ResponseDetail::create([
-                    'response_id' => $response->id,
-                    'question_id' => $question_id,
-                    'likert_value' => $value,
-                ]);
-            }
+    private function createOrUpdateResponseDetails(array $responses, int $responseId)
+    {
+        foreach ($responses as $key => $value) {
+            $questionId = str_replace('question_', '', $key);
+
+            // Update if the response detail exists, otherwise create a new one
+            ResponseDetail::updateOrCreate(
+                ['response_id' => $responseId, 'question_id' => $questionId],
+                ['likert_value' => $value]
+            );
         }
-
-        return redirect()->route('ppdb.survey', ['step' => 3])->with('success', 'Thank you for your responses!');
     }
 }

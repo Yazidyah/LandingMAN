@@ -18,4 +18,14 @@ class ResponseDetail extends Model
     ];
 
     public $timestamps = true;
+
+    public function response()
+    {
+        return $this->belongsTo(Response::class, 'response_id');
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class, 'question_id');
+    }
 }

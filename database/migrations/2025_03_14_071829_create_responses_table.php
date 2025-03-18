@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('responses', function (Blueprint $table) {
-            $table->id('response_id');
+            $table->id('id');
             $table->unsignedBigInteger('survey_id');
             $table->unsignedBigInteger('respondent_id');
             $table->dateTime('response_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
 
-            $table->foreign('survey_id')->references('survey_id')->on('surveys');
-            $table->foreign('respondent_id')->references('respondent_id')->on('respondents');
+            $table->foreign('survey_id')->references('id')->on('surveys');
+            $table->foreign('respondent_id')->references('id')->on('respondents');
         });
     }
 

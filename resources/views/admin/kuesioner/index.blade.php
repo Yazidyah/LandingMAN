@@ -24,15 +24,15 @@
                     <tbody class="text-center">
                         @foreach ($kuesioners as $kuesioner)
                         <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
-                                <td class="py-2">{{ $kuesioner->question_id }}</td>
+                                <td class="py-2">{{ $kuesioner->id }}</td>
                                 <td class="py-2">{{ $kuesioner->survey_name ?? 'N/A' }}</td>
-                                <td class="py-2">{{ $kuesioner->element_name ?? 'N/A' }}</td>
+                                <td class="py-2">{{ $kuesioner->unsur_name ?? 'N/A' }}</td>
                                 <td class="py-2">{{ $kuesioner->question_text }}</td>
                                 <td class="py-2">{{ $kuesioner->question_order }}</td>
                                 <td class="py-2">
                                     <button onclick="openEditModal({{ $kuesioner }})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
-                                    <form action="{{ route('admin.kuesioner.destroy', $kuesioner->question_id) }}"
+                                    <form action="{{ route('admin.kuesioner.destroy', $kuesioner->id) }}"
                                         method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
@@ -75,9 +75,9 @@
 
         questionText.value = kuesioner.question_text;
         questionOrder.value = kuesioner.question_order;
-        elementId.value = kuesioner.element_id; 
+        elementId.value = kuesioner.unsur_id; // Updated variable name
         surveyId.value = kuesioner.survey_id; // Add this line
-        editForm.action = `/admin/kuesioner/${kuesioner.question_id}`;
+        editForm.action = `/admin/kuesioner/${kuesioner.id}`;
 
         editModal.classList.remove('hidden');
     }

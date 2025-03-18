@@ -23,7 +23,7 @@
             <!-- Modal body -->
             @if(isset($survey))
             <form id="editForm" class="p-4 md:p-5" method="POST"
-                action="{{ route('admin.survey.update', $survey->survey_id) }}" enctype="multipart/form-data">
+                action="{{ route('admin.survey.update', $survey->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-1">

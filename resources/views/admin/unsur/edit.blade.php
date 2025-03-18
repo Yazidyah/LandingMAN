@@ -26,9 +26,9 @@
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
-                        <label for="editElementName" class="block mb-2 text-sm font-medium text-gray-900">Element
+                        <label for="editElementName" class="block mb-2 text-sm font-medium text-gray-900">Unsur
                             Name</label>
-                        <input type="text" name="element_name" id="editElementName"
+                        <input type="text" name="unsur_name" id="editElementName"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>
                     </div>
