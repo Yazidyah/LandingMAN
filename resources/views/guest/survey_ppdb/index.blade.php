@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="max-w-2xl mx-auto my-5 bg-white p-8 border border-gray-200 rounded-lg shadow-lg">
+    <div class="max-w-5xl mx-auto my-5 bg-white p-8 border border-gray-200 rounded-lg shadow-lg">
         <h2 class="text-xl font-semibold text-gray-900 text-center mb-4">SURVEY KEPUASAN PPDB</h2>
         <form action="{{ route('ppdb.survey.store') }}" method="POST">
             @csrf
@@ -56,8 +56,8 @@
             </div>
             @foreach($questions as $question)
                         <div class="mb-6">
-                            <label class="block text-sm font-medium text-gray-900">{{ $question->question_text }}</label>
-                            <div class="rating flex flex-row-reverse gap-5 mt-2 justify-center relative">
+                            <label class="block text-xl font-medium text-gray-900">{{ $question->question_text }}</label>
+                            <div class="rating flex flex-row-reverse gap-6 mt-2 justify-center relative">
                                 @php
                                     $labels = ['Sangat Tidak Puas', 'Tidak Puas', 'Netral', 'Puas', 'Sangat Puas'];
                                 @endphp
@@ -65,13 +65,13 @@
                                     <input type="radio" id="star-{{ $question->id }}-{{ $i }}" name="question_{{ $question->id }}"
                                         value="{{ $i }}" required>
                                     <label for="star-{{ $question->id }}-{{ $i }}" class="group relative">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 h-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-16 h-16">
                                             <path pathLength="360"
                                                 d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
                                             </path>
                                         </svg>
                                         <span
-                                            class="tooltip absolute bottom-12 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 bg-gray-800 text-white text-xs rounded px-2 py-1 transition-all duration-200">
+                                            class="tooltip absolute bottom-14 left-1/2 transform -translate-x-1/2 scale-0 group-hover:scale-100 bg-gray-800 text-white text-sm rounded px-3 py-1 transition-all duration-200">
                                             {{ $labels[$i - 1] }}
                                         </span>
                                     </label>
