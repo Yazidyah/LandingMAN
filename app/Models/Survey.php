@@ -14,4 +14,9 @@ class Survey extends Model
         'start_date',
         'end_date',
     ];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('response_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('response_id'); // Change to unsignedBigInteger for foreign key
-            $table->unsignedBigInteger('question_id'); // Change to unsignedBigInteger for foreign key
-            $table->string('likert_value')->nullable();
+            $table->unsignedBigInteger('response_id'); 
+            $table->unsignedBigInteger('question_id'); 
+            $table->integer('likert_value');
             $table->timestamps();
 
             // Add foreign key constraints

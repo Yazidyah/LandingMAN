@@ -61,9 +61,9 @@
                             <label class="block text-xl font-medium text-gray-900">{{ $question->question_text }}</label>
                             <div class="rating flex flex-row-reverse gap-6 mt-2 justify-center relative">
                                 @php
-                                    $labels = ['Sangat Tidak Puas', 'Tidak Puas', 'Netral', 'Puas', 'Sangat Puas'];
+                                    $labels = ['Tidak Puas', 'Kurang Puas', 'Puas', 'Sangat Puas'];
                                 @endphp
-                                @for ($i = 5; $i >= 1; $i--)
+                                @for ($i = 4; $i >= 1; $i--)
                                     <input type="radio" id="star-{{ $question->id }}-{{ $i }}" name="question_{{ $question->id }}"
                                         value="{{ $i }}" required>
                                     <label for="star-{{ $question->id }}-{{ $i }}" class="group relative">
