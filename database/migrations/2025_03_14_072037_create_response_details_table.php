@@ -12,12 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('response_details', function (Blueprint $table) {
-            $table->integer('response_id')->unsigned();
-            $table->integer('question_id')->unsigned();
-            $table->integer('likert_value')->unsigned();
-            $table->primary(['response_id', 'question_id']);
-            $table->foreign('response_id')->references('response_id')->on('responses')->onDelete('cascade');
-            $table->foreign('question_id')->references('question_id')->on('questions')->onDelete('cascade');
+            $table->increments('response_detail_id');
+            $table->string('response_id')->nullable();
+            $table->string('question_id')->nullable();
+            $table->string('likert_value')->nullable();
             $table->timestamps();
         });
     }

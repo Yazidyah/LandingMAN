@@ -43,6 +43,11 @@ class SurveyPpdbController extends Controller
             'question_*' => 'required|in:1,2,3,4,5',
         ]);
 
+        // Ensure respondent_id is not null
+        if (!$respondent_id) {
+            return redirect()->route('ppdb.survey', ['step' => 2])->withErrors('Respondent ID is required.');
+        }
+
         // Create a new response
         $response = Response::create([
             'survey_id' => 2,
@@ -55,7 +60,7 @@ class SurveyPpdbController extends Controller
             if (strpos($key, 'question_') === 0) {
                 $question_id = str_replace('question_', '', $key);
                 ResponseDetail::create([
-                    'response_id' => $response->response_id,
+                    'response_id' => $response->id,
                     'question_id' => $question_id,
                     'likert_value' => $value,
                 ]);
