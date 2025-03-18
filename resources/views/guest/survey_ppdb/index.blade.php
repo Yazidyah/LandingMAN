@@ -45,12 +45,14 @@
                     <select id="pekerjaan" name="pekerjaan"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         required>
+                        <option value="pelajar">PELAJAR</option>
+                        <option value="mahasiswa">MAHASISWA</option>
+                        <option value="wiraswasta">WIRASWASTA</option>
+                        <option value="wirausaha">WIRAUSAHA</option>
                         <option value="pns">PNS</option>
                         <option value="tni">TNI</option>
                         <option value="polri">POLRI</option>
-                        <option value="wiraswasta">WIRASWASTA</option>
-                        <option value="wirausaha">WIRAUSAHA</option>
-                        <option value="lainnya">Lainnya</option>
+                        <option value="lainnya">LAINNYA</option>
                     </select>
                 </div>
             </div>

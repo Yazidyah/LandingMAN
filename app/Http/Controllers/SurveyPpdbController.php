@@ -19,6 +19,7 @@ class SurveyPpdbController extends Controller
     function store(Request $request)
     {
         $respondentData = $request->only(['nama_lengkap', 'jenis_kelamin', 'usia', 'pendidikan', 'pekerjaan']);
+        $respondentData['nama_lengkap'] = strtolower($respondentData['nama_lengkap']);
         
         // Check if the respondent already exists
         $respondent = Respondent::where($respondentData)->first();
