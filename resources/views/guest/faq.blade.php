@@ -20,7 +20,7 @@
       <p class="mb-2 text-black ">{{ $faq->answer }}</p>
       </div>
   </div>
-  @endforeach
+  
 </div>
 
 
@@ -63,4 +63,5 @@ const instanceOptions = {
     override: true
 };
     </script>
+    @endforeach
     </x-layout>
