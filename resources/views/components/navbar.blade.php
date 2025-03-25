@@ -1,8 +1,8 @@
-<div class=" bg-primary mx-auto w-full sticky z-10 top-0 right-0 left-0">
+<div class=" bg-primary mx-auto w-full sticky z-40 top-0 right-0 left-0">
     <!-- Navigation -->
     <nav class="flex justify-between items-center container mx-auto border-b-2 max-w-full border-b-white py-4">
         <a href="/" class=" flex items-center gap-4 justify-center px-6">
-            <img class="w-10 " src="logoman.webp" alt="">
+            <img class="w-20 " src="/logoman.webp" alt="">
             <div class="">
                 <h1 class=" text-xl font-bold text-white font-poppins">MAN 1 KOTA BOGOR</h1>
                 <h1 class=" text-md text-white font-poppins">Terwujudnya Insan Madrasah yang Berprestasi</h1>

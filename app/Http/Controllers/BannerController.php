@@ -21,7 +21,12 @@ class BannerController extends Controller
             return $content;
         })->sortBy('basename');
 
-        return view('home', compact('contents'));
+        $news = Content::where('category_id', 5)->with('images')->get()->map(function ($item) {
+            $item->image_url = $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('storage/assets/content/default-image.jpg');
+            return $item;
+        });
+
+        return view('home', compact('contents','news'));
 
     }
 }

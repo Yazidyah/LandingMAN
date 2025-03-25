@@ -8,19 +8,19 @@
             </div>
             <div class="container mx-auto text-center pt-7">
                 <h1 class="font-bold text-[32px] pt-7 pb-7">Daftar Kritik dan Saran</h1>
-                <table class="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th class="py-2">ID</th>
-                            <th class="py-2">Survey ID</th>
-                            <th class="py-2">Respondent ID</th>
-                            <th class="py-2">Kritik</th>
-                            <th class="py-2">Saran</th>
+                <table class="table-auto overflow-x-auto mx-auto items-center relative shadow-md sm:rounded-lg my-6 w-full max-w-full rtl:justify-left text-sm text-left text-gray-500">
+                    <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
+                        <tr class="text-sm text-tertiary uppercase bg-gray-50 text-center">
+                            <th class="px-6 py-3">ID</th>
+                            <th class="px-6 py-3">Survey ID</th>
+                            <th class="px-6 py-3">Respondent ID</th>
+                            <th class="px-6 py-3">Kritik</th>
+                            <th class="px-6 py-3">Saran</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($feedbacks as $feedback)
-                            <tr>
+                            <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
                                 <td class="py-2">{{ $feedback->id }}</td>
                                 <td class="py-2">{{ $feedback->survey_id }}</td>
                                 <td class="py-2">{{ $feedback->respondent_id }}</td>
