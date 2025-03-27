@@ -25,7 +25,8 @@
                                 <dt class="text-sm leading-5 font-medium text-gray-500 truncate dark:text-gray-400">
                                     Indeks Kepuasan Masyarakat</dt>
                                 <dd class="mt-1 text-2xl leading-9 font-semibold text-indigo-600 dark:text-indigo-400">
-                                    {{ number_format($ikm, 1) }}%</dd>
+                                    {{ number_format($ikm, 1) }}%
+                                </dd>
                             </dl>
                         </div>
                     </div>
@@ -36,7 +37,8 @@
                                 <dt class="text-sm leading-5 font-medium text-gray-500 truncate dark:text-gray-400">
                                     Kinerja Unit Pelayanan</dt>
                                 <dd class="mt-1 text-2xl leading-9 font-semibold text-indigo-600 dark:text-indigo-400">
-                                    {{ $rating }}</dd>
+                                    {{ $rating }}
+                                </dd>
                             </dl>
                         </div>
                     </div>
@@ -51,7 +53,8 @@
                                 <dt class="text-sm leading-5 font-medium text-gray-500 truncate dark:text-gray-400">
                                     Jumlah Pertanyaan</dt>
                                 <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600 dark:text-indigo-400">
-                                    {{ $jumlahPertanyaan }}</dd>
+                                    {{ $jumlahPertanyaan }}
+                                </dd>
                             </dl>
                         </div>
                     </div>
@@ -62,7 +65,8 @@
                                 <dt class="text-sm leading-5 font-medium text-gray-500 truncate dark:text-gray-400">
                                     Jumlah Jawaban</dt>
                                 <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600 dark:text-indigo-400">
-                                    {{ $jumlahJawaban }}</dd>
+                                    {{ $jumlahJawaban }}
+                                </dd>
                             </dl>
                         </div>
                     </div>
@@ -73,7 +77,8 @@
                                 <dt class="text-sm leading-5 font-medium text-gray-500 truncate dark:text-gray-400">
                                     Jumlah Responden</dt>
                                 <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600 dark:text-indigo-400">
-                                    {{ $jumlahResponden }}</dd>
+                                    {{ $jumlahResponden }}
+                                </dd>
                             </dl>
                         </div>
                     </div>
@@ -84,7 +89,8 @@
                                 <dt class="text-sm leading-5 font-medium text-gray-500 truncate dark:text-gray-400">
                                     Kritik dan Saran</dt>
                                 <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600 dark:text-indigo-400">
-                                    {{ $jumlahKritikSaran }}</dd>
+                                    {{ $jumlahKritikSaran }}
+                                </dd>
                             </dl>
                         </div>
                     </div>
@@ -99,7 +105,8 @@
                     </div>
                     <!-- Chart Container 2 -->
                     <div class="col-span-3 bg-white overflow-hidden shadow sm:rounded-lg p-4">
-                        <canvas id="newChart" class="w-full h-64 mx-auto"></canvas>
+                        <p class="text-center text-gray-500">Grafik Jawaban Kuesioner Harian</p>
+                        <canvas id="grafikChart" class="w-full h-full mx-auto"></canvas>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-5 mt-4">
@@ -177,56 +184,56 @@
 
     <script>
         const chartColors = [
-            'rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 
+            'rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)',
             'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)', 'rgba(255, 159, 64, 0.5)'
         ];
         const chartBorderColors = chartColors.map(color => color.replace('0.5', '1'));
 
         const chartConfigs = [
-            { 
-                id: 'ikmChart', 
-                data: @json(array_values($likertCounts)), 
-                labels: ['Skala 1', 'Skala 2', 'Skala 3', 'Skala 4'] 
+            {
+                id: 'ikmChart',
+                data: @json(array_values($likertCounts)),
+                labels: ['Tidak baik', 'Kurang baik', 'Baik', 'Sangat baik']
             },
-            { 
-                id: 'jenisKelaminChart', 
-                data: [@json($jenisKelaminData['l'] ?? 0), @json($jenisKelaminData['p'] ?? 0)], 
-                labels: ['Laki-laki', 'Perempuan'] 
+            {
+                id: 'jenisKelaminChart',
+                data: [@json($jenisKelaminData['l'] ?? 0), @json($jenisKelaminData['p'] ?? 0)],
+                labels: ['Laki-laki', 'Perempuan']
             },
-            { 
-                id: 'usiaChart', 
+            {
+                id: 'usiaChart',
                 data: [
-                    @json($usiaData['Anak-anak(0-12)'] ?? 0), 
-                    @json($usiaData['Remaja(13-19)'] ?? 0), 
-                    @json($usiaData['Dewasa(20-59)'] ?? 0), 
+                    @json($usiaData['Anak-anak(0-12)'] ?? 0),
+                    @json($usiaData['Remaja(13-19)'] ?? 0),
+                    @json($usiaData['Dewasa(20-59)'] ?? 0),
                     @json($usiaData['Lansia(>=50)'] ?? 0)
-                ], 
-                labels: ['Anak-anak(0-12)', 'Remaja(13-19)', 'Dewasa(20-59)', 'Lansia(>=50)'] 
+                ],
+                labels: ['Anak-anak(0-12)', 'Remaja(13-19)', 'Dewasa(20-59)', 'Lansia(>=50)']
             },
-            { 
-                id: 'pendidikanChart', 
+            {
+                id: 'pendidikanChart',
                 data: [
-                    @json($pendidikanData['s3'] ?? 0), 
-                    @json($pendidikanData['s2'] ?? 0), 
-                    @json($pendidikanData['s1'] ?? 0), 
-                    @json($pendidikanData['d3'] ?? 0), 
-                    @json($pendidikanData['sma/smk/sederajat'] ?? 0), 
-                    @json($pendidikanData['smp/sederajat'] ?? 0), 
+                    @json($pendidikanData['s3'] ?? 0),
+                    @json($pendidikanData['s2'] ?? 0),
+                    @json($pendidikanData['s1'] ?? 0),
+                    @json($pendidikanData['d3'] ?? 0),
+                    @json($pendidikanData['sma/smk/sederajat'] ?? 0),
+                    @json($pendidikanData['smp/sederajat'] ?? 0),
                     @json($pendidikanData['sd/sederajat'] ?? 0)
-                ], 
-                labels: ['S3', 'S2', 'S1', 'D3', 'SMA/SMK/Sederajat', 'SMP/Sederajat', 'SD/Sederajat'] 
+                ],
+                labels: ['S3', 'S2', 'S1', 'D3', 'SMA/SMK/Sederajat', 'SMP/Sederajat', 'SD/Sederajat']
             },
-            { 
-                id: 'pekerjaanChart', 
+            {
+                id: 'pekerjaanChart',
                 data: [
-                    @json($pekerjaanData['wiraswasta'] ?? 0), 
-                    @json($pekerjaanData['wirausaha'] ?? 0), 
-                    @json($pekerjaanData['pns'] ?? 0), 
-                    @json($pekerjaanData['tni'] ?? 0), 
-                    @json($pekerjaanData['polri'] ?? 0), 
+                    @json($pekerjaanData['wiraswasta'] ?? 0),
+                    @json($pekerjaanData['wirausaha'] ?? 0),
+                    @json($pekerjaanData['pns'] ?? 0),
+                    @json($pekerjaanData['tni'] ?? 0),
+                    @json($pekerjaanData['polri'] ?? 0),
                     @json($pekerjaanData['lainnya'] ?? 0)
-                ], 
-                labels: ['Wiraswasta', 'Wirausaha', 'PNS', 'TNI', 'Polri', 'Lainnya'] 
+                ],
+                labels: ['Wiraswasta', 'Wirausaha', 'PNS', 'TNI', 'Polri', 'Lainnya']
             }
         ];
 
@@ -265,6 +272,70 @@
                     }
                 }
             });
+        });
+
+        const grafikJawabanHarian = @json($grafikJawabanHarian);
+
+        const grafikChartCtx = document.getElementById('grafikChart').getContext('2d');
+        new Chart(grafikChartCtx, {
+            type: 'bar',
+            data: {
+                labels: grafikJawabanHarian.map(item => item.date),
+                datasets: [
+                    {
+                        label: 'Tidak baik',
+                        data: grafikJawabanHarian.map(item => item.skala_1),
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'Kurang baik',
+                        data: grafikJawabanHarian.map(item => item.skala_2),
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'Baik',
+                        data: grafikJawabanHarian.map(item => item.skala_3),
+                        backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'Sangat baik',
+                        data: grafikJawabanHarian.map(item => item.skala_4),
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                maintainaspectratio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tanggal',
+                        },
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Jumlah Jawaban',
+                        },
+                        beginAtZero: true,
+                    },
+                },
+            },
         });
 
         // Toggle table visibility with animation

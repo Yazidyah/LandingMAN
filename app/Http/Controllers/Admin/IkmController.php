@@ -7,7 +7,8 @@ use App\Models\Survey;
 use App\Models\ResponseDetail;
 use App\Models\Response;
 use App\Models\Feedback;
-
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class IkmController extends Controller
 {
@@ -35,6 +36,41 @@ class IkmController extends Controller
         $pendidikanData = $this->calculateDistribution('pendidikan');
         $pekerjaanData = $this->calculateDistribution('pekerjaan');
 
+        $grafikJawabanHarian = ResponseDetail::select(
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('SUM(CASE WHEN likert_value = 1 THEN 1 ELSE 0 END) as skala_1'),
+            DB::raw('SUM(CASE WHEN likert_value = 2 THEN 1 ELSE 0 END) as skala_2'),
+            DB::raw('SUM(CASE WHEN likert_value = 3 THEN 1 ELSE 0 END) as skala_3'),
+            DB::raw('SUM(CASE WHEN likert_value = 4 THEN 1 ELSE 0 END) as skala_4')
+        )
+        ->when($surveyId, fn($query) => $query->whereIn('question_id', $surveyTerpilih->flatMap(fn($survey) => $survey->questions->pluck('id'))))
+        ->groupBy('date')
+        ->orderBy('date', 'asc')
+        ->get()
+        ->mapWithKeys(fn($item) => [$item->date => [
+            'skala_1' => $item->skala_1,
+            'skala_2' => $item->skala_2,
+            'skala_3' => $item->skala_3,
+            'skala_4' => $item->skala_4,
+        ]]);
+
+        // Add past 7 days
+        $startDate = Carbon::now()->subDays(7);
+        $endDate = Carbon::now();
+        $allDates = collect();
+
+        for ($date = $startDate; $date <= $endDate; $date->addDay()) {
+            $allDates->push($date->format('Y-m-d'));
+        }
+
+        $grafikJawabanHarian = $allDates->map(fn($date) => [
+            'date' => $date,
+            'skala_1' => $grafikJawabanHarian[$date]['skala_1'] ?? 0,
+            'skala_2' => $grafikJawabanHarian[$date]['skala_2'] ?? 0,
+            'skala_3' => $grafikJawabanHarian[$date]['skala_3'] ?? 0,
+            'skala_4' => $grafikJawabanHarian[$date]['skala_4'] ?? 0,
+        ]);
+
         return view('admin.ikm.index', [
             'surveys' => $surveyTerpilih,
             'allSurveys' => $semuaSurvey,
@@ -57,6 +93,7 @@ class IkmController extends Controller
             'usiaData' => $usiaData,
             'pendidikanData' => $pendidikanData,
             'pekerjaanData' => $pekerjaanData,
+            'grafikJawabanHarian' => $grafikJawabanHarian,
         ]);
     }
 
