@@ -17,6 +17,7 @@
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Filter</button>
                 </form>
 
+                <!-- Table to display questions -->
                 <table
                     class="table-auto overflow-x-auto mx-auto items-center relative shadow-md sm:rounded-lg my-6 w-full max-w-full rtl:justify-left text-sm text-left text-gray-500">
                     <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
@@ -34,23 +35,20 @@
                             @foreach ($survey->questions as $question)
                                 <tr>
                                     <td class="px-6 py-3 text-center">{{ $loop->iteration }}</td>
-                                    <td class="px-6 py-3">{{ $question->question_text }}</td>
-                                    <td class="px-6 py-3 text-center">{{ isset($data[$question->id]['jumlahNilaiUnsur']) ? number_format($data[$question->id]['jumlahNilaiUnsur'], 2) : '-' }}</td>
-                                    <td class="px-6 py-3 text-center">{{ isset($data[$question->id]['nrr']) ? number_format($data[$question->id]['nrr'], 2) : '-' }}</td>
-                                    <td class="px-6 py-3 text-center">{{ isset($data[$question->id]['bobotNilaiTertimbang']) ? number_format($data[$question->id]['bobotNilaiTertimbang'], 2) : '-' }}</td>
-                                    <td class="px-6 py-3 text-center">{{ isset($data[$question->id]['nrrTetimbang']) ? number_format($data[$question->id]['nrrTetimbang'], 2) : '-' }}</td>
+                                    <td class="px-6 py-3 text-center">{{ $question->question_text }}</td>
+                                    <td class="px-6 py-3 text-center">{{ $jumlahNilaiUnsur[$question->id] ?? 0 }}</td>
+                                    <td class="px-6 py-3 text-center">{{ number_format($nrrUnsur[$question->id] ?? 0, 2) }}</td>
+                                    <td class="px-6 py-3 text-center">{{ number_format($bobotNilaiTetimbang, 3) }}</td>
+                                    <td class="px-6 py-3 text-center">{{ number_format($tetimbangPerUnsur[$question->id] ?? 0, 3) }}</td>
                                 </tr>
                             @endforeach
                         @endforeach
                     </tbody>
                 </table>
-
-                <!-- Display IKM -->
                 <div class="mt-6">
-                    <h2 class="font-bold text-[24px]">Indeks Kepuasan Masyarakat (IKM): {{ number_format($ikm, 2) }}</h2>
-                    <h3 class="text-[20px]">Persentase IKM: {{ number_format($ikmPercentage, 2) }}%</h3>
-                    <h3 class="text-[20px]">Kategori Kepuasan: {{ $satisfactionLabel }}</h3>
-                    <h3 class="text-[20px]">Nilai Tertimbang: {{ number_format($nilaiTertimbang, 2) }}</h3>
+                    <h3 class="text-[20px]">IKM: {{ number_format($ikm, 1) }}%</h3>
+                    <h3 class="text-[20px]">Bobot Nilai Tetimbang: {{ number_format($bobotNilaiTetimbang, 3) }}</h3>
+                    <h3 class="text-[20px]">Kinerja Unit Pelayanan: {{ $rating }}</h3>
                 </div>
             </div>
         </div>
