@@ -4,7 +4,7 @@
             <h2 class="font-bold text-3xl md:text-4xl ">Selamat Datang di Website Fasilitas MAN 1 Kota Bogor</h2>
         </div>
 
-        <div class="mt-8 grid grid-cols-12 gap-4">
+        <div class="my-8 grid grid-cols-12 gap-4">
         @foreach($news as $item)
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm col-span-12 md:col-span-6 lg:col-span-4">
             <a href="{{ route('guest.newsDetail', $item->slug) }}">

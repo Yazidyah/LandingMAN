@@ -1,5 +1,5 @@
 <section>   
-    <footer class="container mx-auto">
+    <footer class="sticky container mx-auto">
         <div class="container w-full block lg:bg-gradient-to-b from-tertiary to-primary">
             <div class="flex flex-col lg:flex-row pt-12 pb-12 px-9 mx-auto">
                 <div class="text-white px-2 w-full lg:w-1/3">

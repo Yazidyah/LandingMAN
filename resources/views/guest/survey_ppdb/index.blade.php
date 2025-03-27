@@ -1,25 +1,25 @@
 <x-layout>
     <div class="max-w-5xl mx-auto my-5 bg-white p-8 border border-gray-200 rounded-lg shadow-lg">
-        <h2 class="text-xl font-semibold text-gray-900 text-center mb-4">SURVEY KEPUASAN PPDB</h2>
+        <h2 class="text-xl font-bold text-gray-900 text-center mb-4">SURVEY KEPUASAN PPDB</h2>
         <form action="{{ route('ppdb.survey.store') }}" method="POST">
             @csrf
             <div class="mb-6">
                 <label for="nama_lengkap" class="block text-sm font-medium text-gray-900">Nama Lengkap</label>
                 <input type="text" id="nama_lengkap" name="nama_lengkap"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tertiary focus:border-tertiary block w-full p-3"
                     required>
             </div>
             <div class="grid grid-cols-2 gap-6 mb-6">
                 <div>
                     <label for="usia" class="block text-sm font-medium text-gray-900">Usia</label>
                     <input type="number" id="usia" name="usia"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tertiary focus:border-tertiary block w-full p-3"
                         required>
                 </div>
                 <div>
                     <label for="jenis_kelamin" class="block text-sm font-medium text-gray-900">Jenis Kelamin</label>
                     <select id="jenis_kelamin" name="jenis_kelamin"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tertiary focus:border-tertiary block w-full p-3"
                         required>
                         <option value="">Pilih Jenis Kelamin</option>
                         <option value="l">Laki-laki</option>
@@ -29,7 +29,7 @@
                 <div>
                     <label for="pendidikan" class="block text-sm font-medium text-gray-900">Pendidikan</label>
                     <select id="pendidikan" name="pendidikan"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tertiary focus:border-tertiary block w-full p-2.5"
                         required>
                         <option value="s3">S3</option>
                         <option value="s2">S2</option>
@@ -43,7 +43,7 @@
                 <div>
                     <label for="pekerjaan" class="block text-sm font-medium text-gray-900">Pekerjaan</label>
                     <select id="pekerjaan" name="pekerjaan"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-tertiary focus:border-tertiary block w-full p-2.5"
                         required>
                         <option value="pelajar">PELAJAR</option>
                         <option value="mahasiswa">MAHASISWA</option>
@@ -82,7 +82,7 @@
                         </div>
             @endforeach
             <button type="submit"
-                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-3 text-center">
+                class="w-full text-white bg-tertiary hover:bg-secondary hover:text-tertiary focus:ring-4 focus:outline-none focus:ring-tertiary font-medium rounded-lg text-lg px-6 py-3 text-center">
                 Submit
             </button>
         </form>

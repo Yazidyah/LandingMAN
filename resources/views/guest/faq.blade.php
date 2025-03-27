@@ -5,7 +5,7 @@
         </div>
 
         
-        <div class="my-2" id="accordion-collapse" data-accordion="collapse">
+        <div class="my-8" id="accordion-collapse" data-accordion="accordion-collapse">
         @foreach($news as $faq)
   <div class="hover:text-tertiary my-2" id="accordion-collapse-heading-{{ $faq->id }}">
     <button type="button" class="flex items-center justify-between w-full p-5 font-medium rtl:text-right border border-b-0 border-tertiary rounded-t-xl focus:ring-2 focus:ring-tertiary  hover:bg-secondary hover:text-tertiary text-white bg-tertiary gap-3" data-accordion-target="#accordion-collapse-body-{{ $faq->id }}" data-accordion-target="#accordion-collapse-body-{{ $faq->id }}" aria-expanded="false" aria-controls="accordion-collapse-body-{{ $faq->id }}">
@@ -20,7 +20,7 @@
       <p class="mb-2 text-black ">{{ $faq->answer }}</p>
       </div>
   </div>
-  
+  @endforeach
 </div>
 
 
@@ -63,5 +63,5 @@ const instanceOptions = {
     override: true
 };
     </script>
-    @endforeach
+    
     </x-layout>
