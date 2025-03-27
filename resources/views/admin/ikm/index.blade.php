@@ -100,7 +100,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-5 mt-4">
                     <!-- Chart Container 1 -->
                     <div class="bg-white overflow-hidden shadow sm:rounded-lg p-4">
-                        <p class="text-center text-gray-500">Berdasarkan Jawaban</p>
+                        <p class="text-center text-gray-500">Berdasarkan {{ $jumlahJawaban }} Jawaban</p>
                         <canvas id="ikmChart" class="w-64 h-64 mx-auto"></canvas>
                     </div>
                     <!-- Chart Container 2 -->
