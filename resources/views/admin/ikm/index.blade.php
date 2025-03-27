@@ -7,7 +7,7 @@
                 <!-- Filter Dropdown -->
                 <form method="GET" action="{{ route('admin.ikm.index') }}" class="mb-6">
                     <select name="survey_id" class="border border-gray-300 rounded p-2">
-                        <option value="">-- Pilih Survey --</option>
+                        <option value="">Semua Survey</option>
                         @foreach ($allSurveys as $survey)
                             <option value="{{ $survey->id }}" {{ request('survey_id') == $survey->id ? 'selected' : '' }}>
                                 {{ $survey->survey_name }}
@@ -24,6 +24,7 @@
                         <tr class="text-xs text-tertiary uppercase bg-gray-50 text-center">
                             <th scope="col" class="px-6 py-3">No</th>
                             <th scope="col" class="px-6 py-3">Pertanyaan</th>
+                            <th scope="col" class="px-6 py-3">Survey</th>
                             <th scope="col" class="px-6 py-3">Jumlah Nilai per Unsur</th>
                             <th scope="col" class="px-6 py-3">NRR per Unsur</th>
                             <th scope="col" class="px-6 py-3">Bobot Nilai Tetimbang</th>
@@ -31,11 +32,13 @@
                         </tr>
                     </thead>
                     <tbody class="text-left">
+                        @php $index = 1; @endphp
                         @foreach ($surveys as $survey)
                             @foreach ($survey->questions as $question)
                                 <tr>
-                                    <td class="px-6 py-3 text-center">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-3 text-center">{{ $index++ }}</td>
                                     <td class="px-6 py-3 text-center">{{ $question->question_text }}</td>
+                                    <td class="px-6 py-3 text-center">{{ $question->survey->survey_name }}</td>
                                     <td class="px-6 py-3 text-center">{{ $jumlahNilaiUnsur[$question->id] ?? 0 }}</td>
                                     <td class="px-6 py-3 text-center">{{ number_format($nrrUnsur[$question->id] ?? 0, 2) }}</td>
                                     <td class="px-6 py-3 text-center">{{ number_format($bobotNilaiTetimbang, 3) }}</td>

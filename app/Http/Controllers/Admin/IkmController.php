@@ -53,6 +53,7 @@ class IkmController extends Controller
     {
         return Survey::with('questions')
             ->when($surveyId, fn($query) => $query->where('id', $surveyId))
+            ->orderBy('id', 'asc') // Sort by survey_id in ascending order
             ->get();
     }
 

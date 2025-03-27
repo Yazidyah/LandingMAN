@@ -24,7 +24,8 @@ Route::get('/faq', [\App\Http\Controllers\GuestController::class, 'faq'])->name(
 Route::get('/fasilitas', [\App\Http\Controllers\GuestController::class, 'fasilitas'])->name('guest.fasilitas');
 Route::get('/news', [\App\Http\Controllers\GuestController::class, 'news'])->name('guest.news');
 Route::get('/news/{slug}', [\App\Http\Controllers\GuestController::class, 'newsDetail'])->name('guest.newsDetail');
-Route::get('/saranpengaduan', [\App\Http\Controllers\GuestController::class, 'saranpengaduan'])->name('guest.saranpengaduan');
+Route::get('/saranpengaduan', [\App\Http\Controllers\SaranPengaduanController::class, 'index'])->name('guest.saranpengaduan');
+Route::post('/saranpengaduan', [\App\Http\Controllers\SaranPengaduanController::class, 'store'])->name('guest.saranpengaduan.store');
 Route::get('/sejarah', [\App\Http\Controllers\GuestController::class, 'sejarah'])->name('guest.sejarah');
 Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi'])->name('guest.visimisi');
 Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');

@@ -1,7 +1,7 @@
 <x-layout>
     <div class="max-w-5xl mx-auto my-5 bg-white p-8 border border-gray-200 rounded-lg shadow-lg">
         <h2 class="text-xl font-bold text-gray-900 text-center mb-4">SURVEY KEPUASAN PPDB</h2>
-        <form action="{{ route('ppdb.survey.store') }}" method="POST">
+        <form action="{{ route('guest.saranpengaduan.store') }}" method="POST">
             @csrf
             <div class="mb-6">
                 <label for="nama_lengkap" class="block text-sm font-medium text-gray-900">Nama Lengkap</label>
@@ -79,6 +79,18 @@
                             </div>
                         </div>
             @endforeach
+            <div class="mb-6">
+                <label for="kritik" class="block text-xl font-medium text-gray-900">Kritik</label>
+                <textarea id="kritik" name="kritik"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-tertiary focus:border-tertiary block w-full p-3"
+                    rows="4" required></textarea>
+            </div>
+            <div class="mb-6">
+                <label for="saran" class="block text-xl font-medium text-gray-900">Saran</label>
+                <textarea id="saran" name="saran"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-tertiary focus:border-tertiary block w-full p-3"
+                    rows="4" required></textarea>
+            </div>
             <button type="submit"
                 class="w-full text-white bg-tertiary hover:bg-secondary hover:text-tertiary focus:ring-4 focus:outline-none focus:ring-tertiary font-medium rounded-lg text-lg px-6 py-3 text-center">
                 Submit
