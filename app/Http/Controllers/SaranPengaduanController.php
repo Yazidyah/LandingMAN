@@ -71,8 +71,6 @@ class SaranPengaduanController extends Controller
     {
         foreach ($responses as $key => $value) {
             $questionId = str_replace('question_', '', $key);
-
-            // Update if the response detail exists, otherwise create a new one
             ResponseDetail::updateOrCreate(
                 ['response_id' => $responseId, 'question_id' => $questionId],
                 ['likert_value' => $value]

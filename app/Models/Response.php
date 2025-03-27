@@ -16,4 +16,9 @@ class Response extends Model
         'respondent_id',
         'response_date',
     ];
+
+    public function respondent()
+    {
+        return $this->belongsTo(Respondent::class, 'respondent_id');
+    }
 }
