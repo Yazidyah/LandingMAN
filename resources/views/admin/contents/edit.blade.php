@@ -42,7 +42,7 @@
                 </div>
                 <div class="flex justify-end gap-2">
                     <button type="button" onclick="deleteContent()" class="bg-red-900 hover:bg-red-500 text-white px-4 py-2 rounded mr-2">Delete</button>
-                    <button type="submit" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Save</button>
+                    <button type="submit" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Simpan</button>
                 </div>
             </form>
         </div>

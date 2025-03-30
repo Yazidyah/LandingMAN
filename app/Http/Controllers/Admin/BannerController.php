@@ -36,6 +36,11 @@ class BannerController extends Controller
         $title = strtolower($request->title);
         $slug = Str::slug($title, '-');
 
+        // Check if a banner with the same title already exists
+        if (Content::where('category_id', 1)->where('slug', $slug)->exists()) {
+            return redirect()->route('admin.banner.index')->with('error', 'Banner with the same title already exists.');
+        }
+
         $content = Content::create([
             'user_id' => Auth::id(),
             'category_id' => 1,
@@ -46,10 +51,12 @@ class BannerController extends Controller
         if ($request->hasFile('contentFile')) {
             $existingBanners = ContentImage::whereHas('content', function ($query) {
                 $query->where('category_id', 1);
-            })->pluck('image_url')->toArray();
+            })->pluck('image_url')->map(function ($url) {
+                return pathinfo($url, PATHINFO_FILENAME); // Extract only the base filename
+            })->toArray();
 
             $bannerNumber = 1;
-            while (in_array('assets/content/banner_' . $bannerNumber . '.' . $request->file('contentFile')->getClientOriginalExtension(), $existingBanners)) {
+            while (in_array('banner_' . $bannerNumber, $existingBanners)) {
                 $bannerNumber++;
             }
 

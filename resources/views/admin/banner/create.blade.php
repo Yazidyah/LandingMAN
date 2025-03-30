@@ -12,11 +12,11 @@
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
-                    <span class="sr-only">Close modal</span>
+                    <span class="sr-only">Tutup modal</span>
                 </button>
             </div>
             <!-- Modal body -->
-            <form id="createForm" class="p-4 md:p-5" method="POST" action="{{ route('admin.banner.store') }}" enctype="multipart/form-data">
+            <form id="createForm" class="p-4 md:p-5" method="POST" action="{{ route('admin.banner.store') }}" enctype="multipart/form-data" onsubmit="disableSubmitButton()">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
@@ -24,13 +24,14 @@
                         <input type="text" name="title" id="contentTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
                     </div>
                     <div class="col-span-1">
-                        <label for="contentFile" class="block mb-2 text-sm font-medium text-gray-900">Upload Gambar</label>
+                        <label for="contentFile" class="block mb-2 text-sm font-medium text-gray-900">Unggah Gambar</label>
                         <input type="file" name="contentFile" id="contentFile" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        <p class="mt-1 text-sm text-gray-500">Maksimal ukuran file adalah 2MB.</p>
                     </div>
                 </div>
                 <div class="flex justify-end">
-                    <button type="button" onclick="closeModal()" class="bg-red-900 hover:bg-red-500 text-white px-4 py-2 rounded mr-2">Cancel</button>
-                    <button type="submit" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Save</button>
+                    <button type="button" onclick="closeModal()" class="bg-red-900 hover:bg-red-500 text-white px-4 py-2 rounded mr-2">Batal</button>
+                    <button id="submitButton" type="submit" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Simpan</button>
                 </div>
             </form>
         </div>
@@ -44,5 +45,13 @@
 
     function closeModal() {
         document.getElementById('createModal').classList.add('hidden');
+    }
+
+    function disableSubmitButton(event) {
+        event.preventDefault(); // Disable form submission via Enter key
+        const submitButton = document.getElementById('submitButton');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Menyimpan...'; // Optional: Update button text to indicate progress
+        document.getElementById('createForm').submit(); // Manually submit the form
     }
 </script>
