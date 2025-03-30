@@ -210,7 +210,7 @@ switch ($userRole){
         </li> --->
         <li>
             <x-side-nav :href="route($redirectUrlbar)" :active="request()->routeIs($redirectUrlbar)">
-            {{ __('Carrousel Banner') }}
+            {{ __('Banner') }}
             </x-side-nav>
         </li>
         <li>
@@ -225,17 +225,17 @@ switch ($userRole){
         </li>
         <li>
             <x-side-nav :href="route($redirectUrlcat)" :active="request()->routeIs($redirectUrlcat)">
-                {{ __('Categories') }}
+                {{ __('Kategori') }}
             </x-side-nav>
         </li>
         <li>
             <x-side-nav :href="route($redirectUrlcont)" :active="request()->routeIs($redirectUrlcont)">
-                {{ __('Contents') }}
+                {{ __('Konten') }}
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route($redirectUrlkritsar)" :active="request()->routeIs($redirectUrlkritsar)">
-            {{ __('Kritik & Saran') }}
+            <x-side-nav :href="route($redirectUrlikm)" :active="request()->routeIs($redirectUrlikm)">
+                {{ __('Indeks Kepuasan Masyarakat') }}
             </x-side-nav>
         </li>
         <li>
@@ -259,8 +259,8 @@ switch ($userRole){
             </x-side-nav>
         </li>
         <li>
-            <x-side-nav :href="route($redirectUrlikm)" :active="request()->routeIs($redirectUrlikm)">
-                {{ __('Indeks Kepuasan Masyarakat') }}
+            <x-side-nav :href="route($redirectUrlkritsar)" :active="request()->routeIs($redirectUrlkritsar)">
+            {{ __('Kritik & Saran') }}
             </x-side-nav>
         </li>
         </ul>
