@@ -17,7 +17,7 @@
             </div>
             @foreach ($contents as $content)
                 <div name="banner" data-id="{{ $content->id }}"
-                    class="relative flex flex-col items-center bg-green-50 p-4 rounded-lg shadow-md mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-95 w-full text-center overflow-visible hover:group">
+                    class="mt-2 relative flex flex-col items-center bg-green-50 p-4 rounded-lg shadow-md mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-95 w-full text-center overflow-visible hover:group">
                     <div class="w-1/4 mb-2">
                         @foreach ($content->images as $image)
                             <div class="bg-gray-200 text-gray-700 p-1 rounded-t-lg">

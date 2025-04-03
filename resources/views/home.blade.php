@@ -1,18 +1,18 @@
 <x-layout>
-<div class="container mx-auto pt-5 px-4">
+<div class="container mx-auto mt-5 px-4 min-h-8">
         <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
             <h2 class="font-bold text-3xl md:text-4xl ">Selamat Datang di Website MAN 1 Kota Bogor</h2>
         </div>
-    
-    <div class="mx-auto items-center pb-10 mt-10 justify-center w-full" data-flickity>
+        <div class="mx-auto snap-x items-center pb-10 mt-10 justify-center w-max-full" data-flickity>
     @foreach ($contents as $content)
-                        @foreach ($content->images as $image)
-                            <img src="{{ asset('storage/' . $image->image_url) }}" alt="Deskripsi Gambar"
-                                class="rounded-b-lg w-max-full object-cover aspect-video ">
-                        @endforeach
-            @endforeach
-        </div>
-
+        @foreach ($content->images as $image)
+            <div class="snap-center w-full items-center justify-center content-center origin-center object-center h-auto my-auto mx-2 flex justify-center">
+                <img src="{{ asset('storage/' . $image->image_url) }}" alt="Deskripsi Gambar"
+                     class="rounded-b-lg w-min-full object-cover aspect-video">
+            </div>
+        @endforeach
+    @endforeach
+</div>
         <div class="my-6 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
             <h2 class="font-bold text-3xl md:text-4xl ">Berita Sekolah</h2>
         </div>
