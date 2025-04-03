@@ -1,6 +1,6 @@
 <section>   
-    <footer class="sticky container mx-auto">
-        <div class="container w-full block lg:bg-gradient-to-b from-tertiary to-primary">
+    <footer class="sticky w-full mx-auto">
+        <div class="w-full block lg:bg-gradient-to-b from-tertiary to-primary">
             <div class="flex flex-col lg:flex-row pt-12 pb-12 px-9 mx-auto">
                 <div class="text-white px-2 w-full lg:w-1/3">
                     <h3 class="text-3xl mb-5">Tentang</h3>
