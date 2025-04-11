@@ -6,7 +6,7 @@
         <div class="mx-auto snap-x items-center pb-10 mt-10 justify-center w-max-full" data-flickity>
     @foreach ($contents as $content)
         @foreach ($content->images as $image)
-            <div class="snap-center w-full items-center justify-center content-center origin-center object-center h-auto my-auto mx-2 flex justify-center">
+            <div class="snap-center w-full aspect-auto items-center content-center origin-center object-center h-auto my-auto mx-2 flex justify-center">
                 <img src="{{ asset('storage/' . $image->image_url) }}" alt="Deskripsi Gambar"
                      class="rounded-b-lg w-min-full object-cover aspect-video">
             </div>

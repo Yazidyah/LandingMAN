@@ -130,24 +130,6 @@
                         <a href="{{ route('guest.publikasi') }}">Publikasi</a>
                     </li>
         </ul>
-        <div class=" flex gap-4 px-4 pb-4 mt-4">
-            <a class="flex items-center justify-center w-full text-white outline px-9 py-4 rounded-full font-bold text-sm hover:bg-secondary hover:text-primary"
-                href="login">Masuk</a>
-        </div>
-        <div class="py-4 px-3 cursor-pointer hover:bg-white text-white hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 relative text-sm text-center font-bold"
-            x-data="{ dropdown: false }">
-            <button @click="dropdown = !dropdown"
-                class=" focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg ">Daftar</button>
-            <!--DropDown-->
-            <div class=" bg-secondary z-10 text-primary rounded-md right-0 my-2 p-2" x-show="dropdown"
-                @click.outside="dropdown = false">
-                <ul class="space-y-2 w-full">
-                    <li><a href="register"
-                            class="flex p-2 font-medium text-primary rounded-md hover:bg-white hover:text-black">Anggota
-                            Khalansa</a></li>
 
-                </ul>
-            </div>
-        </div>
     </div>
 </div>
