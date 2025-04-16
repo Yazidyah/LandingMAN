@@ -65,11 +65,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        display: none;
-    }
-
-    #editContentImages .relative:hover .absolute {
-        display: flex;
+        display: flex; /* Always visible */
     }
 </style>
 
