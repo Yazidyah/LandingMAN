@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log; // Add this at the top of the file
 
 class KontenController extends Controller
 {
@@ -77,14 +76,10 @@ class KontenController extends Controller
     public function store(Request $request)
     {
         try {
-            Log::info('Store method called with request data:', $request->all());
-
             if (!$request->hasFile('contentFile')) {
-                Log::error('No files were uploaded.');
+                // No files were uploaded
             } else {
-                Log::info('Files received:', array_map(function ($file) {
-                    return $file->getClientOriginalName();
-                }, $request->file('contentFile')));
+                // Files received
             }
 
             $request->validate([
@@ -101,7 +96,6 @@ class KontenController extends Controller
                 }, $request->file('contentFile')));
 
                 if ($totalSize > 10240 * 1024) { // 10MB in bytes
-                    Log::error('Total file size exceeds 10MB.');
                     return back()->withErrors(['contentFile' => 'The total size of all files must not exceed 10MB.']);
                 }
             }
@@ -114,25 +108,19 @@ class KontenController extends Controller
                 'slug' => \Str::slug($request->title),
             ]);
 
-            Log::info('Content created successfully with ID: ' . $content->id);
-
             if ($request->hasFile('contentFile')) {
                 foreach ($request->file('contentFile') as $file) {
                     $filePath = $file->store('assets/content', 'public'); // Save file to storage
-                    Log::info('File stored at path: ' . $filePath);
 
                     ContentImage::create([
                         'content_id' => $content->id, // Link image to content
                         'image_url' => $filePath,
                     ]);
-
-                    Log::info('ContentImage created for content ID: ' . $content->id);
                 }
             }
 
             return redirect()->route('admin.contents.index')->with('success', 'Content created successfully.');
         } catch (\Exception $e) {
-            Log::error('Error in store method: ' . $e->getMessage());
             return back()->withErrors(['error' => 'An error occurred while creating the content. Please try again.']);
         }
     }
