@@ -26,109 +26,117 @@
             </svg>
         </button>
     </nav>
-    <div class="hidden items-center justify-center lg:flex lg:bg-gradient-to-b from-primary to-tertiary transition-colors">
-            <div class=" h-14 items-center flex">
-                <ul class="text-white text-xs xl:text-base font-semibold  lg:flex gap-4 hidden">
-                    <li>
-                        <x-side-nav :href="route('home')" :active="request()->routeIs('home')">
+    <div
+        class="hidden items-center justify-center lg:flex lg:bg-gradient-to-b from-primary to-tertiary transition-colors">
+        <div class=" h-14 items-center flex">
+            <ul class="text-white text-xs xl:text-base font-semibold  lg:flex gap-4 hidden">
+                <li>
+                    <x-side-nav :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Home') }}
-                        </x-side-nav>
-                    </li>
-                    <li class="relative hover:text-tertiary" x-data="{dropdown:false}"><button @click="dropdown = !dropdown" class=" hover:bg-white focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg  " >Profil Sekolah</button>
-                        <!-- Dropdown -->
-                        <div class="lg:absolute bg-primary z-10 text-tertiary rounded-md right-0 my-2 p-2" x-show="dropdown" @click.outside="dropdown = false">
+                    </x-side-nav>
+                </li>
+                <li class="relative hover:text-tertiary" x-data="{ dropdown: false }"><button @click="dropdown = !dropdown"
+                        class=" hover:bg-white focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg  ">Profil
+                        Sekolah</button>
+                    <!-- Dropdown -->
+                    <div class="lg:absolute bg-primary z-10 text-tertiary rounded-md right-0 my-2 p-2" x-show="dropdown"
+                        @click.outside="dropdown = false">
                         <ul class="space-y-2 w-48">
-                                <li><a href="/sejarah" class="flex p-2 font-medium text-white rounded-md hover:bg-white hover:text-tertiary">Sejarah</a></li>
-                                <li><a href="/visimisi" class="flex p-2 font-medium text-white rounded-md hover:bg-white hover:text-tertiary">Visi Misi</a></li>
-                           </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <x-side-nav :href="route('guest.news')" :active="request()->routeIs('guest.news')">
+                            <li><a href="/sejarah"
+                                    class="flex p-2 font-medium text-white rounded-md hover:bg-white hover:text-tertiary">Sejarah</a>
+                            </li>
+                            <li><a href="/visimisi"
+                                    class="flex p-2 font-medium text-white rounded-md hover:bg-white hover:text-tertiary">Visi
+                                    Misi</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <x-side-nav :href="route('guest.news')" :active="request()->routeIs('guest.news')">
                         {{ __('Berita Sekolah') }}
-                        </x-side-nav>
-                    </li>
-                    <li>
-                        <x-side-nav :href="route('guest.fasilitas')" :active="request()->routeIs('guest.fasilitas')">
+                    </x-side-nav>
+                </li>
+                <li>
+                    <x-side-nav :href="route('guest.fasilitas')" :active="request()->routeIs('guest.fasilitas')">
                         {{ __('Fasilitas') }}
-                        </x-side-nav>
-                    </li>
-                    <li>
-                        <x-side-nav :href="route('guest.prestasi')" :active="request()->routeIs('guest.prestasi')">
+                    </x-side-nav>
+                </li>
+                <li>
+                    <x-side-nav :href="route('guest.prestasi')" :active="request()->routeIs('guest.prestasi')">
                         {{ __('Prestasi') }}
-                        </x-side-nav>
-                    </li>
-                    <li>
-                        <x-side-nav :href="route('guest.faq')" :active="request()->routeIs('guest.faq')">
+                    </x-side-nav>
+                </li>
+                <li>
+                    <x-side-nav :href="route('guest.faq')" :active="request()->routeIs('guest.faq')">
                         {{ __('FAQ') }}
-                        </x-side-nav>
-                    </li>
-                    <li>
-                        <x-side-nav :href="route('guest.agenda')" :active="request()->routeIs('guest.agenda')">
+                    </x-side-nav>
+                </li>
+                <li>
+                    <x-side-nav :href="route('guest.agenda')" :active="request()->routeIs('guest.agenda')">
                         {{ __('Agenda Kegiatan') }}
-                        </x-side-nav>
-                    </li>
-                    <li>
-                        <x-side-nav :href="route('guest.saranpengaduan')" :active="request()->routeIs('guest.saranpengaduan')">
+                    </x-side-nav>
+                </li>
+                <li>
+                    <x-side-nav :href="route('guest.saranpengaduan')" :active="request()->routeIs('guest.saranpengaduan')">
                         {{ __('Saran & Pengaduan') }}
-                        </x-side-nav>
-                    </li>
-                    <li 
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/ppdb">PPDB</a>
-                    </li>
-                    <li>
-                        <x-side-nav :href="route('guest.publikasi')" :active="request()->routeIs('guest.publikasi')">
+                    </x-side-nav>
+                </li>
+                <li
+                    class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                    <a href="https://ppdb.tkislamperkasa.com">PPDB</a>
+                </li>
+                <li>
+                    <x-side-nav :href="route('guest.publikasi')" :active="request()->routeIs('guest.publikasi')">
                         {{ __('Publikasi') }}
-                        </x-side-nav>
-                    </li>
+                    </x-side-nav>
+                </li>
 
-                    
-                </ul>
-            </div>
-            </div>
+
+            </ul>
+        </div>
+    </div>
     <div class="mobileMenu hidden  lg:hidden">
         <ul class=" text-sm text-center text-white font-bold gap-8 bg-gradient-to-b from-primary to-tertiary">
-                    <li
-                     class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('home') }}">Home</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.profilsekolah') }}">Profil Sekolah</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.news') }}">Berita Sekolah</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.fasilitas') }}">Fasilitas</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.prestasi') }}">Prestasi</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.faq') }}">FAQ</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.agenda') }}">Agenda Kegiatan</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.saranpengaduan') }}">Saran & Pengaduan</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="/ppdb">PPDB</a>
-                    </li>
-                    <li
-                        class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                        <a href="{{ route('guest.publikasi') }}">Publikasi</a>
-                    </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('home') }}">Home</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.profilsekolah') }}">Profil Sekolah</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.news') }}">Berita Sekolah</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.fasilitas') }}">Fasilitas</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.prestasi') }}">Prestasi</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.faq') }}">FAQ</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.agenda') }}">Agenda Kegiatan</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.saranpengaduan') }}">Saran & Pengaduan</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="https://ppdb.tkislamperkasa.com">PPDB</a>
+            </li>
+            <li
+                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
+                <a href="{{ route('guest.publikasi') }}">Publikasi</a>
+            </li>
         </ul>
 
     </div>
