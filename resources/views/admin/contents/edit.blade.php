@@ -21,6 +21,7 @@
                         <div id="editContentImages" class="flex flex-wrap gap-2 mb-4">
                         </div>
                         <input type="file" name="contentFile[]" id="editContentFile" class="border p-2 w-full rounded" multiple>
+                        <ul id="editFileList" class="mt-2 text-sm text-gray-600"></ul>
                     </div>
                     <div class="col-span-1">
                         <label class="block mb-2 text-sm font-medium text-gray-900">Judul Konten</label>
@@ -142,6 +143,62 @@
     function closeModal() {
         const modal = document.getElementById('editModal');
         modal.classList.add('hidden');
+    }
+
+    const editFileInput = document.getElementById('editContentFile');
+    const editFileList = document.getElementById('editFileList');
+    let editDataTransfer = new DataTransfer();
+
+    editFileInput.addEventListener('change', (event) => {
+        const newFiles = Array.from(event.target.files);
+
+        // Add new files to DataTransfer
+        newFiles.forEach(file => {
+            editDataTransfer.items.add(file);
+        });
+
+        // Update the file input with the new DataTransfer files
+        editFileInput.files = editDataTransfer.files;
+
+        // Update the file list UI
+        updateEditFileListUI();
+    });
+
+    function updateEditFileListUI() {
+        editFileList.innerHTML = '';
+
+        Array.from(editDataTransfer.files).forEach((file, index) => {
+            const li = document.createElement('li');
+            li.classList.add('flex', 'items-center', 'justify-between', 'mb-1');
+
+            const fileName = document.createElement('span');
+            fileName.textContent = file.name;
+
+            const removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.textContent = 'Hapus';
+            removeButton.classList.add('bg-red-500', 'text-white', 'px-2', 'py-1', 'rounded', 'text-xs');
+            removeButton.addEventListener('click', () => removeEditFile(index));
+
+            li.appendChild(fileName);
+            li.appendChild(removeButton);
+            editFileList.appendChild(li);
+        });
+    }
+
+    function removeEditFile(index) {
+        const newDataTransfer = new DataTransfer();
+
+        Array.from(editDataTransfer.files).forEach((file, idx) => {
+            if (idx !== index) {
+                newDataTransfer.items.add(file);
+            }
+        });
+
+        editDataTransfer = newDataTransfer;
+        editFileInput.files = editDataTransfer.files;
+
+        updateEditFileListUI();
     }
 </script>
 </body>
