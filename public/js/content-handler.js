@@ -1,4 +1,3 @@
-
 function populateImages(container, images) {
     images.forEach(image => {
         const imageWrapper = document.createElement("div");
@@ -8,13 +7,13 @@ function populateImages(container, images) {
         const img = document.createElement("img");
         img.src = `/storage/${image.image_url}`;
         img.alt = "Content Image";
-        img.className = "w-36 h-36 object-cover rounded hover:scale-105";
+        img.className = "w-36 h-36 object-cover rounded";
 
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
         deleteButton.onclick = () => deleteImage(image.id);
         deleteButton.className =
-            "absolute top-0 right-0 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100";
+            "absolute top-0 right-0 bg-gray-600 hover:bg-gray-500 text-white rounded-full w-6 h-6 flex items-center justify-center";
         deleteButton.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -28,7 +27,7 @@ function populateImages(container, images) {
 }
 
 function deleteImage(imageId) {
-    if (!confirm("Are you sure you want to delete this image?")) return;
+    if (!confirm("Apakah Anda yakin ingin menghapus gambar ini?")) return;
 
     fetch(`/admin/contents/images/${imageId}`, {
         method: "DELETE",

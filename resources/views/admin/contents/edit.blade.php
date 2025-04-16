@@ -1,6 +1,7 @@
 <div id="editModal" tabindex="-1" aria-hidden="true"
-    class="hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-sm bg-gray-900 bg-opacity-50 overflow-y-auto">
-    <div class="relative p-4 w-full max-w-2xl">
+    class="hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-sm bg-gray-900 bg-opacity-50 overflow-y-auto"
+    onclick="closeModalOnOutsideClick(event)">
+    <div class="relative p-4 w-full max-w-2xl" onclick="event.stopPropagation()">
         <div class="relative bg-white rounded-lg shadow-sm">
             <div class="flex items-center justify-between p-4 md:p-5 border-b border-gray-200 rounded-t">
                 <h3 class="text-lg font-semibold text-gray-900">Edit Konten</h3>
@@ -48,6 +49,29 @@
         </div>
     </div>
 </div>
+<style>
+    #editContentImages img {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+    }
+
+    #editContentImages .relative {
+        position: relative;
+    }
+
+    #editContentImages .relative .absolute {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+    }
+
+    #editContentImages .relative:hover .absolute {
+        display: flex;
+    }
+</style>
+
 <script src="{{ asset('js/content-handler.js') }}"></script>
 <script>
     function populateEditModal(content) {
@@ -91,12 +115,33 @@
         }
     }
 
+    function populateImages(container, images) {
+        images.forEach(image => {
+            const imgElement = document.createElement('img');
+            imgElement.src = image.url;
+            imgElement.alt = image.alt || 'Content Image';
+            container.appendChild(imgElement);
+        });
+    }
+
     function deleteContent() {
         if (confirm('Are you sure you want to delete this content?')) {
             const form = document.getElementById('editForm');
             form._method.value = 'DELETE';
             form.submit();
         }
+    }
+
+    function closeModalOnOutsideClick(event) {
+        const modal = document.getElementById('editModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('editModal');
+        modal.classList.add('hidden');
     }
 </script>
 </body>

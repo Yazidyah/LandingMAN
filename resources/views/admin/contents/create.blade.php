@@ -42,6 +42,7 @@
                     <div class="col-span-1">
                         <label for="contentFiles" class="block mb-2 text-sm font-medium text-gray-900">Upload Gambar</label>
                         <input type="file" name="contentFile[]" id="contentFiles" multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        <ul id="fileList" class="mt-2 text-sm text-gray-600"></ul>
                     </div>
                 </div>
                 <div class="flex justify-end">
@@ -52,3 +53,62 @@
         </div>
     </div>
 </div>
+
+<script>
+    const fileInput = document.getElementById('contentFiles');
+    const fileList = document.getElementById('fileList');
+    let dataTransfer = new DataTransfer();
+
+    fileInput.addEventListener('change', (event) => {
+        const newFiles = Array.from(event.target.files);
+
+        // Add new files to DataTransfer
+        newFiles.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+
+        // Update the file input with the new DataTransfer files
+        fileInput.files = dataTransfer.files;
+
+        // Update the file list UI
+        updateFileListUI();
+    });
+
+    function updateFileListUI() {
+        fileList.innerHTML = '';
+
+        Array.from(dataTransfer.files).forEach((file, index) => {
+            const li = document.createElement('li');
+            li.classList.add('flex', 'items-center', 'justify-between', 'mb-1');
+
+            const fileName = document.createElement('span');
+            fileName.textContent = file.name;
+
+            const removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.textContent = 'Hapus';
+            removeButton.classList.add('bg-red-500', 'text-white', 'px-2', 'py-1', 'rounded', 'text-xs');
+            removeButton.addEventListener('click', () => removeFile(index));
+
+            li.appendChild(fileName);
+            li.appendChild(removeButton);
+            fileList.appendChild(li);
+        });
+    }
+
+    function removeFile(index) {
+        const newDataTransfer = new DataTransfer();
+
+        Array.from(dataTransfer.files).forEach((file, idx) => {
+            if (idx !== index) {
+                newDataTransfer.items.add(file);
+            }
+        });
+
+        dataTransfer = newDataTransfer;
+        fileInput.files = dataTransfer.files;
+
+        updateFileListUI();
+    }
+</script>
+

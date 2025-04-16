@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log; // Add this at the top of the file
 
 class KontenController extends Controller
 {
@@ -75,32 +76,65 @@ class KontenController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'body' => 'required|string',
-            'category_id' => 'required|integer|exists:categories,id',
-            'contentFile.*' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:2048',
-        ]);
+        try {
+            Log::info('Store method called with request data:', $request->all());
 
-        $content = Content::create([
-            'user_id' => auth()->id(),
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'body' => $request->body,
-            'slug' => \Str::slug($request->title),
-        ]);
-
-        if ($request->hasFile('contentFile')) {
-            foreach ($request->file('contentFile') as $file) {
-                $filePath = $file->store('assets/content', 'public');
-                ContentImage::create([
-                    'content_id' => $content->id,
-                    'image_url' => $filePath,
-                ]);
+            if (!$request->hasFile('contentFile')) {
+                Log::error('No files were uploaded.');
+            } else {
+                Log::info('Files received:', array_map(function ($file) {
+                    return $file->getClientOriginalName();
+                }, $request->file('contentFile')));
             }
-        }
 
-        return redirect()->route('admin.contents.index')->with('success', 'Content created successfully.');
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'body' => 'required|string',
+                'category_id' => 'required|integer|exists:categories,id',
+                'contentFile.*' => 'nullable|file|mimes:jpg,jpeg,png', 
+            ]);
+
+            // Validate total size of all files (10MB = 10240KB) 
+            if ($request->hasFile('contentFile')) {
+                $totalSize = array_sum(array_map(function ($file) {
+                    return $file->getSize();
+                }, $request->file('contentFile')));
+
+                if ($totalSize > 10240 * 1024) { // 10MB in bytes
+                    Log::error('Total file size exceeds 10MB.');
+                    return back()->withErrors(['contentFile' => 'The total size of all files must not exceed 10MB.']);
+                }
+            }
+
+            $content = Content::create([
+                'user_id' => auth()->id(),
+                'category_id' => $request->category_id,
+                'title' => $request->title,
+                'body' => $request->body,
+                'slug' => \Str::slug($request->title),
+            ]);
+
+            Log::info('Content created successfully with ID: ' . $content->id);
+
+            if ($request->hasFile('contentFile')) {
+                foreach ($request->file('contentFile') as $file) {
+                    $filePath = $file->store('assets/content', 'public'); // Save file to storage
+                    Log::info('File stored at path: ' . $filePath);
+
+                    ContentImage::create([
+                        'content_id' => $content->id, // Link image to content
+                        'image_url' => $filePath,
+                    ]);
+
+                    Log::info('ContentImage created for content ID: ' . $content->id);
+                }
+            }
+
+            return redirect()->route('admin.contents.index')->with('success', 'Content created successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error in store method: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'An error occurred while creating the content. Please try again.']);
+        }
     }
 
     public function edit(Content $content)
@@ -116,7 +150,7 @@ class KontenController extends Controller
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'category_id' => 'required|integer|exists:categories,id',
-            'contentFile.*' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:2048',
+            'contentFile.*' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:10240',
         ]);
 
         $content->update([
@@ -128,7 +162,7 @@ class KontenController extends Controller
 
         if ($request->hasFile('contentFile')) {
             foreach ($request->file('contentFile') as $file) {
-                $filePath = $file->store('assets/content', 'public');
+                $filePath = $file->store('assets/content', 'public'); // Stores in storage/app/public/assets/content
                 ContentImage::create([
                     'content_id' => $content->id,
                     'image_url' => $filePath,
