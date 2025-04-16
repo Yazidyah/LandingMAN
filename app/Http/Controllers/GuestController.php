@@ -35,12 +35,9 @@ class GuestController extends Controller
 
     public function faq()
     {
-        {
-            $news = Faq::all();
-            return view('guest.faq', compact('news'));
-    };
-        }
-        
+        $news = Faq::all();
+        return view('guest.faq', compact('news'));
+    }
 
     public function fasilitas()
     {

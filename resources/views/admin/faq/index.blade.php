@@ -13,10 +13,9 @@
                     class="table-auto overflow-x-auto mx-auto items-center relative shadow-md sm:rounded-lg my-6 w-full max-w-full rtl:justify-left text-sm text-left text-gray-500">
                     <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
                         <tr class="text-sm text-tertiary uppercase bg-gray-50">
-                            <th scope="col" class="px-6 py-3">ID</th>
-                            <th scope="col" class="px-6 py-3">Question</th>
-                            <th scope="col" class="px-6 py-3">Answer</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
+                            <th scope="col" class="px-6 py-3">No</th>
+                            <th scope="col" class="px-6 py-3">Jawaban</th>
+                            <th scope="col" class="px-6 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
