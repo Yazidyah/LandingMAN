@@ -13,13 +13,12 @@ class BannerController extends Controller
 {
     public function index()
     {
-        $contents = Content::where('category_id', 1)->with('images')->get()->map(function ($content) {
+        $contents = Content::where('category_id', 1)->with('images')->orderBy('created_at', 'desc')->get()->map(function ($content) {
             if ($content->images->isNotEmpty()) {
                 $content->image_url = asset('storage/' . $content->images->first()->image_url);
-                $content->basename = basename($content->images->first()->image_url, '.' . pathinfo($content->images->first()->image_url, PATHINFO_EXTENSION));
             }
             return $content;
-        })->sortBy('basename');
+        });
 
         $news = Content::where('category_id', 5)->with('images')->get()->map(function ($item) {
             $item->image_url = $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('storage/assets/content/default-image.jpg');
@@ -27,6 +26,5 @@ class BannerController extends Controller
         });
 
         return view('home', compact('contents','news'));
-
     }
 }

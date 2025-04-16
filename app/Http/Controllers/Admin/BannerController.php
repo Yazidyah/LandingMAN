@@ -12,18 +12,27 @@ use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
+    public function __construct()
+    {
+        ini_set('upload_max_filesize', '5M');
+        ini_set('post_max_size', '5M');
+    }
+
     public function index()
     {
-        $contents = Content::where('category_id', 1)->with('images')->get()->map(function ($content) {
-            if ($content->images->isNotEmpty()) {
-                $content->image_url = asset('storage/' . $content->images->first()->image_url);
-                $content->basename = basename($content->images->first()->image_url, '.' . pathinfo($content->images->first()->image_url, PATHINFO_EXTENSION));
+        $contents = Content::where('category_id', 1)
+            ->with('images')
+            ->orderBy('created_at', 'desc') // Sort by created_at in descending order
+            ->get();
+
+        // Format the created_at date for each image
+        foreach ($contents as $content) {
+            foreach ($content->images as $image) {
+                $image->formatted_date = \Carbon\Carbon::parse($image->created_at)->format('d-m-Y');
             }
-            return $content;
-        })->sortBy('basename');
+        }
 
         return view('admin.banner.index', compact('contents'));
-
     }
 
     public function store(Request $request)
@@ -31,12 +40,13 @@ class BannerController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'contentFile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'contentFile.max' => 'Tidak dapat mengunggah, Ukuran Gambar lebih besar dari 2MB',
         ]);
 
         $title = strtolower($request->title);
         $slug = Str::slug($title, '-');
 
-        // Check if a banner with the same title already exists
         if (Content::where('category_id', 1)->where('slug', $slug)->exists()) {
             return redirect()->route('admin.banner.index')->with('error', 'Banner with the same title already exists.');
         }
@@ -49,19 +59,9 @@ class BannerController extends Controller
         ]);
 
         if ($request->hasFile('contentFile')) {
-            $existingBanners = ContentImage::whereHas('content', function ($query) {
-                $query->where('category_id', 1);
-            })->pluck('image_url')->map(function ($url) {
-                return pathinfo($url, PATHINFO_FILENAME); // Extract only the base filename
-            })->toArray();
-
-            $bannerNumber = 1;
-            while (in_array('banner_' . $bannerNumber, $existingBanners)) {
-                $bannerNumber++;
-            }
-
-            $fileName = 'banner_' . $bannerNumber . '.' . $request->file('contentFile')->getClientOriginalExtension();
-            $filePath = $request->file('contentFile')->storeAs('assets/content', $fileName, 'public');
+            $originalName = $request->file('contentFile')->getClientOriginalName();
+            $hashedName = md5($originalName . time()) . '.' . $request->file('contentFile')->getClientOriginalExtension();
+            $filePath = $request->file('contentFile')->storeAs('assets/content', $hashedName, 'public');
             ContentImage::create([
                 'content_id' => $content->id,
                 'image_url' => $filePath,
