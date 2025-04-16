@@ -51,21 +51,38 @@
     </div>
 </div>
 <style>
+    #editContentImages {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
     #editContentImages img {
-        max-width: 200px;
-        max-height: 200px;
+        max-width: 300px;
+        height: 100%;
         object-fit: cover;
+        border-radius: 0.5rem;
     }
 
     #editContentImages .relative {
         position: relative;
+        max-width: 300px;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 0.5rem;
     }
 
-    #editContentImages .relative .absolute {
+    #editContentImages .relative button {
         position: absolute;
-        top: 0;
-        right: 0;
-        display: flex; /* Always visible */
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 0, 0, 0.7);
+        color: white;
+        padding: 0.25rem 0;
+        font-size: 0.75rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        text-align: center;
     }
 </style>
 

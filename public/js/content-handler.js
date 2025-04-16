@@ -1,24 +1,21 @@
 function populateImages(container, images) {
     images.forEach(image => {
         const imageWrapper = document.createElement("div");
-        imageWrapper.classList.add("relative", "group");
+        imageWrapper.classList.add("relative", "group", "w-36", "h-36", "overflow-hidden", "rounded");
+
         imageWrapper.id = `image-${image.id}`;
 
         const img = document.createElement("img");
         img.src = `/storage/${image.image_url}`;
         img.alt = "Content Image";
-        img.className = "w-36 h-36 object-cover rounded";
+        img.className = "w-full h-full object-cover";
 
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
         deleteButton.onclick = () => deleteImage(image.id);
         deleteButton.className =
-            "absolute top-0 right-0 bg-black-400 text-white rounded-full w-6 h-6 flex items-center justify-center";
-        deleteButton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-        `;
+            "absolute bottom-0 left-0 w-full bg-red bg-opacity-70 text-white text-center py-1 text-xs rounded-b";
+        deleteButton.textContent = "Hapus foto ini";
 
         imageWrapper.appendChild(img);
         imageWrapper.appendChild(deleteButton);
