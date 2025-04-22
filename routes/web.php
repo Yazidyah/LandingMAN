@@ -52,11 +52,11 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
-    Route::resource('survey', SurveyController::class);
-    Route::resource('kuesioner', KuesionerController::class);
+    Route::resource('survey', SurveyController::class)->except(['show', 'create']);
+    Route::resource('kuesioner', KuesionerController::class)->except(['show', 'create']);
     Route::resource('ikm', IkmController::class)->except(['show', 'create']);
     Route::resource('visimisi', VisiMisiController::class);
-    Route::resource('faq', FaqController::class);
+    Route::resource('faq', FaqController::class)->except(['show', 'create']);
     Route::resource('banner', BannerController::class);
     Route::resource('unsur', UnsurController::class);
     Route::resource('prestasi', PrestasiController::class);
