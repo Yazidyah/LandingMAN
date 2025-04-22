@@ -72,7 +72,7 @@
                     <option value="lainnya" {{ request('job_filter') == 'lainnya' ? 'selected' : '' }}>Lainnya</option>
                 </select>
 
-                <label for="job_filter" class="absolute left-3 top-0 text-gray-600 text-xs transform -translate-y-1/2 bg-white px-1 rounded-lg ">Filter Pekerjaan</label>
+                <label for="job_filter" class="absolute left-3 top-0 text-gray-600 text-xs transform -translate-y-1/2 bg-white px-1 rounded-lg">Filter Pekerjaan</label>
             </div>
             <div class="relative inline-block w-64 mb-4">
                 <select name="per_page" id="per_page" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-tertiary px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">

@@ -3,7 +3,21 @@
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div class="container mx-auto text-center pt-7">
                 <h1 class="font-bold text-[32px] pt-7 pb-7 ">Konfigurasi Kuesioner</h1>
-                <div class="flex justify-end">
+                <div class="flex justify-between items-center">
+                    <form method="GET" action="{{ route('admin.kuesioner.index') }}" class="flex items-center">
+                        <label for="surveyFilter" class="mr-2">Filter by Survey:</label>
+                        <select name="survey_id" id="surveyFilter" class="border rounded px-2 py-1">
+                            <option value="">All</option>
+                            @foreach ($surveys as $survey)
+                                <option value="{{ $survey->id }}" {{ request('survey_id') == $survey->id ? 'selected' : '' }}>
+                                    {{ $survey->survey_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="ml-2 bg-tertiary text-white px-4 py-2 rounded hover:bg-secondary">
+                            Filter
+                        </button>
+                    </form>
                     <button onclick="openCreateModal()"
                         class="bg-tertiary text-white px-4 py-2 hover:bg-secondary hover:text-tertiary rounded">
                         Buat Pertanyaan
@@ -68,15 +82,15 @@
     function openEditModal(kuesioner) {
         const editModal = document.getElementById('editModal');
         const editForm = document.getElementById('editForm');
-        const questionText = document.getElementById('questionText');
-        const questionOrder = document.getElementById('questionOrder');
-        const elementId = document.getElementById('elementId'); 
-        const surveyId = document.getElementById('surveyId'); // Add this line
+        const questionText = document.getElementById('editQuestionText');
+        const questionOrder = document.getElementById('editQuestionOrder');
+        const elementId = document.getElementById('EditElementId'); 
+        const surveyId = document.getElementById('EditSurveyId'); 
 
         questionText.value = kuesioner.question_text;
         questionOrder.value = kuesioner.question_order;
-        elementId.value = kuesioner.unsur_id; // Updated variable name
-        surveyId.value = kuesioner.survey_id; // Add this line
+        elementId.value = kuesioner.unsur_id;
+        surveyId.value = kuesioner.survey_id; 
         editForm.action = `/admin/kuesioner/${kuesioner.id}`;
 
         editModal.classList.remove('hidden');

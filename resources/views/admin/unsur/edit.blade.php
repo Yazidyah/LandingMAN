@@ -21,7 +21,8 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form id="editForm" class="p-4 md:p-5" method="POST" action="" enctype="multipart/form-data">
+            <form id="editForm" class="p-4 md:p-5" method="POST" 
+            action="" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-1">

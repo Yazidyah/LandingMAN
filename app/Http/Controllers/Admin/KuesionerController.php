@@ -11,16 +11,22 @@ use Illuminate\Support\Facades\Log;
 
 class KuesionerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kuesioners = Question::select('questions.*', 'surveys.survey_name', 'unsur.unsur_name')
+        $query = Question::select('questions.*', 'surveys.survey_name', 'unsur.unsur_name')
             ->leftJoin('surveys', 'surveys.id', '=', 'questions.survey_id')
             ->leftJoin('unsur', 'unsur.id', '=', 'questions.unsur_id')
             ->orderBy('questions.survey_id', 'asc')
-            ->orderBy('questions.question_order', 'asc')
-            ->get();
+            ->orderBy('questions.question_order', 'asc');
+
+        if ($request->has('survey_id') && $request->survey_id) {
+            $query->where('questions.survey_id', $request->survey_id);
+        }
+
+        $kuesioners = $query->get();
         $unsurs = Unsur::all();
         $surveys = Survey::all();
+
         return view('admin.kuesioner.index', compact('kuesioners', 'unsurs', 'surveys'));
     }
 
