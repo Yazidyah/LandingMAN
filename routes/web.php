@@ -31,6 +31,10 @@ Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi
 Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');
 Route::get('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'index'])->name('ppdb.survey');
 Route::post('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'store'])->name('ppdb.survey.store');
+Route::post('/query', [\App\Http\Controllers\Chatbot::class, 'query'])->name('chatbot.query');
+Route::get('/chatbot', function () {
+    return view('chatbot');
+})->name('chatbot');
 
 // Admin Routes (Protected by Authentication & Verification)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
@@ -49,11 +53,11 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Kategori CRUD Routes
     Route::resource('categories', KategoriController::class)->except(['show', 'create']);
     Route::resource('contents', KontenController::class)->except(['show', 'create']);
-    Route::resource('survey', SurveyController::class);
-    Route::resource('kuesioner', KuesionerController::class);
+    Route::resource('survey', SurveyController::class)->except(['show', 'create']);
+    Route::resource('kuesioner', KuesionerController::class)->except(['show', 'create']);
     Route::resource('ikm', IkmController::class)->except(['show', 'create']);
     Route::resource('visimisi', VisiMisiController::class);
-    Route::resource('faq', FaqController::class);
+    Route::resource('faq', FaqController::class)->except(['show', 'create']);
     Route::resource('banner', BannerController::class);
     Route::resource('unsur', UnsurController::class);
     Route::delete('/admin/banner/{id}', [App\Http\Controllers\Admin\BannerController::class, 'destroy'])->name('admin.banner.destroy');
