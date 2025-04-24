@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\VisiMisiController;
 use App\Http\Controllers\ControllerBanner;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\KontenController;
 use App\Http\Controllers\Admin\FaqController;
