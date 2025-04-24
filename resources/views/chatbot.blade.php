@@ -159,7 +159,11 @@
         <div class="chat-box-body" id="chat-messages"></div>
         <div class="chat-box-footer">
             <input type="text" id="query" placeholder="Enter Your Message" required>
-            <i class="send far fa-paper-plane" id="send-button"></i>
+            <button id="send-button" style="background: none; border: none; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" style="width: 1.5rem; height: 1.5rem;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                </svg>
+            </button>
         </div>
     </div>
     <div class="chat-button"><span><b>Coba Chat dengan Chatbot</b></span></div>
