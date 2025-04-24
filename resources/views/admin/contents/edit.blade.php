@@ -18,7 +18,7 @@
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
                         <label class="block mb-2 text-sm font-medium text-gray-900">Gambar Konten</label>
-                        <div id="editContentImages" class="flex flex-wrap gap-2 mb-4">
+                        <div id="editContentImages" class="flex flex-wrap gap-2 mb-4 items-end justify-center">
                         </div>
                         <input type="file" name="contentFile[]" id="editContentFile" class="border p-2 w-full rounded" multiple>
                         <ul id="editFileList" class="mt-2 text-sm text-gray-600"></ul>
@@ -58,7 +58,7 @@
     }
 
     #editContentImages img {
-        max-width: 300px;
+        max-width: 130px;
         height: 100%;
         object-fit: cover;
         border-radius: 0.5rem;

@@ -30,7 +30,7 @@
                                 <td class="py-2">{{ $survey->start_date }}</td>
                                 <td class="py-2">{{ $survey->end_date }}</td>
                                 <td class="py-2">
-                                    <button onclick="openEditModal({{ $survey->id}})"
+                                    <button onclick="openEditModal({{ $survey}})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
                                     <form action="{{ route('admin.survey.destroy', $survey->id) }}" method="POST"
                                         class="inline">
@@ -67,10 +67,10 @@
     function openEditModal(survey) {
         const editModal = document.getElementById('editModal');
         const editForm = document.getElementById('editForm');
-        const surveyName = document.getElementById('surveyName');
-        const description = document.getElementById('description');
-        const startDate = document.getElementById('startDate');
-        const endDate = document.getElementById('endDate');
+        const surveyName = document.getElementById('editSurveyName');
+        const description = document.getElementById('editDescription');
+        const startDate = document.getElementById('editStartDate');
+        const endDate = document.getElementById('editEndDate');
 
         surveyName.value = survey.survey_name;
         description.value = survey.description;

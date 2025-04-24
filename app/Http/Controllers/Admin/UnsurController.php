@@ -10,7 +10,7 @@ class UnsurController extends Controller
 {
     public function index()
     {
-        $unsurs = Unsur::all();
+        $unsurs = Unsur::orderBy('id', 'asc')->get();
         return view('admin.unsur.index', compact('unsurs'));
     }
 

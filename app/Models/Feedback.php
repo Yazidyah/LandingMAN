@@ -17,4 +17,14 @@ class Feedback extends Model
         'kritik',
         'saran',
     ];
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class);
+    }
+
+    public function respondent()
+    {
+        return $this->belongsTo(Respondent::class);
+    }
 }

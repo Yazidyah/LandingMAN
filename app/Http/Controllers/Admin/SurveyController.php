@@ -10,13 +10,8 @@ class SurveyController extends Controller
 {
     public function index()
     {
-        $surveys = Survey::all();
+        $surveys = Survey::orderBy('id', 'asc')->get();
         return view('admin.survey.index', compact('surveys'));
-    }
-
-    public function create()
-    {
-        return view('admin.survey.create');
     }
 
     public function store(Request $request)

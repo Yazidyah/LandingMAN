@@ -21,34 +21,33 @@
                 </button>
             </div>
             <!-- Modal body -->
-            @if(isset($survey))
             <form id="editForm" class="p-4 md:p-5" method="POST"
-                action="{{ route('admin.survey.update', $survey->id) }}" enctype="multipart/form-data">
+                action="" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
-                        <label for="surveyName" class="block mb-2 text-sm font-medium text-gray-900">Survey Name</label>
-                        <input type="text" name="survey_name" id="surveyName" value="{{ $survey->survey_name }}"
+                        <label for="editSurveyName" class="block mb-2 text-sm font-medium text-gray-900">Survey Name</label>
+                        <input type="text" name="survey_name" id="editSurveyName" value="{{ $survey->survey_name }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>
                     </div>
                     <div class="col-span-1">
-                        <label for="description"
+                        <label for="editDescription"
                             class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-                        <textarea name="description" id="description"
+                        <textarea name="description" id="editDescription"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>{{ $survey->description }}</textarea>
                     </div>
                     <div class="col-span-1">
-                        <label for="startDate" class="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
-                        <input type="date" name="start_date" id="startDate" value="{{ $survey->start_date }}"
+                        <label for="editStartDate" class="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
+                        <input type="date" name="start_date" id="editStartDate" value="{{ $survey->start_date }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>
                     </div>
                     <div class="col-span-1">
-                        <label for="endDate" class="block mb-2 text-sm font-medium text-gray-900">End Date</label>
-                        <input type="date" name="end_date" id="endDate" value="{{ $survey->end_date }}"
+                        <label for="editEndDate" class="block mb-2 text-sm font-medium text-gray-900">End Date</label>
+                        <input type="date" name="end_date" id="editEndDate" value="{{ $survey->end_date }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                             required>
                     </div>
@@ -60,7 +59,6 @@
                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Update</button>
                 </div>
             </form>
-            @endif
         </div>
     </div>
 </div>
