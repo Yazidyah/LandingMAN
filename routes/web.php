@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\VisiMisiController;
 use App\Http\Controllers\ControllerBanner;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\KontenController;
 use App\Http\Controllers\Admin\FaqController;
@@ -31,7 +32,7 @@ Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi
 Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');
 Route::get('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'index'])->name('ppdb.survey');
 Route::post('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'store'])->name('ppdb.survey.store');
-Route::post('/query', [\App\Http\Controllers\Chatbot::class, 'query'])->name('chatbot.query');
+Route::post('/query', [ChatbotController::class, 'query'])->name('chatbot.query');
 Route::get('/chatbot', function () {
     return view('chatbot');
 })->name('chatbot');

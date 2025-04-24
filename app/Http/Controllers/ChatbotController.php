@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class Chatbot extends Controller
+class ChatbotController extends Controller
 {
     //
     public function query(Request $request)
