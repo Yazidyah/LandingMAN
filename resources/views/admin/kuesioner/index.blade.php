@@ -14,7 +14,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <button type="submit" class="ml-2 bg-tertiary text-white px-4 py-2 rounded hover:bg-secondary">
+                        <button type="submit" class="ml-2 bg-tertiary text-white px-4 py-2 rounded hover:bg-secondary hover:text-tertiary">
                             Filter
                         </button>
                     </form>

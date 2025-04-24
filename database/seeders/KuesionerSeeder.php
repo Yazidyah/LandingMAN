@@ -14,49 +14,49 @@ class KuesionerSeeder extends Seeder
         // Mapping pertanyaan per unsur.
         $questionsMapping = [
             'Persyaratan' => [
-                'Seberapa jelas dan mudah dipahami persyaratan yang diberikan?',
-                'Apakah Anda mengalami kesulitan dalam memenuhi persyaratan yang ditetapkan?',
-                'Bagaimana tingkat kepuasan Anda terhadap informasi yang disediakan tentang persyaratan?',
+            'Seberapa sulit atau mudah Anda memahami persyaratan yang diberikan?',
+            'Seberapa besar kesulitan yang Anda alami dalam memenuhi persyaratan yang ditetapkan?',
+            'Seberapa rendah atau tinggi tingkat kepuasan Anda terhadap informasi yang disediakan tentang persyaratan?',
             ],
             'Sistem, Mekanisme, dan Prosedur' => [
-                'Sejauh mana prosedur pelayanan terlihat efisien dan efektif bagi Anda?',
-                'Apakah ada aspek prosedur yang menurut Anda perlu ditingkatkan atau disederhanakan?',
-                'Bagaimana pengalaman Anda dalam mengikuti prosedur pelayanan?',
+            'Seberapa tidak efisien atau efisien prosedur pelayanan menurut Anda?',
+            'Seberapa mendesak menurut Anda aspek prosedur perlu ditingkatkan atau disederhanakan?',
+            'Bagaimana pengalaman Anda dalam mengikuti prosedur pelayanan? (Sulit/Mudah)',
             ],
             'Waktu Pelayanan' => [
-                'Seberapa cepat pelayanan diberikan sesuai dengan waktu yang dijanjikan?',
-                'Apakah ada peningkatan yang dapat dilakukan dalam mengurangi waktu tunggu?',
-                'Bagaimana tingkat kepuasan Anda terhadap kecepatan pelayanan yang diberikan?',
+            'Seberapa lambat atau cepat pelayanan diberikan dibandingkan waktu yang dijanjikan?',
+            'Seberapa besar potensi peningkatan yang dapat dilakukan dalam mengurangi waktu tunggu menurut Anda?',
+            'Seberapa rendah atau tinggi tingkat kepuasan Anda terhadap kecepatan pelayanan yang diberikan?',
             ],
             'Biaya Tarif' => [
-                'Apakah biaya yang dikenakan sesuai dengan kualitas pelayanan yang Anda terima?',
-                'Apakah ada klarifikasi yang diperlukan terkait dengan biaya tarif?',
-                'Bagaimana tingkat kepuasan Anda terhadap nilai uang dari biaya yang dikeluarkan?',
+            'Seberapa tidak sesuai atau sesuai biaya yang dikenakan dengan kualitas pelayanan yang Anda terima?',
+            'Seberapa besar kebutuhan klarifikasi terkait dengan biaya tarif menurut Anda?',
+            'Seberapa buruk atau baik nilai uang dari biaya yang Anda keluarkan menurut Anda?',
             ],
             'Produk Layanan' => [
-                'Apakah produk layanan yang diberikan memenuhi harapan Anda?',
-                'Apakah ada aspek khusus dari produk layanan yang menurut Anda perlu diperbaiki?',
-                'Bagaimana tingkat kepuasan Anda terhadap variasi produk layanan yang ditawarkan?',
+            'Seberapa jauh produk layanan yang diberikan tidak memenuhi atau memenuhi harapan Anda?',
+            'Seberapa signifikan aspek khusus dari produk layanan perlu diperbaiki menurut Anda?',
+            'Seberapa terbatas atau beragam variasi produk layanan yang ditawarkan menurut Anda?',
             ],
             'Kompetensi Pelaksana' => [
-                'Seberapa kompeten dan berpengetahuan para pelaksana dalam memberikan pelayanan?',
-                'Apakah Anda merasa puas dengan tingkat keahlian para pelaksana?',
-                'Apakah ada area di mana pelaksana dapat meningkatkan kompetensinya?',
+            'Seberapa kurang kompeten atau kompeten para pelaksana dalam memberikan pelayanan menurut Anda?',
+            'Seberapa tidak puas atau puas Anda dengan tingkat keahlian para pelaksana?',
+            'Seberapa besar area di mana pelaksana dapat meningkatkan kompetensinya menurut Anda?',
             ],
             'Perilaku Pelaksana' => [
-                'Sejauh mana pelaksana memberikan pelayanan dengan sikap ramah dan profesional?',
-                'Apakah Anda pernah mengalami perilaku pelaksana yang tidak diinginkan?',
-                'Bagaimana tingkat kepuasan Anda terhadap interaksi dengan pelaksana?',
+            'Seberapa tidak ramah atau ramah dan tidak profesional atau profesional sikap pelaksana dalam memberikan pelayanan?',
+            'Seberapa sering Anda mengalami perilaku pelaksana yang tidak diinginkan?',
+            'Seberapa negatif atau positif tingkat kepuasan Anda terhadap interaksi dengan pelaksana?',
             ],
             'Sarana dan Prasarana' => [
-                'Bagaimana kualitas sarana dan prasarana yang disediakan untuk pelayanan?',
-                'Apakah ada fasilitas atau peralatan yang perlu diperbaiki atau ditingkatkan?',
-                'Bagaimana tingkat kepuasan Anda terhadap kondisi sarana dan prasarana?',
+            'Seberapa buruk atau baik kualitas sarana dan prasarana yang disediakan untuk pelayanan?',
+            'Seberapa mendesak perbaikan atau peningkatan fasilitas atau peralatan yang perlu dilakukan menurut Anda?',
+            'Seberapa tidak puas atau puas Anda terhadap kondisi sarana dan prasarana?',
             ],
             'Penanganan Pengaduan' => [
-                'Apakah Anda puas dengan cara pengaduan Anda ditangani?',
-                'Apakah ada saran yang dapat diberikan untuk meningkatkan proses penanganan pengaduan?',
-                'Bagaimana tingkat kepuasan Anda terhadap respons terhadap pengaduan yang Anda ajukan?',
+            'Seberapa tidak puas atau puas Anda dengan cara pengaduan Anda ditangani?',
+            'Seberapa signifikan saran yang dapat diberikan untuk meningkatkan proses penanganan pengaduan menurut Anda?',
+            'Seberapa lambat atau cepat respons terhadap pengaduan yang Anda ajukan?',
             ],
         ];
 
@@ -72,10 +72,10 @@ class KuesionerSeeder extends Seeder
                 if ($unsur) {
                     foreach ($questionList as $questionText) {
                         Question::create([
-                            'survey_id'     => $survey->id,
-                            'unsur_id'      => $unsur->id,
+                            'survey_id' => $survey->id,
+                            'unsur_id' => $unsur->id,
                             'question_text' => $questionText,
-                            'question_order'=> $order,
+                            'question_order' => $order,
                         ]);
                         $order++;
                     }
