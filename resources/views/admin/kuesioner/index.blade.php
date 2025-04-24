@@ -26,24 +26,22 @@
                 <table
                     class="table-auto overflow-x-auto mx-auto items-center relative shadow-md sm:rounded-lg my-6 w-full max-w-full rtl:justify-left text-sm text-left text-gray-500">
                     <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
-                        <tr class="text-sm text-tertiary uppercase bg-gray-50 text-center">
-                            <th scope="col" class="px-6 py-3">ID</th>
+                        <tr class="text-sm text-tertiary uppercase bg-gray-50">
+                            <th scope="col" class="px-6 py-3">No</th>
                             <th scope="col" class="px-6 py-3">Survey</th>
                             <th scope="col" class="px-6 py-3">Unsur</th>
                             <th scope="col" class="px-6 py-3">Pertanyaan</th>
-                            <th scope="col" class="px-6 py-3">Urutan Pertanyaan</th>
-                            <th scope="col" class="px-6 py-3">Aksi</th>
+                            <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
-                        @foreach ($kuesioners as $kuesioner)
+                    <tbody>
+                        @foreach ($kuesioners as $index => $kuesioner)
                         <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
-                                <td class="py-2 ">{{ $kuesioner->id }}</td>
-                                <td class="py-2 ">{{ $kuesioner->survey_name ?? 'N/A' }}</td>
-                                <td class="py-2 ">{{ $kuesioner->unsur_name ?? 'N/A' }}</td>
-                                <td class="py-2 ">{{ $kuesioner->question_text }}</td>
-                                <td class="py-2 ">{{ $kuesioner->question_order }}</td>
-                                <td class="py-2 ">
+                                <td class="px-6 py-2 w-24">{{ $index + 1 }}</td>
+                                <td class="px-6 py-2 w-64">{{ $kuesioner->survey_name ?? 'N/A' }}</td>
+                                <td class="px-6 py-2 w-64">{{ $kuesioner->unsur_name ?? 'N/A' }}</td>
+                                <td class="px-6 py-2 w-2/5">{{ $kuesioner->question_text }}</td>
+                                <td class="px-6 py-2 text-center">
                                     <button onclick="openEditModal({{ $kuesioner }})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
                                     <form action="{{ route('admin.kuesioner.destroy', $kuesioner->id) }}"

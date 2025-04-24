@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container mx-auto mt-5 px-4 min-h-8">
+    <div class="container w-full mx-auto mt-5 px-4 min-h-[90vh]">
         <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
             <h2 class="font-bold text-3xl md:text-4xl ">Selamat Datang di Website MAN 1 Kota Bogor</h2>
         </div>
@@ -7,7 +7,7 @@
             @foreach ($contents as $content)
                 @foreach ($content->images as $image)
                     <div
-                        class="snap-center w-full aspect-auto items-center content-center origin-center object-center h-auto my-auto mx-2 flex justify-center">
+                        class="snap-center aspect-auto items-center content-center origin-center object-center h-auto my-auto mx-2 flex justify-center w-full">
                         <img src="{{ asset('storage/' . $image->image_url) }}" alt="Deskripsi Gambar"
                             class="rounded-b-lg w-min-full object-cover aspect-video">
                     </div>

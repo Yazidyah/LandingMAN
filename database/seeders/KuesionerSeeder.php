@@ -14,61 +14,56 @@ class KuesionerSeeder extends Seeder
         // Mapping pertanyaan per unsur.
         $questionsMapping = [
             'Persyaratan' => [
-            'Seberapa sulit atau mudah Anda memahami persyaratan yang diberikan?',
-            'Seberapa besar kesulitan yang Anda alami dalam memenuhi persyaratan yang ditetapkan?',
-            'Seberapa rendah atau tinggi tingkat kepuasan Anda terhadap informasi yang disediakan tentang persyaratan?',
+                'Seberapa mudah Anda memahami persyaratan yang diberikan?',
+                'Bagaimana kelancaran proses pemenuhan persyaratan menurut pengalaman Anda?',
+                'Kejelasan informasi mengenai persyaratan, bagaimana penilaian Anda?',
             ],
             'Sistem, Mekanisme, dan Prosedur' => [
-            'Seberapa tidak efisien atau efisien prosedur pelayanan menurut Anda?',
-            'Seberapa mendesak menurut Anda aspek prosedur perlu ditingkatkan atau disederhanakan?',
-            'Bagaimana pengalaman Anda dalam mengikuti prosedur pelayanan? (Sulit/Mudah)',
+                'Menurut pandangan Anda, seberapa efisien mekanisme pelayanan saat ini?',
+                'Perlukah penyederhanaan prosedur pelayanan menurut pendapat Anda?',
+                'Seberapa mudah tahapan prosedur pelayanan untuk Anda ikuti?',
             ],
             'Waktu Pelayanan' => [
-            'Seberapa lambat atau cepat pelayanan diberikan dibandingkan waktu yang dijanjikan?',
-            'Seberapa besar potensi peningkatan yang dapat dilakukan dalam mengurangi waktu tunggu menurut Anda?',
-            'Seberapa rendah atau tinggi tingkat kepuasan Anda terhadap kecepatan pelayanan yang diberikan?',
+                'Apakah waktu pelayanan yang diberikan sesuai dengan yang dijanjikan?',
+                'Bagaimana Anda menilai singkatnya waktu tunggu pelayanan?',
+                'Seberapa memuaskan kecepatan pelayanan yang Anda terima?',
             ],
-            'Biaya Tarif' => [
-            'Seberapa tidak sesuai atau sesuai biaya yang dikenakan dengan kualitas pelayanan yang Anda terima?',
-            'Seberapa besar kebutuhan klarifikasi terkait dengan biaya tarif menurut Anda?',
-            'Seberapa buruk atau baik nilai uang dari biaya yang Anda keluarkan menurut Anda?',
+            'Kualitas Produk Layanan' => [
+                'Apakah produk layanan yang diberikan telah memenuhi harapan Anda?',
+                'Menurut Anda, aspek mana dari produk layanan yang memerlukan perbaikan?',
+                'Bagaimana pendapat Anda mengenai variasi produk layanan yang ditawarkan? Apakah sudah memadai?',
             ],
-            'Produk Layanan' => [
-            'Seberapa jauh produk layanan yang diberikan tidak memenuhi atau memenuhi harapan Anda?',
-            'Seberapa signifikan aspek khusus dari produk layanan perlu diperbaiki menurut Anda?',
-            'Seberapa terbatas atau beragam variasi produk layanan yang ditawarkan menurut Anda?',
+            'Kemudahan Penggunaan Website' => [
+                'Menurut penilaian Anda, seberapa mudah navigasi website ini?',
+                'Seberapa intuitif tata letak (layout) dan desain website menurut Anda?',
+                'Bagaimana kemudahan Anda dalam mengakses informasi yang dibutuhkan melalui website ini?',
             ],
-            'Kompetensi Pelaksana' => [
-            'Seberapa kurang kompeten atau kompeten para pelaksana dalam memberikan pelayanan menurut Anda?',
-            'Seberapa tidak puas atau puas Anda dengan tingkat keahlian para pelaksana?',
-            'Seberapa besar area di mana pelaksana dapat meningkatkan kompetensinya menurut Anda?',
+            'Responsifitas Website' => [
+                'Seberapa cepat waktu muat (loading time) website menurut pengalaman Anda?',
+                'Bagaimana respons website terhadap interaksi Anda (klik, input data, dll.)?',
+                'Apakah website dapat diakses dengan baik melalui perangkat yang Anda gunakan (komputer, tablet, atau telepon genggam)?',
             ],
             'Perilaku Pelaksana' => [
-            'Seberapa tidak ramah atau ramah dan tidak profesional atau profesional sikap pelaksana dalam memberikan pelayanan?',
-            'Seberapa sering Anda mengalami perilaku pelaksana yang tidak diinginkan?',
-            'Seberapa negatif atau positif tingkat kepuasan Anda terhadap interaksi dengan pelaksana?',
+                'Apakah Anda setuju bahwa bahasa yang digunakan di website sudah jelas dan ramah?',
+                'Seberapa membantu fitur-fitur interaktif (jika ada, seperti chatbot atau FAQ) dalam menyelesaikan kebutuhan Anda?',
+                'Apakah Anda menilai interaksi dengan sistem melalui website ini sudah memuaskan?',
             ],
             'Sarana dan Prasarana' => [
-            'Seberapa buruk atau baik kualitas sarana dan prasarana yang disediakan untuk pelayanan?',
-            'Seberapa mendesak perbaikan atau peningkatan fasilitas atau peralatan yang perlu dilakukan menurut Anda?',
-            'Seberapa tidak puas atau puas Anda terhadap kondisi sarana dan prasarana?',
+                'Menurut Anda, bagaimana kualitas visual (gambar, ikon, dll.) yang disajikan dalam website?',
+                'Apakah fitur-fitur pendukung yang ada di website sudah memadai?',
+                'Apakah Anda menilai bahwa keamanan dan privasi di website ini terjamin dengan baik?',
             ],
             'Penanganan Pengaduan' => [
-            'Seberapa tidak puas atau puas Anda dengan cara pengaduan Anda ditangani?',
-            'Seberapa signifikan saran yang dapat diberikan untuk meningkatkan proses penanganan pengaduan menurut Anda?',
-            'Seberapa lambat atau cepat respons terhadap pengaduan yang Anda ajukan?',
+                'Jika Anda pernah mengajukan pengaduan, seberapa puas Anda dengan penanganannya? Jika belum, silakan berikan penilaian Anda terhadap potensi efektivitas mekanisme penanganan pengaduan yang tersedia di website.',
+                'Sepakatkah Anda bahwa fitur pendukung di website ini sudah lengkap tanpa perlu penambahan?',
+                'Apakah anda dapat menilai bahwa pengaduan akan direspons dengan cepat melalui website ini?',
             ],
         ];
-
-        // Dapatkan seluruh survey yang sudah ada (misalnya dari SurveySeeder)
         $surveys = Survey::all();
-
         foreach ($surveys as $survey) {
-            $order = 1; // reset question_order untuk setiap survey baru
+            $order = 1;
             foreach ($questionsMapping as $unsurName => $questionList) {
-                // Cari data unsur berdasarkan nama pada tabel unsurs
                 $unsur = DB::table('unsur')->where('unsur_name', $unsurName)->first();
-
                 if ($unsur) {
                     foreach ($questionList as $questionText) {
                         Question::create([

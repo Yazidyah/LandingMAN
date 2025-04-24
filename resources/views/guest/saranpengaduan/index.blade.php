@@ -107,22 +107,26 @@
                                 <span class="text-lg font-bold text-gray-900 mr-2">{{ $index + 1 }}.</span>
                                 <label class="block text-xl font-medium text-gray-900">{{ $question->question_text }}</label>
                             </div>
-                            <div class="rating flex flex-row-reverse gap-6 mt-2 justify-center relative border-t border-gray-200 pt-4">
-                                @for ($i = 4; $i >= 1; $i--)
-                                    <input type="radio" id="star-{{ $question->id }}-{{ $i }}" name="question_{{ $question->id }}"
-                                        value="{{ $i }}" required>
-                                    <label for="star-{{ $question->id }}-{{ $i }}" class="group relative">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-12 h-12">
-                                            <path pathLength="360"
-                                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
-                                            </path>
-                                        </svg>
-                                    </label>
-                                @endfor
-                            </div>
+{{-- Ubah bagian rating di Step 2 menjadi: --}}
+<div class="rating flex flex-row-reverse gap-2 mt-2 justify-center relative border-t border-gray-200 pt-4 items-center">
+    <span class="absolute left-2 text-sm font-medium text-gray-700">Tidak setuju</span>
+    @for ($i = 4; $i >= 1; $i--)
+        <input 
+            type="radio" 
+            id="rate-{{ $question->id }}-{{ $i }}" 
+            name="question_{{ $question->id }}" 
+            value="{{ $i }}" 
+            required
+        >
+        <label 
+            for="rate-{{ $question->id }}-{{ $i }}" 
+            class="box"
+        >{{ $i }}</label>
+    @endfor
+    <span class="absolute right-2 text-sm font-medium text-gray-700">Sangat setuju</span>
+</div>
                         </div>
                     @endforeach
-
                     <div class="mb-6">
                         <label for="kritik" class="block text-xl font-medium text-gray-900">Kritik</label>
                         <textarea id="kritik" name="kritik"
@@ -145,40 +149,44 @@
     </div>
 
     <style>
-        .rating {
-            --stroke: #666;
-            --fill: #ffc73a;
-        }
+    .rating {
+        /* warna default dan highlight */
+        --stroke: #666;
+        --fill: #006316;  /* ganti dengan warna yang kamu suka */
+    }
+    .rating input {
+        /* sembunyikan radio button */
+        appearance: none;
+        position: absolute;
+        opacity: 0;
+    }
+    .rating .box {
+        /* bentuk kotak berangka */
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        font-weight: bold;
+        border: 1px solid var(--stroke);
+        color: var(--stroke);
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    }
+    /* efek hover: warnai dari kotak yang di-hover hingga kotak “1” */
+    .rating .box:hover,
+    .rating .box:hover ~ .box {
+        background-color: var(--fill);
+        border-color: var(--fill);
+        color: #fff;
+    }
+    /* efek setelah memilih (checked): warnai angka ≤ nilai terpilih */
+    .rating input:checked ~ .box {
+        background-color: var(--fill);
+        border-color: var(--fill);
+        color: #fff;
+    }
+</style>
 
-        .rating input {
-            appearance: unset;
-            position: absolute;
-            opacity: 0;
-        }
-
-        .rating label {
-            cursor: pointer;
-            position: relative;
-        }
-
-        .rating svg {
-            width: 3rem;
-            height: 3rem;
-            fill: transparent;
-            stroke: var(--stroke);
-            transition: stroke 0.2s, fill 0.5s;
-        }
-
-        .rating label:hover svg,
-        .rating input:checked~label svg {
-            fill: var(--fill);
-            stroke: var(--fill);
-        }
-
-        .rating label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
 </x-layout>
