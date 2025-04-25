@@ -160,8 +160,10 @@
         <div class="chat-box-footer">
             <input type="text" id="query" placeholder="Enter Your Message" required>
             <button id="send-button" style="background: none; border: none; cursor: pointer;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" style="width: 1.5rem; height: 1.5rem;">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6" style="width: 1.5rem; height: 1.5rem;">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
                 </svg>
             </button>
         </div>
@@ -192,13 +194,20 @@
             appendMessage(query, 'user');
             queryInput.value = '';
 
+            // Ensure session_id is retrieved from localStorage
+            const sessionId = localStorage.getItem('chat_session_id');
+            const payload = {
+                session_id: sessionId,
+                query_text: query
+            };
+
             try {
                 const response = await fetch(queryUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ query_text: query }),
+                    body: JSON.stringify(payload),
                 });
 
                 if (!response.ok) {
@@ -235,6 +244,42 @@
         closeButton.addEventListener('click', function () {
             chatBox.style.visibility = 'hidden';
             chatButton.style.display = 'block';
+        });
+
+        // 1. Generate / ambil session_id di localStorage
+        let sessionId = localStorage.getItem('chat_session_id');
+        if (!sessionId) {
+            sessionId = crypto.randomUUID();
+            localStorage.setItem('chat_session_id', sessionId);
+        }
+
+        sendButton.addEventListener('click', async function () {
+            const query = queryInput.value.trim();
+            if (!query) return;
+
+            appendMessage(query, 'user');
+            queryInput.value = '';
+
+            const payload = {
+                session_id: sessionId,
+                query_text: query
+            };
+
+            try {
+                const response = await fetch(queryUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+
+                const data = await response.json();
+                appendMessage(
+                    data.response || "Maaf saya sedang offline…",
+                    'bot'
+                );
+            } catch (error) {
+                appendMessage("Maaf saya sedang offline…", 'bot');
+            }
         });
     </script>
 </body>
