@@ -231,54 +231,83 @@
             }
         });
 
+        // Panggil load history saat chat box muncul
         chatButton.addEventListener('click', function () {
             chatBox.style.visibility = 'visible';
             chatButton.style.display = 'none';
-
-            // Add initial greeting message
             if (!chatMessages.hasChildNodes()) {
-                appendMessage('Assalamualaikum ada yang bisa saya bantu?', 'bot');
+                loadHistory().then(() => {
+                    resetTimer();
+                });
             }
         });
+
 
         closeButton.addEventListener('click', function () {
             chatBox.style.visibility = 'hidden';
             chatButton.style.display = 'block';
         });
 
-        // 1. Generate / ambil session_id di localStorage
+        // 1. Ambil atau generate session ID
         let sessionId = localStorage.getItem('chat_session_id');
         if (!sessionId) {
             sessionId = crypto.randomUUID();
             localStorage.setItem('chat_session_id', sessionId);
         }
 
+        // ganti fetch history
+        async function loadHistory() {
+            const url = `/chat/history?session_id=${sessionId}`;   // <-- Laravel route
+            try {
+                const resp = await fetch(url);
+                const data = await resp.json();
+                if (Array.isArray(data.history)) {
+                    data.history.forEach(item => {
+                        if (item.user) appendMessage(item.user, 'user');
+                        if (item.bot) appendMessage(item.bot, 'bot');
+                    });
+                }
+            } catch (e) {
+                console.error('Gagal load history', e);
+            }
+        }
+
+
+        // 2. Inactivity timer
+        let inactivityTimer;
+        const TIMEOUT = 30000; // 30 detik
+
+        function resetTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(async () => {
+                // Akhiri sesi otomatis
+                await fetch('/chat/end-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: sessionId })
+                });
+                appendMessage('Senang membantu anda, saya izin pamit!', 'bot');
+                // Hapus session_id agar kalau reload session baru
+                localStorage.removeItem('chat_session_id');
+            }, TIMEOUT);
+        }
+
         sendButton.addEventListener('click', async function () {
             const query = queryInput.value.trim();
             if (!query) return;
-
             appendMessage(query, 'user');
             queryInput.value = '';
 
-            const payload = {
-                session_id: sessionId,
-                query_text: query
-            };
-
             try {
-                const response = await fetch(queryUrl, {
+                const resp = await fetch('/chat/query', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
+                    body: JSON.stringify({ query_text: query, session_id: sessionId })
                 });
-
-                const data = await response.json();
-                appendMessage(
-                    data.response || "Maaf saya sedang offline…",
-                    'bot'
-                );
-            } catch (error) {
-                appendMessage("Maaf saya sedang offline…", 'bot');
+                const data = await resp.json();
+                appendMessage(data.response || 'Error server', 'bot');
+            } catch (e) {
+                appendMessage('Maaf saya sedang offline…', 'bot');
             }
         });
     </script>

@@ -7,47 +7,54 @@ use Illuminate\Support\Facades\Http;
 
 class ChatbotController extends Controller
 {
+    protected function apiUrl() {
+        return env('CHATBOT_QUERY_URL', 'http://127.0.0.1:5000');
+    }
+
     public function query(Request $request)
     {
         $request->validate([
             'query_text' => 'required|string',
+            'session_id' => 'required|string',
         ]);
 
-        // 1. Ambil session_id dari Laravel session (atau fallback ke header/body)
-        $sessionId = $request->session()->get('chat_session_id')
-            ?? $request->header('X-Session-ID')
-            ?? $request->input('session_id');
+        $sessionId = $request->input('session_id');
+        $payload = [
+            'query_text' => $request->input('query_text'),
+            'session_id' => $sessionId,
+        ];
 
-        if (!$sessionId) {
-            // kalau benar-benar ga ada, bisa generate & simpan
-            $sessionId = (string) \Str::uuid();
-            $request->session()->put('chat_session_id', $sessionId);
+        \Log::info('>> Sending chat query', $payload);
+        $resp = Http::post($this->apiUrl() . '/query', $payload);
+
+        if ($resp->ok()) {
+            $body = $resp->json();
+            return response()->json($body);
         }
 
-        // 2. Kirim ke Flask API, sertakan session_id
-        $api = Http::post(env('CHATBOT_QUERY_URL'), [
-            'session_id' => $sessionId,
-            'query_text' => $request->input('query_text'),
-        ]);
+        return response()->json(['response' => 'Maaf, server chat offline'], 500);
+    }
 
-        $body = $api->ok()
-            ? $api->json()['response'] ?? 'Tidak ada balasan'
-            : "Maaf saya sedang offline, coba lagi nanti.";
+    public function history(Request $request)
+    {
+        $sessionId = $request->query('session_id');
+        if (!$sessionId) {
+            return response()->json(['error' => 'Missing session_id'], 400);
+        }
 
-        return response()->json(['response' => $body])
-            ->header('Access-Control-Allow-Origin', '*')
-            ->header('Access-Control-Allow-Methods', 'POST')
-            ->header('Access-Control-Allow-Headers', 'Content-Type');
+        $resp = Http::get($this->apiUrl() . '/history', ['session_id' => $sessionId]);
+        return response()->json($resp->json(), $resp->status());
     }
 
     public function endSession(Request $request)
     {
-        $sessionId = $request->session()->pull('chat_session_id');
-        if ($sessionId) {
-            Http::post(env('CHATBOT_QUERY_URL') . '/end-session', [
-                'session_id' => $sessionId,
-            ]);
-        }
-        return response()->json(['status' => 'ended']);
+        $request->validate([
+            'session_id' => 'required|string',
+        ]);
+
+        $sessionId = $request->input('session_id');
+        $resp = Http::post($this->apiUrl() . '/end-session', ['session_id' => $sessionId]);
+
+        return response()->json($resp->json(), $resp->status());
     }
 }

@@ -32,7 +32,9 @@ Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi
 Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');
 Route::get('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'index'])->name('ppdb.survey');
 Route::post('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'store'])->name('ppdb.survey.store');
-Route::post('/query', [ChatbotController::class, 'query'])->name('chatbot.query');
+Route::post('/chat/query', [ChatbotController::class, 'query'])->name('chat.query');
+Route::get('/chat/history', [ChatbotController::class, 'history'])->name('chat.history');
+Route::post('/chat/end-session', [ChatbotController::class, 'endSession'])->name('chat.endSession');
 Route::get('/chatbot', function () {
     return view('chatbot');
 })->name('chatbot');
