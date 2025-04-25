@@ -24,15 +24,35 @@ class ChatbotController extends Controller
             'session_id' => $sessionId,
         ];
 
-        \Log::info('>> Sending chat query', $payload);
-        $resp = Http::post($this->apiUrl() . '/query', $payload);
+        try {
+            // Log the payload for debugging
+            \Log::info('Sending payload to chatbot API', $payload);
 
-        if ($resp->ok()) {
-            $body = $resp->json();
-            return response()->json($body);
+            $resp = Http::post($this->apiUrl() . '/query', $payload);
+
+            if ($resp->ok()) {
+                $body = $resp->json();
+                // Log the successful response
+                \Log::info('Chatbot API response', $body);
+                return response()->json($body);
+            }
+
+            // Log the error response
+            \Log::error('Chatbot API error', [
+                'status' => $resp->status(),
+                'body' => $resp->body(),
+            ]);
+
+            return response()->json(['response' => 'Maaf, server chat offline'], 500);
+        } catch (\Exception $e) {
+            // Log the exception
+            \Log::error('Chatbot query exception', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json(['response' => 'Terjadi kesalahan pada server'], 500);
         }
-
-        return response()->json(['response' => 'Maaf, server chat offline'], 500);
     }
 
     public function history(Request $request)
@@ -53,7 +73,7 @@ class ChatbotController extends Controller
         ]);
 
         $sessionId = $request->input('session_id');
-        $resp = Http::post($this->apiUrl() . '/end-session', ['session_id' => $sessionId]);
+        $resp = Http::post($this->apiUrl() . '/session_end', ['session_id' => $sessionId]);
 
         return response()->json($resp->json(), $resp->status());
     }

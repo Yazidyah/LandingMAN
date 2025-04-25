@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
-    <meta name="query-url" content="{{ env('CHATBOT_QUERY_URL', 'http://127.0.0.1:5000/query') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="query-url" content="{{ url('/chat/query') }}">
     <style>
         @import url("https://fonts.googleapis.com/css?family=Raleway|Ubuntu&display=swap");
 
@@ -177,6 +178,8 @@
         const chatButton = document.querySelector('.chat-button');
         const closeButton = document.querySelector('.chat-box-header p');
         const queryUrl = document.querySelector('meta[name="query-url"]').getAttribute('content');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const endSessionUrl = '/chat/end-session'; // Define the endSessionUrl variable
 
         function appendMessage(content, sender) {
             const messageElement = document.createElement('div');
@@ -206,6 +209,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token
                     },
                     body: JSON.stringify(payload),
                 });
@@ -257,15 +261,20 @@
 
         // ganti fetch history
         async function loadHistory() {
-            const url = `/chat/history?session_id=${sessionId}`;   // <-- Laravel route
+            const url = `/chat/history?session_id=${sessionId}`;
             try {
-                const resp = await fetch(url);
+                const resp = await fetch(url, {
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token
+                    }
+                });
                 const data = await resp.json();
                 if (Array.isArray(data.history)) {
                     data.history.forEach(item => {
                         if (item.user) appendMessage(item.user, 'user');
                         if (item.bot) appendMessage(item.bot, 'bot');
                     });
+                    resetTimer(); // Reset timer after loading history
                 }
             } catch (e) {
                 console.error('Gagal load history', e);
@@ -273,21 +282,22 @@
         }
 
 
-        // 2. Inactivity timer
+        // Inactivity timer (30 detik)
         let inactivityTimer;
-        const TIMEOUT = 30000; // 30 detik
-
+        const TIMEOUT = 30_000;
         function resetTimer() {
             clearTimeout(inactivityTimer);
             inactivityTimer = setTimeout(async () => {
-                // Akhiri sesi otomatis
-                await fetch('/chat/end-session', {
+                // Hentikan sesi di backend
+                await fetch(endSessionUrl, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token
+                    },
                     body: JSON.stringify({ session_id: sessionId })
                 });
                 appendMessage('Senang membantu anda, saya izin pamit!', 'bot');
-                // Hapus session_id agar kalau reload session baru
                 localStorage.removeItem('chat_session_id');
             }, TIMEOUT);
         }
@@ -297,15 +307,20 @@
             if (!query) return;
             appendMessage(query, 'user');
             queryInput.value = '';
+            resetTimer(); // Reset timer after user sends a message
 
             try {
                 const resp = await fetch('/chat/query', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token
+                    },
                     body: JSON.stringify({ query_text: query, session_id: sessionId })
                 });
                 const data = await resp.json();
                 appendMessage(data.response || 'Error server', 'bot');
+                resetTimer(); // Reset timer after bot sends a response
             } catch (e) {
                 appendMessage('Maaf saya sedang offline…', 'bot');
             }
