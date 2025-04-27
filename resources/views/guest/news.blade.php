@@ -3,11 +3,11 @@
         <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
             <h2 class="font-bold text-3xl md:text-4xl">Berita MAN 1 Kota Bogor</h2>
         </div>
-
+        @if($news->isNotEmpty())
         <div x-data="{ show: false }" x-init="setTimeout(() => show = true, 200)" x-show="show"
             x-transition:enter="transition-opacity duration-500" x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100" class="my-12 grid grid-cols-12 gap-4 bg-white">
-
+            x-transition:enter-end= "opacity-100" class="my-12 grid grid-cols-12 gap-4 bg-white">
+             
             @foreach($news as $item)
                 <a href="{{ route('guest.newsDetail', $item->slug) }}" x-data="{ show: false }"
                     x-init="setTimeout(() => show = true, 300 * {{ $loop->index }})" x-show="show"
@@ -37,6 +37,9 @@
                     </div>
                 </a>
             @endforeach
+            @else
+            <p class="text-center text-gray-500">Tidak ada NEWS yang tersedia.</p>
+        @endif
         </div>
 </div>
 </x-layout>
