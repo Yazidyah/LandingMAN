@@ -83,7 +83,7 @@
                 </li>
                 <li
                     class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                    <a href="https://ppdb.tkislamperkasa.com">PPDB</a>
+                    <a href="https://ppdb.man1kotabogor.id">PPDB</a>
                 </li>
                 <li>
                     <x-side-nav :href="route('guest.publikasi')" :active="request()->routeIs('guest.publikasi')">
