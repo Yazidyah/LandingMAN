@@ -3,13 +3,14 @@
         <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
             <h2 class="font-bold text-3xl md:text-4xl ">Selamat Datang di Website MAN 1 Kota Bogor</h2>
         </div>
-        <div class="mx-auto snap-x items-center pb-10 mt-10 justify-center w-max-full" data-flickity>
+        <div class="mx-auto snap-x pb-10 mt-10 justify-center w-max-full"
+            data-flickity='{ "wrapAround": true }'>
             @foreach ($contents as $content)
                 @foreach ($content->images as $image)
                     <div
-                        class="snap-center aspect-auto items-center content-center origin-center object-center h-auto my-auto mx-2 flex justify-center w-full">
+                        class="snap-center aspect-auto content-center origin-center object-center h-auto my-auto mx-2 flex justify-center w-full">
                         <img src="{{ asset('storage/' . $image->image_url) }}" alt="Deskripsi Gambar"
-                            class="rounded-b-lg w-min-full object-cover aspect-video">
+                            class="rounded-b-lg w-min-full object-contain aspect-video">
                     </div>
                 @endforeach
             @endforeach
