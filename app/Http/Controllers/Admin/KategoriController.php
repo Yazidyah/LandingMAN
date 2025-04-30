@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class KategoriController extends Controller
 {
@@ -16,6 +18,15 @@ class KategoriController extends Controller
 
     public function destroy(Category $category)
     {
+        // Log the deletion activity
+        Log::info('Category Deleted', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Delete',
+            'category_name' => $category->category_name,
+            'category_id' => $category->id,
+        ]);
+
         $category->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully');
     }
@@ -35,6 +46,15 @@ class KategoriController extends Controller
             'category_name' => strtolower($request->category_name),
         ]);
 
+        // Log the update activity
+        Log::info('Category Updated', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Update',
+            'category_name' => $category->category_name,
+            'category_id' => $category->id,
+        ]);
+
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
     }
 
@@ -44,8 +64,17 @@ class KategoriController extends Controller
             'category_name' => 'required|string|max:255',
         ]);
 
-        Category::create([
+        $category = Category::create([
             'category_name' => strtolower($request->category_name),
+        ]);
+
+        // Log the creation activity
+        Log::info('Category Created', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Create',
+            'category_name' => $category->category_name,
+            'category_id' => $category->id,
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');

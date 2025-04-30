@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class VisiMisiController extends Controller
 {
@@ -37,6 +38,15 @@ class VisiMisiController extends Controller
             ['content' => $request->misi, 'user_id' => $userId, 'body' => $request->misi, 'slug' => Str::slug($request->misi)]
         );
 
+        // Log the creation activity
+        Log::info('Visi & Misi Created/Updated', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Create/Update',
+            'visi' => $visi->content,
+            'misi' => $misi->content,
+        ]);
+
         return redirect()->route('admin.visimisi.index')->with('success', 'Visi dan Misi berhasil disimpan.');
     }
 
@@ -52,6 +62,15 @@ class VisiMisiController extends Controller
             'user_id' => Auth::id(),
             'body' => $request->content,
             'slug' => Str::slug($request->content),
+        ]);
+
+        // Log the update activity
+        Log::info('Visi & Misi Updated', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Update',
+            'content_id' => $content->id,
+            'content' => $content->content,
         ]);
 
         return redirect()->route('admin.visimisi.index')->with('success', 'Konten berhasil diperbarui.');

@@ -9,6 +9,7 @@ use App\Models\ContentImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class BannerController extends Controller
 {
@@ -68,12 +69,31 @@ class BannerController extends Controller
             ]);
         }
 
+        // Log the creation activity
+        Log::info('Banner Created', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Create',
+            'banner_title' => $content->title,
+            'banner_id' => $content->id,
+        ]);
+
         return redirect()->route('admin.banner.index')->with('success', 'Banner created successfully.');
     }
 
     public function destroy($id)
     {
         $content = Content::findOrFail($id);
+
+        // Log the deletion activity before deleting
+        Log::info('Banner Deleted', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Delete',
+            'banner_title' => $content->title,
+            'banner_id' => $content->id,
+        ]);
+
         foreach ($content->images as $image) {
             Storage::disk('public')->delete($image->image_url);
             $image->delete();

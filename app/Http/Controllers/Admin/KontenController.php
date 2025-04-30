@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class KontenController extends Controller
 {
@@ -119,6 +120,15 @@ class KontenController extends Controller
                 }
             }
 
+            // Log the creation activity
+            Log::info('Content Created', [
+                'user_id' => auth()->id(),
+                'username' => auth()->user()->name,
+                'action' => 'Create',
+                'content_title' => $content->title,
+                'content_id' => $content->id,
+            ]);
+
             return redirect()->route('admin.contents.index')->with('success', 'Content created successfully.');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while creating the content. Please try again.']);
@@ -158,12 +168,30 @@ class KontenController extends Controller
             }
         }
 
+        // Log the update activity
+        Log::info('Content Updated', [
+            'user_id' => auth()->id(),
+            'username' => auth()->user()->name,
+            'action' => 'Update',
+            'content_title' => $content->title,
+            'content_id' => $content->id,
+        ]);
+
         return redirect()->route('admin.contents.index')->with('success', 'Content updated successfully.');
     }
 
     public function destroy($id)
     {
         $content = Content::findOrFail($id);
+
+        // Log the deletion activity
+        Log::info('Content Deleted', [
+            'user_id' => auth()->id(),
+            'username' => auth()->user()->name,
+            'action' => 'Delete',
+            'content_title' => $content->title,
+            'content_id' => $content->id,
+        ]);
 
         // Delete associated images
         foreach ($content->images as $image) {

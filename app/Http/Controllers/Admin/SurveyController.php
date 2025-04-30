@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
 {
@@ -25,6 +27,14 @@ class SurveyController extends Controller
 
         Survey::create($request->all());
 
+        // Log the creation activity
+        Log::info('Survey Created', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Create',
+            'survey_name' => $request->survey_name,
+        ]);
+
         return redirect()->route('admin.survey.index')->with('success', 'Survey created successfully.');
     }
 
@@ -44,12 +54,31 @@ class SurveyController extends Controller
 
         $survey->update($request->all());
 
+        // Log the update activity
+        Log::info('Survey Updated', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Update',
+            'survey_name' => $survey->survey_name,
+            'survey_id' => $survey->id,
+        ]);
+
         return redirect()->route('admin.survey.index')->with('success', 'Survey updated successfully.');
     }
 
     public function destroy($id)
     {
         $survey = Survey::findOrFail($id);
+
+        // Log the deletion activity
+        Log::info('Survey Deleted', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Delete',
+            'survey_name' => $survey->survey_name,
+            'survey_id' => $survey->id,
+        ]);
+
         $survey->delete();
 
         return redirect()->route('admin.survey.index')->with('success', 'Survey deleted successfully.');

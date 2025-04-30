@@ -8,6 +8,7 @@ use App\Models\Unsur;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class KuesionerController extends Controller
 {
@@ -45,6 +46,15 @@ class KuesionerController extends Controller
 
             $question = Question::create($request->all());
 
+            // Log the creation activity
+            Log::info('Kuesioner Created', [
+                'user_id' => Auth::id(),
+                'username' => Auth::user()->name,
+                'action' => 'Create',
+                'question_text' => $question->question_text,
+                'question_id' => $question->id,
+            ]);
+
             return redirect()->route('admin.kuesioner.index')->with('success', 'Kuesioner created successfully.');
         } catch (\Exception $e) {
             Log::error('Failed to create Kuesioner: ', ['error' => $e->getMessage()]); 
@@ -65,6 +75,16 @@ class KuesionerController extends Controller
 
         try {
             $kuesioner->update($request->all());
+
+            // Log the update activity
+            Log::info('Kuesioner Updated', [
+                'user_id' => Auth::id(),
+                'username' => Auth::user()->name,
+                'action' => 'Update',
+                'question_text' => $kuesioner->question_text,
+                'question_id' => $kuesioner->id,
+            ]);
+
             return redirect()->route('admin.kuesioner.index')->with('success', 'Kuesioner updated successfully.');
         } catch (\Exception $e) {
             Log::error('Failed to update Kuesioner: ', ['error' => $e->getMessage()]); 
@@ -74,6 +94,15 @@ class KuesionerController extends Controller
 
     public function destroy(Question $kuesioner)
     {
+        // Log the deletion activity
+        Log::info('Kuesioner Deleted', [
+            'user_id' => Auth::id(),
+            'username' => Auth::user()->name,
+            'action' => 'Delete',
+            'question_text' => $kuesioner->question_text,
+            'question_id' => $kuesioner->id,
+        ]);
+
         try {
             $kuesioner->delete();
             return redirect()->route('admin.kuesioner.index')->with('success', 'Kuesioner deleted successfully.');
