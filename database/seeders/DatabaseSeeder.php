@@ -20,6 +20,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
+        User::factory()->create([
+            'name' => 'super',
+            'email' => 'super@example.com',
+            'password' => bcrypt('MALGw86xsJFIj4fc1YOrpu9xflHxBi'),
+        ]);
+
         $this->call(CategoriesSeeder::class);
         $this->call(SurveySeeder::class);
         $this->call(UnsurSeeder::class);
