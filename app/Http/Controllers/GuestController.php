@@ -74,7 +74,10 @@ class GuestController extends Controller
 
     public function newsDetail($slug)
     {
-        $news = Content::with('images')->where('slug', $slug)->firstOrFail();
+        $news = Content::with('images')
+            ->where('slug', $slug)
+            ->whereNotIn('category_id', [1, 2]) // Kecualikan kategori 1 dan 2
+            ->firstOrFail();
         Carbon::setLocale('id');
         $news->image_url = $this->getImageUrl($news->images); 
         $news->formatted_date = Carbon::parse($news->created_at)->translatedFormat('l, d F Y');
