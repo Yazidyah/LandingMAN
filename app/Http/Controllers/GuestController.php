@@ -84,9 +84,9 @@ class GuestController extends Controller
         return view('guest.newsDetail', compact('news'));
     }
 
-    public function saranpengaduan()
+    public function survey()
     {
-        return view('guest.saranpengaduan');
+        return view('guest.survey');
     }
 
     public function sejarah()

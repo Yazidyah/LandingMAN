@@ -127,7 +127,7 @@
             </li>
             <li
                 class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                <a href="{{ route('guest.saranpengaduan') }}">Survey & Kritik Saran</a>
+                <a href="{{ route('guest.survey') }}">Survey & Kritik Saran</a>
             </li>
             <li
                 class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
