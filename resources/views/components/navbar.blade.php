@@ -77,8 +77,8 @@
                     </x-side-nav>
                 </li>
                 <li>
-                    <x-side-nav :href="route('guest.saranpengaduan')" :active="request()->routeIs('guest.saranpengaduan')">
-                        {{ __('Saran & Pengaduan') }}
+                    <x-side-nav :href="route('guest.survey')" :active="request()->routeIs('guest.survey')">
+                        {{ __('Survey & Kritik Saran') }}
                     </x-side-nav>
                 </li>
                 <li
@@ -127,7 +127,7 @@
             </li>
             <li
                 class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                <a href="{{ route('guest.saranpengaduan') }}">Saran & Pengaduan</a>
+                <a href="{{ route('guest.saranpengaduan') }}">Survey & Kritik Saran</a>
             </li>
             <li
                 class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">

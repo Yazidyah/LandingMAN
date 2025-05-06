@@ -20,7 +20,7 @@
                         <li class="py-2"><a class="hover:bg-white hover:text-tertiary px-3 py-2 rounded"
                                 href="/agenda">Agenda</a></li>
                         <li class="py-2"><a class="hover:bg-white hover:text-tertiary px-3 py-2 rounded"
-                                href="/saranpengaduan">Saran & Pengaduan</a></li>
+                                href="/survey">Survey & Kritik Saran</a></li>
                         <li class="py-2"><a class="hover:bg-white hover:text-tertiary px-3 py-2 rounded"
                                 href="/ppdb">PPDB</a></li>
                         <li class="py-2"><a class="hover:bg-white hover:text-tertiary px-3 py-2 rounded"

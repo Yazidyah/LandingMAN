@@ -24,13 +24,13 @@ Route::get('/faq', [\App\Http\Controllers\GuestController::class, 'faq'])->name(
 Route::get('/fasilitas', [\App\Http\Controllers\GuestController::class, 'fasilitas'])->name('guest.fasilitas');
 Route::get('/news', [\App\Http\Controllers\GuestController::class, 'news'])->name('guest.news');
 Route::get('/news/{slug}', [\App\Http\Controllers\GuestController::class, 'newsDetail'])->name('guest.newsDetail');
-Route::get('/saranpengaduan', [\App\Http\Controllers\SaranPengaduanController::class, 'index'])->name('guest.saranpengaduan');
-Route::post('/saranpengaduan', [\App\Http\Controllers\SaranPengaduanController::class, 'store'])->name('guest.saranpengaduan.store');
 Route::get('/sejarah', [\App\Http\Controllers\GuestController::class, 'sejarah'])->name('guest.sejarah');
 Route::get('/visimisi', [\App\Http\Controllers\GuestController::class, 'visimisi'])->name('guest.visimisi');
 Route::get('/publikasi', [\App\Http\Controllers\GuestController::class, 'publikasi'])->name('guest.publikasi');
 Route::get('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'index'])->name('ppdb.survey');
 Route::post('/ppdb/survey', [\App\Http\Controllers\SurveyPpdbController::class, 'store'])->name('ppdb.survey.store');
+Route::get('/survey', [\App\Http\Controllers\SurveyController::class, 'index'])->name('guest.survey');
+Route::post('/survey', [\App\Http\Controllers\SurveyController::class, 'store'])->name('guest.survey.store');
 
 // Admin Routes (Protected by Authentication & Verification)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {

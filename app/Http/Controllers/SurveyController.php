@@ -9,14 +9,15 @@ use App\Models\Response;
 use App\Models\ResponseDetail;
 use App\Models\Feedback;
 
-class SaranPengaduanController extends Controller
+class SurveyController extends Controller
 {
     public function index()
     {
         $questions = Question::where('survey_id', 1)->get();
-        return view('guest.saranpengaduan.index', compact('questions'));
+        return view('guest.survey.index', compact('questions'));
     }
-    function store(Request $request)
+
+    public function store(Request $request)
     {
         $respondentData = $request->only(['nama_lengkap', 'jenis_kelamin', 'usia', 'pendidikan', 'pekerjaan']);
         $respondentData['nama_lengkap'] = strtolower($respondentData['nama_lengkap']);
@@ -78,4 +79,3 @@ class SaranPengaduanController extends Controller
         }
     }
 }
-
