@@ -51,6 +51,7 @@ switch ($userRole){
     $redirectUrlresp = 'admin.responden.index';
     $redirectUrlsurv = 'admin.survey.index';
     $redirectUrlunsur = 'admin.unsur.index';
+    $redirectUrlpres = 'admin.prestasi.index';
     break;
 
 }
@@ -256,6 +257,11 @@ switch ($userRole){
         <li>
             <x-side-nav :href="route($redirectUrlresp)" :active="request()->routeIs($redirectUrlresp)">
                 {{ __('Responden') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlpres)" :active="request()->routeIs($redirectUrlpres)">
+                {{ __('Prestasi') }}
             </x-side-nav>
         </li>
         <li>

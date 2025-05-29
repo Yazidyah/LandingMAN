@@ -61,12 +61,17 @@ class GuestController extends Controller
         return view('guest.fasilitas',compact('news'));
     }
 
-    public function news()
+    public function news(Request $request)
     {
-        $news = Content::where('category_id', 5)->with('images')->get()->map(function ($item) {
+        $query = Content::where('category_id', 5)->with('images');
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+        $news = $query->get()->map(function ($item) {
             $item->image_url = $this->getImageUrl($item->images); 
-            Carbon::setLocale('id'); // Set locale to Indonesian
-            $item->formatted_date = Carbon::parse($item->created_at)->translatedFormat('l, d F Y');
+            \Carbon\Carbon::setLocale('id'); 
+            $item->formatted_date = \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y');
             return $item;
         });
         return view('guest.news', compact('news'));
