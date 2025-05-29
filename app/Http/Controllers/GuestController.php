@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Content;
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Models\Achievement;
 use Carbon\Carbon;
 
 class GuestController extends Controller
@@ -39,11 +40,8 @@ class GuestController extends Controller
 
     public function prestasi()
     {
-        $news = Content::where('category_id', 6)->with('images')->get()->map(function ($item) {
-            $item->image_url = $this->getImageUrl($item->images); 
-            return $item;
-        });
-        return view('guest.prestasi',compact('news'));
+        $prestasi = Achievement::orderBy('created_at', 'desc')->get();
+        return view('guest.prestasi', compact('prestasi'));
     }
 
     public function faq()

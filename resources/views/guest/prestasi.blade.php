@@ -1,19 +1,37 @@
 <x-layout>
-    <div class="container mx-auto pt-5 px-4 min-h-[90vh]">
-        <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
-            <h2 class="font-bold text-3xl md:text-4xl ">Selamat Datang di Website Prestasi MAN 1 Kota Bogor</h2>
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-6 text-center">Daftar Prestasi MAN 1 Kota Bogor</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 border">No</th>
+                        <th class="px-4 py-2 border">Nama</th>
+                        <th class="px-4 py-2 border">Kelas/Jabatan</th>
+                        <th class="px-4 py-2 border">Kejuaraan</th>
+                        <th class="px-4 py-2 border">Bidang</th>
+                        <th class="px-4 py-2 border">Tingkat</th>
+                        <th class="px-4 py-2 border">Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($prestasi as $item)
+                    <tr>
+                        <td class="px-4 py-2 border text-center">{{ $loop->iteration }}</td>
+                        <td class="px-4 py-2 border">{{ $item->nama }}</td>
+                        <td class="px-4 py-2 border">{{ $item->kelas_jabatan }}</td>
+                        <td class="px-4 py-2 border">{{ $item->kejuaraan }}</td>
+                        <td class="px-4 py-2 border">{{ $item->bidang }}</td>
+                        <td class="px-4 py-2 border">{{ $item->tingkat }}</td>
+                        <td class="px-4 py-2 border">{{ $item->keterangan }}</td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="7" class="px-4 py-2 border text-center">Belum ada data prestasi.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-        @if($news->isNotEmpty())
-        @foreach($news as $item)
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm col-span-12 md:col-span-6 lg:col-span-4">
-                <img class="rounded-t-lg" src="{{ $item->image_url }}" alt="" />
-            <div class="p-5">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $item->title }}</h5>
-            </div>
-        </div>
-        @endforeach
-        @else
-            <p class="text-center text-gray-500">Tidak ada Prestasi yang tersedia.</p>
-        @endif
     </div>
 </x-layout>
