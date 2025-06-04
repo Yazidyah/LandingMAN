@@ -30,12 +30,12 @@ class VisiMisiController extends Controller
 
         $visi = Content::updateOrCreate(
             ['category_id' => 2, 'title' => 'visi'],
-            ['content' => $request->visi, 'user_id' => $userId, 'body' => $request->visi, 'slug' => Str::slug($request->visi)]
+            ['content' => $request->visi, 'user_id' => $userId, 'body' => $request->visi, 'slug' => 'visi']
         );
 
         $misi = Content::updateOrCreate(
             ['category_id' => 2, 'title' => 'misi'],
-            ['content' => $request->misi, 'user_id' => $userId, 'body' => $request->misi, 'slug' => Str::slug($request->misi)]
+            ['content' => $request->misi, 'user_id' => $userId, 'body' => $request->misi, 'slug' => 'misi']
         );
 
         // Log the creation activity
@@ -57,11 +57,12 @@ class VisiMisiController extends Controller
         ]);
 
         $content = Content::findOrFail($id);
+        $slug = $content->title === 'visi' ? 'visi' : ($content->title === 'misi' ? 'misi' : Str::slug($content->title));
         $content->update([
             'content' => $request->content,
             'user_id' => Auth::id(),
             'body' => $request->content,
-            'slug' => Str::slug($request->content),
+            'slug' => $slug,
         ]);
 
         // Log the update activity

@@ -94,7 +94,8 @@ class GuestController extends Controller
 
     public function sejarah()
     {
-        return view('guest.sejarah');
+        $sejarah = Content::where('category_id', 2)->where('title', 'sejarah')->first();
+        return view('guest.sejarah', compact('sejarah'));
     }
 
     public function visimisi()

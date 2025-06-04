@@ -44,6 +44,7 @@ switch ($userRole){
     $redirectUrlpub = 'admin.publikasi';
     $redirectUrlkritsar = 'admin.kritiksaran.index';
     $redirectUrlvisi = 'admin.visimisi.index';
+    $redirectUrlsej = 'admin.sejarah.index';
     $redirectUrlcat = 'admin.categories.index';
     $redirectUrlcont = 'admin.contents.index';
     $redirectUrlikm = 'admin.ikm.index';
@@ -222,6 +223,11 @@ switch ($userRole){
         <li>
             <x-side-nav :href="route($redirectUrlvisi)" :active="request()->routeIs($redirectUrlvisi)">
             {{ __('Visi Misi') }}
+            </x-side-nav>
+        </li>
+        <li>
+            <x-side-nav :href="route($redirectUrlsej)" :active="request()->routeIs($redirectUrlsej)">
+            {{ __('Sejarah') }}
             </x-side-nav>
         </li>
         <li>
