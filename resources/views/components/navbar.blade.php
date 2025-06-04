@@ -85,11 +85,11 @@
                     class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
                     <a href="{{ env('PPDB_URL') }}">PPDB</a>
                 </li>
-                <li>
+                <!-- <li>
                     <x-side-nav :href="route('guest.publikasi')" :active="request()->routeIs('guest.publikasi')">
                         {{ __('Publikasi') }}
                     </x-side-nav>
-                </li>
+                </li> -->
 
 
             </ul>
