@@ -1,18 +1,22 @@
 <x-layout>
 <div class="container mx-auto pt-5 px-4 min-h-[90vh]">
         <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
-            <h2 class="font-bold text-3xl md:text-4xl ">Selamat Datang di Website Fasilitas MAN 1 Kota Bogor</h2>
+            <h2 class="font-bold text-3xl md:text-4xl ">Fasilitas MAN 1 Kota Bogor</h2>
         </div>
 
         @if($news->isNotEmpty())
         <div class="my-8 grid grid-cols-12 gap-4">
         @foreach($news as $item)
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm col-span-12 md:col-span-6 lg:col-span-4">
-                <img class="rounded-t-lg" src="{{ $item->image_url }}" alt="" />
-            <div class="p-5">
+            <a href="{{ route('guest.newsDetail', $item->slug) }}" x-data="{ show: false }"
+                x-init="setTimeout(() => show = true, 300 * {{ $loop->index }})" x-show="show"
+                x-transition:enter="transition ease-out duration-500 transform"
+                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+                class="block max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm col-span-12 md:col-span-6 lg:col-span-3">
+                <img class="rounded-t-lg object-cover w-full h-[250px] object-top" src="{{ $item->image_url }}" alt="" />
+                <div class="p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $item->title }}</h5>
-            </div>
-        </div>
+                </div>
+            </a>
         @endforeach
         @else
             <p class="text-center text-gray-500">Tidak ada Fasilitas  yang tersedia.</p>

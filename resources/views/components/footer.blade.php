@@ -4,7 +4,7 @@
             <div class="flex container flex-col lg:flex-row pt-12 pb-12 px-9 mx-auto">
                 <div class="text-white px-2 w-full lg:w-1/3">
                     <h3 class="text-3xl mb-5">Tentang</h3>
-                    <ul class="py-4">
+                    <ul class="py-4 grid grid-cols-2 gap-x-4">
                         <li class="py-2"><a class="hover:bg-white hover:text-tertiary px-3 py-2 rounded"
                                 href="/sejarah">Sejarah</a></li>
                         <li class="py-2"><a class="hover:bg-white hover:text-tertiary px-3 py-2 rounded"
@@ -30,7 +30,7 @@
                 <div class="text-white  px-2 w-full lg:w-1/3">
                     <h3 class="font-semibold text-3xl mb-5">Alamat Sekolah</h3>
                     <ul class="py-5">
-                        <li class="pb-4"><a href="https://man1kotabogor.sch.id/home">Madrasah Aliyah Negeri 1</a></li>
+                        <li class="pb-4"><a href="https://man1kotabogor.id/">Madrasah Aliyah Negeri 1</a></li>
                         <li class="pb-4"><a href="https://maps.app.goo.gl/Eyktambswr7FuTqZ7">Komplek Bumi Menteng Asri
                                 Jl. Terapi Raya, Parung Jambu Rt No. 02, Menteng , Kec. Bogor Barat, Kota Bogor, Jawa
                                 Barat 16112</a></li>
@@ -80,9 +80,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="w-full py-10 border-t-4 border-white text-white mx-auto">
-                <p class="font-medium text-xs text-white text-center "> Copyright © 2025 | Madrasah Aliyah Negeri 1 Kota
-                    Bogor</a></span></p>
+            <div class="w-full py-4 text-white mx-auto">
+                <p class="font-medium text-xs text-white text-center">Copyright © 2025 | Madrasah Aliyah Negeri 1 Kota Bogor</p>
             </div>
         </div>
     </footer>

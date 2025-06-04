@@ -35,7 +35,16 @@ class GuestController extends Controller
             $item->image_url = $this->getImageUrl($item->images); 
             return $item;
         });
-        return view('guest.agenda', compact('news'));
+
+        // Set locale ke Indonesia untuk nama bulan
+        \Carbon\Carbon::setLocale('id');
+
+        // Kelompokkan berdasarkan bulan-tahun (dalam bahasa Indonesia)
+        $groupedNews = $news->groupBy(function ($item) {
+            return \Carbon\Carbon::parse($item->created_at)->translatedFormat('F Y');
+        });
+
+        return view('guest.agenda', ['groupedNews' => $groupedNews]);
     }
 
     public function prestasi()
