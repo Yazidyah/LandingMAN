@@ -1,6 +1,6 @@
 <div class=" bg-primary mx-auto w-full sticky z-40 top-0 right-0 left-0">
     <!-- Navigation -->
-    <nav class="flex justify-between items-center container mx-auto border-b-2 max-w-full border-b-white py-4">
+    <nav class="flex justify-between items-center container mx-auto max-w-full py-4">
         <a href="/" class=" flex items-center gap-4 justify-center px-6">
             <img class="w-20 " src="/logoman.webp" alt="">
             <div class="">
