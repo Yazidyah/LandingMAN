@@ -6,7 +6,6 @@
             <h2 class="font-bold text-3xl md:text-4xl ">Admin Dashboard</h2>
         </div>
     </div>
-
 </x-app-layout>
 
 

@@ -76,7 +76,7 @@ switch ($userRole){
                 <!-- Navigation Links -->
                 <div class="items-center justify-center flex">
                 <div class=" text-white text-xs xl:text-base font-semibold lg:flex gap-4 hidden">
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Beranda') }} 
                     </x-nav-link>                   
                     <div class="border-l py-3" ></div>

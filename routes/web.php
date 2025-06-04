@@ -36,7 +36,7 @@ Route::post('/survey', [\App\Http\Controllers\SurveyController::class, 'store'])
 
 // Admin Routes (Protected by Authentication & Verification)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
     Route::view('/faq', 'admin.faq')->name('faq');
     Route::view('/fasilitas', 'admin.fasilitas')->name('fasilitas');
     Route::view('/news', 'admin.news')->name('news');
