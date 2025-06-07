@@ -35,9 +35,17 @@
                         {{ __('Home') }}
                     </x-side-nav>
                 </li>
-                <li class="relative hover:text-tertiary" x-data="{ dropdown: false }"><button @click="dropdown = !dropdown"
-                        class=" hover:bg-white focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg  ">Profil
-                        Sekolah</button>
+                <li class="relative hover:text-tertiary" x-data="{ dropdown: false }">
+                    <button
+                        @click="dropdown = !dropdown"
+                        :class="{
+                            'bg-white text-tertiary': dropdown,
+                            'hover:bg-white hover:text-tertiary': true
+                        }"
+                        class="focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg"
+                    >
+                        Profil Sekolah
+                    </button>
                     <!-- Dropdown -->
                     <div class="lg:absolute bg-primary z-10 text-tertiary rounded-md right-0 my-2 p-2" x-show="dropdown"
                         @click.outside="dropdown = false">

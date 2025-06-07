@@ -141,7 +141,7 @@
                     </div>
                     <button type="submit"
                         class="w-full text-white bg-tertiary hover:bg-secondary hover:text-tertiary font-medium rounded-lg text-lg px-6 py-3 text-center">
-                        Submit
+                        Kirim
                     </button>
                 </div>
             </div>

@@ -43,13 +43,19 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-2">
-                    <button type="button" onclick="deleteContent()" class="bg-red-900 hover:bg-red-500 text-white px-4 py-2 rounded mr-2">Delete</button>
+                    <button type="button" onclick="document.getElementById('deleteContentModal').classList.remove('hidden')" class="bg-red-900 hover:bg-red-500 text-white px-4 py-2 rounded mr-2">Delete</button>
                     <button type="submit" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<x-confirm-delete-modal 
+    modalId="deleteContentModal"
+    :formAction="url('/admin/contents/' . (isset($content) ? $content->id : ''))"
+    title="Konfirmasi Hapus Konten"
+    message="Apakah Anda yakin ingin menghapus konten ini?"
+/>
 <style>
     #editContentImages {
         display: flex;
@@ -136,14 +142,6 @@
             imgElement.alt = image.alt || 'Content Image';
             container.appendChild(imgElement);
         });
-    }
-
-    function deleteContent() {
-        if (confirm('Are you sure you want to delete this content?')) {
-            const form = document.getElementById('editForm');
-            form._method.value = 'DELETE';
-            form.submit();
-        }
     }
 
     function closeModalOnOutsideClick(event) {

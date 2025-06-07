@@ -28,13 +28,8 @@
                                 <td class="py-2">
                                     <button onclick="openEditModal({{ $unsur }})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
-                                    <form action="{{ route('admin.unsur.destroy', $unsur->id) }}" method="POST"
-                                        class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded">Delete</button>
-                                    </form>
+                                    <button onclick="showDeleteUnsurModal({{ $unsur->id }})"
+                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Delete</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -47,6 +42,11 @@
 
 @include('admin.unsur.create')
 @include('admin.unsur.edit')
+@include('components.confirm-delete-modal', [
+    'modalId' => 'deleteUnsurModal',
+    'formAction' => route('admin.unsur.destroy', ['unsur' => '__ID__']),
+    'message' => 'Yakin ingin menghapus unsur ini?'
+])
 
 <script>
     function openCreateModal() {
@@ -69,5 +69,16 @@
         editForm.action = `/admin/unsur/${unsur.id}`;
 
         editModal.classList.remove('hidden');
+    }
+
+    function showDeleteUnsurModal(id) {
+        const modal = document.getElementById('deleteUnsurModal');
+        if (modal) {
+            const form = modal.querySelector('form');
+            if (form) {
+                form.action = `/admin/unsur/${id}`;
+            }
+            modal.classList.remove('hidden');
+        }
     }
 </script>

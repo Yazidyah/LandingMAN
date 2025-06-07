@@ -32,13 +32,8 @@
                                 <td class="py-2">
                                     <button onclick="openEditModal({{ $survey}})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
-                                    <form action="{{ route('admin.survey.destroy', $survey->id) }}" method="POST"
-                                        class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded">Delete</button>
-                                    </form>
+                                    <button onclick="showDeleteSurveyModal({{ $survey->id }})"
+                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Delete</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -51,7 +46,11 @@
 
 @include('admin.survey.create')
 @include('admin.survey.edit')
-
+@include('components.confirm-delete-modal', [
+    'modalId' => 'deleteSurveyModal',
+    'formAction' => route('admin.survey.destroy', ['survey' => '__ID__']),
+    'message' => 'Yakin ingin menghapus survey ini?'
+])
 <script>
     function openCreateModal() {
         const createForm = document.getElementById('createForm');
@@ -79,5 +78,16 @@
         editForm.action = `/admin/survey/${survey.id}`;
 
         editModal.classList.remove('hidden');
+    }
+
+    function showDeleteSurveyModal(id) {
+        const modal = document.getElementById('deleteSurveyModal');
+        if (modal) {
+            const form = modal.querySelector('form');
+            if (form) {
+                form.action = `/admin/survey/${id}`;
+            }
+            modal.classList.remove('hidden');
+        }
     }
 </script>

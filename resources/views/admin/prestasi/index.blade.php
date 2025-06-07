@@ -36,14 +36,8 @@
                                 <td class="px-6 py-2 text-center">
                                     <button onclick="openEditModal({{ $prestasi }})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
-                                    <form action="{{ route('admin.prestasi.destroy', $prestasi->id) }}" method="POST"
-                                        class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded"
-                                            onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</button>
-                                    </form>
+                                    <button onclick="showDeletePrestasiModal({{ $prestasi->id }})"
+                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Delete</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -53,9 +47,13 @@
         </div>
     </div>
 
-@include('admin.prestasi.create')
-@include('admin.prestasi.edit')
-
+    @include('admin.prestasi.create')
+    @include('admin.prestasi.edit')
+    @include('components.confirm-delete-modal', [
+        'modalId' => 'deletePrestasiModal',
+        'formAction' => route('admin.prestasi.destroy', ['prestasi' => '__ID__']),
+        'message' => 'Yakin ingin menghapus data prestasi ini?'
+    ])
 
     <script>
         function openCreateModal() {
@@ -89,6 +87,17 @@
 
             editForm.action = `/admin/prestasi/${achievement.id}`;
             editModal.classList.remove('hidden');
+        }
+
+        function showDeletePrestasiModal(id) {
+            const modal = document.getElementById('deletePrestasiModal');
+            if (modal) {
+                const form = modal.querySelector('form');
+                if (form) {
+                    form.action = `/admin/prestasi/${id}`;
+                }
+                modal.classList.remove('hidden');
+            }
         }
     </script>
 </x-app-layout>
