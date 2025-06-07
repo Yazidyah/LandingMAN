@@ -24,8 +24,13 @@
                         <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter name" required>
                     </div>
                     <div class="col-span-1">
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                        <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter password" required>
+                        <x-password-input 
+                            id="password"
+                            name="password"
+                            :label="'Password'"
+                            placeholder="Enter password"
+                            required
+                        />
                     </div>
                     <div class="col-span-1">
                         <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>

@@ -32,10 +32,12 @@ openeditModal<!-- Main modal -->
                             placeholder="Enter name" required>
                     </div>
                     <div class="col-span-1">
-                        <label for="editPassword" class="block mb-2 text-sm font-medium text-gray-900">Password (leave blank if not changing)</label>
-                        <input type="password" name="password" id="editPassword"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                            placeholder="Enter new password">
+                        <x-password-input 
+                            id="editPassword"
+                            name="password"
+                            :label="'Password (leave blank if not changing)'"
+                            placeholder="Enter new password"
+                        />
                     </div>
                 </div>
                 <div class="flex justify-end">
