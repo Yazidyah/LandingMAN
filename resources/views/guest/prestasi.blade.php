@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container mx-auto py-8">
+    <div class="container mx-auto py-8 min-h-[85vh]">
         <div class="my-4 bg-tertiary rounded-lg text-white text-center py-8 leading-tight">
             <h2 class="font-bold text-3xl md:text-4xl ">Prestasi MAN 1 Kota Bogor</h2>
         </div>

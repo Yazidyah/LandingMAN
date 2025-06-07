@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\IkmController;
 use App\Http\Controllers\Admin\UnsurController;
 use App\Http\Controllers\Admin\PrestasiController;
 use App\Http\Controllers\Admin\SejarahController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Guest Routes
@@ -60,8 +61,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('unsur', UnsurController::class);
     Route::resource('prestasi', PrestasiController::class);
     Route::resource('sejarah', SejarahController::class);
-    Route::delete('/admin/banner/{id}', [App\Http\Controllers\Admin\BannerController::class, 'destroy'])->name('admin.banner.destroy');
-    Route::delete('/contents/images/{id}', [\App\Http\Controllers\KontenController::class, 'deleteImage'])->name('contents.images.destroy');
+
+    // Hanya superadmin yang bisa akses users
+    Route::resource('users', UserController::class);
+
+    Route::delete('/admin/banner/{id}', [BannerController::class, 'destroy'])->name('admin.banner.destroy');
+    Route::delete('/contents/images/{id}', [KontenController::class, 'deleteImage'])->name('contents.images.destroy');
 });
 
 // Profile Routes (Requires Authentication)

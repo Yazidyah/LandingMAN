@@ -53,6 +53,7 @@ switch ($userRole){
     $redirectUrlsurv = 'admin.survey.index';
     $redirectUrlunsur = 'admin.unsur.index';
     $redirectUrlpres = 'admin.prestasi.index';
+    $redirectUrluser = 'admin.users.index';
     break;
 
 }
@@ -275,6 +276,13 @@ switch ($userRole){
             {{ __('Kritik & Saran') }}
             </x-side-nav>
         </li>
+        @if(auth()->user()->name === 'superadmin')
+        <li>
+            <x-side-nav :href="route($redirectUrluser)" :active="request()->routeIs($redirectUrluser)">
+            {{ __('User') }}
+            </x-side-nav>
+        </li>
+        @endif
         </ul>
     </div>
 </aside>

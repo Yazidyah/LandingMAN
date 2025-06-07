@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="max-w-5xl mx-auto my-5 bg-white p-8 border border-gray-200 rounded-lg shadow-lg min-h-[90vh]">
+    <div class="max-w-5xl mx-auto my-5 bg-white p-8 border border-gray-200 rounded-lg shadow-lg min-h-[85vh]">
         <h2 class="text-xl font-bold text-gray-900 text-center mb-4">SURVEY KEPUASAN PPDB</h2>
         <form action="{{ route('ppdb.survey.store') }}" method="POST">
             @csrf

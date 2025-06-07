@@ -5,7 +5,7 @@
         isStep1Valid() {
             return this.form.nama_lengkap && this.form.usia && this.form.jenis_kelamin && this.form.pendidikan && this.form.pekerjaan;
         }
-    }" class="min-h-[90vh]">
+    }" class="min-h-[85vh]">
         <form action="{{ route('guest.survey.store') }}" method="POST">
             @csrf
             {{-- Instructions --}}

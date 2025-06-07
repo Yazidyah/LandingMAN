@@ -25,7 +25,7 @@ class BannerController extends Controller
             return $content;
         });
 
-        $news = Content::where('category_id', 5)->with('images')->orderBy('created_at', 'desc')->get()->map(function ($item) {
+        $news = Content::where('category_id', 3)->with('images')->orderBy('created_at', 'desc')->get()->map(function ($item) {
             $item->image_url = $item->images->first() ? asset('storage/' . $item->images->first()->image_url) : asset('storage/assets/content/default-image.jpg'); // Fallback image
             $item->formatted_date = Carbon::parse($item->created_at)->translatedFormat('l, d F Y'); // Add formatted date
 

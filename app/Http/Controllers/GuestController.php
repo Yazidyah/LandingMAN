@@ -29,48 +29,25 @@ class GuestController extends Controller
             : asset('storage/assets/content/default-image.jpg');
     }
 
-    public function agenda()
+    // category_id = 2
+    public function sejarah()
     {
-        $news = Content::where('category_id', 3)->with('images')->get()->map(function ($item) {
-            $item->image_url = $this->getImageUrl($item->images); 
-            return $item;
-        });
-
-        // Set locale ke Indonesia untuk nama bulan
-        \Carbon\Carbon::setLocale('id');
-
-        // Kelompokkan berdasarkan bulan-tahun (dalam bahasa Indonesia)
-        $groupedNews = $news->groupBy(function ($item) {
-            return \Carbon\Carbon::parse($item->created_at)->translatedFormat('F Y');
-        });
-
-        return view('guest.agenda', ['groupedNews' => $groupedNews]);
+        $sejarah = Content::where('category_id', 2)->where('title', 'sejarah')->first();
+        return view('guest.sejarah', compact('sejarah'));
     }
 
-    public function prestasi()
+    public function visimisi()
     {
-        $prestasi = Achievement::orderBy('created_at', 'desc')->get();
-        return view('guest.prestasi', compact('prestasi'));
+        $visimisi = Content::where('category_id', 2)->get();
+        $visi = Content::where('category_id', 2)->where('title', 'visi')->first();
+        $misi = Content::where('category_id', 2)->where('title', 'misi')->first();
+        return view('guest.visimisi', compact('visimisi', 'visi', 'misi'));
     }
 
-    public function faq()
-    {
-        $news = Faq::all();
-        return view('guest.faq', compact('news'));
-    }
-
-    public function fasilitas()
-    {
-        $news = Content::where('category_id', 4)->with('images')->get()->map(function ($item) {
-            $item->image_url = $this->getImageUrl($item->images); 
-            return $item;
-        });
-        return view('guest.fasilitas',compact('news'));
-    }
-
+    // category_id = 3
     public function news(Request $request)
     {
-        $query = Content::where('category_id', 5)->with('images');
+        $query = Content::where('category_id', 3)->with('images');
         if ($request->has('search') && $request->search) {
             $search = $request->search;
             $query->where('title', 'like', '%' . $search . '%');
@@ -96,23 +73,51 @@ class GuestController extends Controller
         return view('guest.newsDetail', compact('news'));
     }
 
+    // category_id = 4
+    public function agenda()
+    {
+        $news = Content::where('category_id', 4)->with('images')->get()->map(function ($item) {
+            $item->image_url = $this->getImageUrl($item->images); 
+            return $item;
+        });
+
+        // Set locale ke Indonesia untuk nama bulan
+        \Carbon\Carbon::setLocale('id');
+
+        // Kelompokkan berdasarkan bulan-tahun (dalam bahasa Indonesia)
+        $groupedNews = $news->groupBy(function ($item) {
+            return \Carbon\Carbon::parse($item->created_at)->translatedFormat('F Y');
+        });
+
+        return view('guest.agenda', ['groupedNews' => $groupedNews]);
+    }
+
+    // category_id = 5
+    public function fasilitas()
+    {
+        $news = Content::where('category_id', 5)->with('images')->get()->map(function ($item) {
+            $item->image_url = $this->getImageUrl($item->images); 
+            return $item;
+        });
+        return view('guest.fasilitas',compact('news'));
+    }
+
+    // Lain-lain
+    public function prestasi()
+    {
+        $prestasi = Achievement::orderBy('created_at', 'desc')->get();
+        return view('guest.prestasi', compact('prestasi'));
+    }
+
+    public function faq()
+    {
+        $news = Faq::all();
+        return view('guest.faq', compact('news'));
+    }
+
     public function survey()
     {
         return view('guest.survey');
-    }
-
-    public function sejarah()
-    {
-        $sejarah = Content::where('category_id', 2)->where('title', 'sejarah')->first();
-        return view('guest.sejarah', compact('sejarah'));
-    }
-
-    public function visimisi()
-    {
-        $visimisi = Content::where('category_id', 2)->get();
-        $visi = Content::where('category_id', 2)->where('title', 'visi')->first();
-        $misi = Content::where('category_id', 2)->where('title', 'misi')->first();
-        return view('guest.visimisi', compact('visimisi', 'visi', 'misi'));
     }
 
     public function publikasi()

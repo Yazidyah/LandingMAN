@@ -16,14 +16,14 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'name' => 'superadmin',
+            'email' => 'superadmin@man1kotabogor.id',
             'password' => bcrypt('password'),
         ]);
         User::factory()->create([
-            'name' => 'super',
-            'email' => 'super@example.com',
-            'password' => bcrypt('MALGw86xsJFIj4fc1YOrpu9xflHxBi'),
+            'name' => 'Admin',
+            'email' => 'admin@man1kotabogor.id',
+            'password' => bcrypt('password'),
         ]);
 
         $this->call(CategoriesSeeder::class);
