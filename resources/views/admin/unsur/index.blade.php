@@ -14,9 +14,9 @@
                     <thead class="w-full max-w-full rtl:justify-left text-lg text-left text-gray-500 my-3">
                         <tr class="text-sm text-tertiary uppercase bg-gray-50 text-center">
                             <th scope="col" class="px-6 py-3">ID</th>
-                            <th scope="col" class="px-6 py-3">Unsur Name</th>
-                            <th scope="col" class="px-6 py-3">Description</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
+                            <th scope="col" class="px-6 py-3">Nama Unsur</th>
+                            <th scope="col" class="px-6 py-3">Deskripsi</th>
+                            <th scope="col" class="px-6 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">

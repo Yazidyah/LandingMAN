@@ -2,7 +2,7 @@
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div class="container mx-auto text-center pt-7">
-                <h1 class="font-bold text-[32px] pt-7 pb-7 ">Pengaturan FAQ</h1>
+                <h1 class="font-bold text-[32px] pt-7 pb-7 ">Konfigurasi FAQ</h1>
                 <div class="flex justify-end">
                     <button onclick="openCreateModal()"
                         class="bg-tertiary text-white px-4 py-2 hover:text-tertiary hover:bg-secondary rounded">
