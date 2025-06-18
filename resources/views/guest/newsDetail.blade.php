@@ -17,6 +17,7 @@
                         </div>
                     @endforeach
                 </div>
+                @if(count($news->images) > 1)
                 <div class="absolute top-0 left-0 z-50 flex items-center justify-between w-full h-full">
                     <button type="button"
                         class="h-24 w-1/5 flex items-center justify-right cursor-pointer focus:outline-none pl-2"
@@ -46,6 +47,7 @@
                         </span>
                     </button>
                 </div>
+                @endif
             </div>
 
             <div class="mt-4 text-gray-700 text-lg">
