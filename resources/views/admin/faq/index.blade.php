@@ -15,7 +15,7 @@
                         <tr class="text-sm text-tertiary uppercase bg-gray-50">
                             <th scope="col" class="px-6 py-3">No</th>
                             <th scope="col" class="px-6 py-3">Pertanyaan</th>
-                            <th scope="col" class="px-6 py-3">Jawaban</th>
+                            <th scope="col" class="px-6 py-3 max-w-[350px]">Jawaban</th>
                             <th scope="col" class="px-6 py-3">Aksi</th>
                         </tr>
                     </thead>
@@ -24,7 +24,7 @@
                             <tr class="bg-white border-b">
                                 <td class="px-6 py-4">{{ $index + 1 }}</td>
                                 <td class="px-6 py-4">{{ $faq->question }}</td>
-                                <td class="px-6 py-4">{{ $faq->answer }}</td>
+                                <td class="px-6 py-4 max-w-[350px]" title="{{ $faq->answer }}">{{ $faq->answer }}</td>
                                 <td class="px-6 py-4">
                                     <button onclick="openEditModal({{ $faq->id }})"
                                         class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>

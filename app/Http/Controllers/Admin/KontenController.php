@@ -204,4 +204,28 @@ class KontenController extends Controller
 
         return redirect()->route('admin.contents.index')->with('success', 'Content deleted successfully.');
     }
+
+    /**
+     * Remove a specific image from a content.
+     */
+    public function destroyImage($id)
+    {
+        $image = ContentImage::findOrFail($id);
+
+        // Hapus file dari storage
+        Storage::disk('public')->delete($image->image_url);
+
+        // Hapus record dari database
+        $image->delete();
+
+        // Log penghapusan gambar
+        Log::info('Content Image Deleted', [
+            'user_id' => auth()->id(),
+            'username' => auth()->user()->name,
+            'action' => 'Delete Image',
+            'image_id' => $id,
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
+    }
 }

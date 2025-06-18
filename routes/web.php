@@ -66,7 +66,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('users', UserController::class);
 
     Route::delete('/admin/banner/{id}', [BannerController::class, 'destroy'])->name('admin.banner.destroy');
-    Route::delete('/contents/images/{id}', [KontenController::class, 'deleteImage'])->name('contents.images.destroy');
+    Route::delete('/contents/images/{id}', [KontenController::class, 'destroyImage'])->name('contents.images.destroy');
 });
 
 // Profile Routes (Requires Authentication)

@@ -137,11 +137,49 @@
 
     function populateImages(container, images) {
         images.forEach(image => {
+            // Wrapper div
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('relative');
+
+            // Image element
             const imgElement = document.createElement('img');
-            imgElement.src = image.url;
+            imgElement.src = image.url || image.image_url || '';
             imgElement.alt = image.alt || 'Content Image';
-            container.appendChild(imgElement);
+
+            // Delete button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.type = 'button';
+            deleteBtn.textContent = 'Hapus';
+            deleteBtn.className = 'absolute bottom-0 left-0 w-full bg-red-600 bg-opacity-80 text-white py-1 text-xs rounded-b';
+            deleteBtn.onclick = function() {
+                if (confirm('Yakin hapus gambar ini?')) {
+                    deleteContentImage(image.id, wrapper);
+                }
+            };
+
+            wrapper.appendChild(imgElement);
+            wrapper.appendChild(deleteBtn);
+            container.appendChild(wrapper);
         });
+    }
+
+    function deleteContentImage(imageId, wrapperElement) {
+        fetch(`/admin/contents/images/${imageId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                wrapperElement.remove();
+            } else {
+                alert('Gagal menghapus gambar.');
+            }
+        })
+        .catch(() => alert('Terjadi kesalahan saat menghapus gambar.'));
     }
 
     function closeModalOnOutsideClick(event) {
