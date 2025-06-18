@@ -51,7 +51,7 @@
                 </a>
             @endforeach
             @else
-            <p class="text-center text-gray-500">Tidak ada NEWS yang tersedia.</p>
+            <p class="text-center text-gray-500">Tidak ada berita yang tersedia.</p>
         @endif
         </div>
 </div>

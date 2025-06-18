@@ -74,9 +74,14 @@ class GuestController extends Controller
     }
 
     // category_id = 4
-    public function agenda()
+    public function agenda(Request $request)
     {
-        $news = Content::where('category_id', 4)->with('images')->get()->map(function ($item) {
+        $query = Content::where('category_id', 4)->with('images');
+        if ($request->has('search') && $request->search) {
+            $search = strtolower($request->search);
+            $query->where('slug', 'like', '%' . $search . '%');
+        }
+        $news = $query->get()->map(function ($item) {
             $item->image_url = $this->getImageUrl($item->images); 
             return $item;
         });
@@ -89,17 +94,28 @@ class GuestController extends Controller
             return \Carbon\Carbon::parse($item->created_at)->translatedFormat('F Y');
         });
 
-        return view('guest.agenda', ['groupedNews' => $groupedNews]);
+        return view('guest.agenda', [
+            'groupedNews' => $groupedNews,
+            'search' => $request->search ?? ''
+        ]);
     }
 
     // category_id = 5
-    public function fasilitas()
+    public function fasilitas(Request $request)
     {
-        $news = Content::where('category_id', 5)->with('images')->get()->map(function ($item) {
+        $query = Content::where('category_id', 5)->with('images');
+        if ($request->has('search') && $request->search) {
+            $search = strtolower($request->search);
+            $query->where('slug', 'like', '%' . $search . '%');
+        }
+        $news = $query->get()->map(function ($item) {
             $item->image_url = $this->getImageUrl($item->images); 
             return $item;
         });
-        return view('guest.fasilitas',compact('news'));
+        return view('guest.fasilitas', [
+            'news' => $news,
+            'search' => $request->search ?? ''
+        ]);
     }
 
     // Lain-lain
@@ -109,10 +125,18 @@ class GuestController extends Controller
         return view('guest.prestasi', compact('prestasi'));
     }
 
-    public function faq()
+    public function faq(Request $request)
     {
-        $news = Faq::all();
-        return view('guest.faq', compact('news'));
+        $query = Faq::query();
+        if ($request->has('search') && $request->search) {
+            $search = strtolower($request->search);
+            $query->whereRaw('LOWER(question) LIKE ?', ['%' . $search . '%']);
+        }
+        $news = $query->get();
+        return view('guest.faq', [
+            'news' => $news,
+            'search' => $request->search ?? ''
+        ]);
     }
 
     public function survey()

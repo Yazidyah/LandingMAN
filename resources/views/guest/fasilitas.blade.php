@@ -4,6 +4,15 @@
             <h2 class="font-bold text-3xl md:text-4xl ">Fasilitas MAN 1 Kota Bogor</h2>
         </div>
 
+        <!-- Form Search -->
+        <form method="GET" class="mb-6 flex flex-col md:flex-row gap-2 items-center justify-end">
+            <input type="text" name="search" value="{{ request('search', $search ?? '') }}" placeholder="Cari fasilitas..." class="border rounded px-3 py-2 w-full md:w-1/3" />
+            <button type="submit" class="bg-tertiary text-white px-4 py-2 rounded hover:bg-secondary">Cari</button>
+        </form>
+        @if(request('search') || !empty($search))
+            <p class="mb-4 text-gray-700">Hasil pencarian untuk: <span class="font-semibold">{{ request('search', $search ?? '') }}</span></p>
+        @endif
+
         @if($news->isNotEmpty())
         <div class="my-8 grid grid-cols-12 gap-4">
         @foreach($news as $item)
