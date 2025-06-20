@@ -141,11 +141,6 @@
                 class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
                 <a href="{{ env('PPDB_URL') }}">PPDB</a>
             </li>
-            <li
-                class="hover:bg-secondary hover:text-primary focus-scale-95 transition-all duration-200 ease-out p-2 rounded-lg">
-                <a href="{{ route('guest.publikasi') }}">Publikasi</a>
-            </li>
         </ul>
-
     </div>
 </div>
