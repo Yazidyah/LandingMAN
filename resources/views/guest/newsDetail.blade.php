@@ -57,7 +57,7 @@
         </div>
         <div class="mt-10 flex justify-center">
             <a href="/news" class="bg-tertiary hover:bg-secondary hover:text-tertiary text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline text-lg">
-                Lihat berita lainnya
+                Lihat lainnya
             </a>
         </div>
     </div>
