@@ -25,9 +25,4 @@ class Content extends Model
     {
         return $this->hasMany(ContentImage::class);
     }
-
-    public function faq()
-    {
-        return $this->hasOne(Faq::class);
-    }
 }
