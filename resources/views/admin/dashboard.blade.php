@@ -3,7 +3,7 @@
 <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
 <div class="container mx-auto pt-5 px-4">
         <!-- Riwayat Aktivitas -->
-        <div class="mt-8">
+        <!-- <div class="mt-8">
             <h3 class="text-2xl font-semibold text-gray-800 mb-6">Riwayat Aktivitas</h3>
             <div class="bg-white rounded-lg shadow-md">
                 <div class="p-6">
@@ -65,10 +65,10 @@
                                     </div>
                                 </div>
                             @endforeach
-                        </div>
+                        </div> -->
                         
                         <!-- Lihat Semua Button -->
-                        <div class="mt-4 pt-4 border-t border-gray-200">
+                        <!-- <div class="mt-4 pt-4 border-t border-gray-200">
                             <button class="text-sm text-blue-600 hover:text-blue-800 font-medium">
                                 Lihat semua aktivitas →
                             </button>
@@ -83,7 +83,7 @@
                     @endif
                 </div>
             </div>
-        </div>
+        </div> -->
 
         
         <!-- Quick Access Cards -->
