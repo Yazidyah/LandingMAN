@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\VisiMisiController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ControllerBanner;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\KategoriController;
@@ -37,7 +38,7 @@ Route::post('/survey', [\App\Http\Controllers\SurveyController::class, 'store'])
 
 // Admin Routes (Protected by Authentication & Verification)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::view('/faq', 'admin.faq')->name('faq');
     Route::view('/fasilitas', 'admin.fasilitas')->name('fasilitas');
     Route::view('/news', 'admin.news')->name('news');
