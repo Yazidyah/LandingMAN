@@ -352,26 +352,27 @@
                     </div>
                 </div>
                 <!-- Users Card -->
-                <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="p-2 bg-gray-500 rounded-lg">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                                </svg>
+                    @if(auth()->user() && auth()->user()->name === 'superadmin')
+                    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="p-2 bg-gray-500 rounded-lg">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="ml-3 text-lg font-semibold text-gray-800">Users</h4>
                             </div>
-                            <h4 class="ml-3 text-lg font-semibold text-gray-800">Users</h4>
+                            <p class="text-gray-600 mb-4">Kelola pengguna sistem</p>
+                            <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md transition-colors duration-200">
+                                <span>Kelola</span>
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
                         </div>
-                        <p class="text-gray-600 mb-4">Kelola pengguna sistem</p>
-                        <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md transition-colors duration-200">
-                            <span>Kelola</span>
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
                     </div>
-                </div>
-
+                    @endif
             </div>
         </div>
     </div>
