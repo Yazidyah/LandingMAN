@@ -80,12 +80,10 @@
         const editModal = document.getElementById('editModal');
         const editForm = document.getElementById('editForm');
         const questionText = document.getElementById('editQuestionText');
-        const questionOrder = document.getElementById('editQuestionOrder');
         const elementId = document.getElementById('EditElementId'); 
         const surveyId = document.getElementById('EditSurveyId'); 
 
         questionText.value = kuesioner.question_text;
-        questionOrder.value = kuesioner.question_order;
         elementId.value = kuesioner.unsur_id;
         surveyId.value = kuesioner.survey_id; 
         editForm.action = `/admin/kuesioner/${kuesioner.id}`;
