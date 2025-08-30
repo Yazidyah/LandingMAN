@@ -1,10 +1,10 @@
 <x-layout>
-    <div class="container mx-auto px-4 my-10">
+    <div class="container mx-auto max-w-7xl px-2 sm:px-6 md:px-10 lg:px-20 my-10">
         <div class="my-4 text-left gap-2 leading-tight flex justify-center items-center flex-col">
             <h2 class="font-bold text-3xl md:text-4xl">{{ $news->title }}</h2>
             <p class="text-sm">Diterbitkan Pada: {{ $news->formatted_date }}</p>
         </div>
-        <div id="gallery" class="block w-full max-w-3xl mx-auto p-2" data-carousel="slide">
+    <div id="gallery" class="block w-full max-w-6xl mx-auto p-2" data-carousel="slide">
             <!-- Carousel wrapper with relative positioning -->
             <div class="relative overflow-hidden rounded-lg ">
                 <!-- Images container -->
@@ -51,7 +51,7 @@
             <div class="mt-4 text-gray-700 text-lg">
                 Admin MAN 1 Kota Bogor
             </div>
-            <div class="mt-4 text-gray-700 text-lg">
+            <div class="mt-4 text-gray-700 text-lg text-justify px-1 sm:px-2 md:px-4 lg:px-8">
                 {!! nl2br($news->body) !!}
             </div>
         </div>
