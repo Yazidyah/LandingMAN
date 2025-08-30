@@ -48,8 +48,8 @@
                 </div>
             </div>
 
-            <div class="mt-4 text-gray-700 text-lg">
-                Admin MAN 1 Kota Bogor
+            <div class="mt-2 text-gray-500 text-sm">
+                Dibuat oleh: Admin
             </div>
             <div class="mt-4 text-gray-700 text-lg text-justify px-1 sm:px-2 md:px-4 lg:px-8">
                 {!! nl2br($news->body) !!}
