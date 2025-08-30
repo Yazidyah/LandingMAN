@@ -20,6 +20,8 @@
     <x-navbar></x-navbar>
     <main>
         {{ $slot }}
+        <script src="https://cdn.botpress.cloud/webchat/v3.1/inject.js"></script>
+        <script src="https://files.bpcontent.cloud/2025/06/19/10/20250619105656-283UARBW.js"></script>
         <x-footer></x-footer>
         <x-javascript></x-javascript>
     </main>
