@@ -6,7 +6,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b border-gray-200 rounded-t">
                 <h3 class="text-lg font-semibold text-gray-900">
-                    Create Survey
+                    Buat Survey
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" onclick="closeModal()">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -20,20 +20,20 @@
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
-                        <label for="surveyName" class="block mb-2 text-sm font-medium text-gray-900">Survey Name</label>
-                        <input type="text" name="survey_name" id="surveyName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <label for="surveyName" class="block mb-2 text-sm font-medium text-gray-900">Nama Survey</label>
+                        <input type="text" name="survey_name" id="surveyName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400" placeholder="Masukkan nama survey" required>
                     </div>
                     <div class="col-span-1">
-                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-                        <textarea name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required></textarea>
+                        <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Deskripsi</label>
+                        <textarea name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400" placeholder="Masukkan deskripsi" required></textarea>
                     </div>
                     <div class="col-span-1">
-                        <label for="startDate" class="block mb-2 text-sm font-medium text-gray-900">Start Date</label>
-                        <input type="date" name="start_date" id="startDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <label for="startDate" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Mulai</label>
+                        <input type="date" name="start_date" id="startDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400" placeholder="Tanggal mulai" required>
                     </div>
                     <div class="col-span-1">
-                        <label for="endDate" class="block mb-2 text-sm font-medium text-gray-900">End Date</label>
-                        <input type="date" name="end_date" id="endDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <label for="endDate" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Berakhir</label>
+                        <input type="date" name="end_date" id="endDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400" placeholder="Tanggal berakhir" required>
                     </div>
                 </div>
                 <div class="flex justify-end">

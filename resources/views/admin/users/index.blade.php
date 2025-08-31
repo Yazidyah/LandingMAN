@@ -32,9 +32,9 @@
                                 <td class="px-6 py-4">{{ $user->email }}</td>
                                 <td class="px-6 py-4">
                                     <button onclick="openEditModal({{ json_encode($user) }})"
-                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
+                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Ubah</button>
                                         <button onclick="showDeleteUsersModal({{ $user->id }})"
-                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Delete</button>
+                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Hapus</button>
                                 </td>
                             </tr>
                         @endforeach

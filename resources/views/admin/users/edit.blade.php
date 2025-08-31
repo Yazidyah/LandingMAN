@@ -6,7 +6,7 @@ openeditModal<!-- Main modal -->
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b border-gray-200 rounded-t">
                 <h3 class="text-lg font-semibold text-gray-900">
-                    Edit User
+                    Ubah User
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -43,7 +43,7 @@ openeditModal<!-- Main modal -->
                 <div class="flex justify-end">
                     <button type="button" onclick="closeEditModal()"
                         class="bg-red-900 hover:bg-red-500 text-white px-4 py-2 rounded mr-2">Batal</button>
-                    <button type="submit" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Update</button>
+                    <button type="submit" class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Simpan</button>
                 </div>
             </form>
         </div>

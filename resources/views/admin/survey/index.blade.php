@@ -25,15 +25,15 @@
                         @foreach ($surveys as $survey)
                             <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
                                 <td class="py-2">{{ $survey->id}}</td>
-                                <td class="py-2">{{ $survey->survey_name }}</td>
-                                <td class="py-2">{{ $survey->description }}</td>
+                                <td class="py-2 text-left">{{ $survey->survey_name }}</td>
+                                <td class="py-2 text-left">{{ $survey->description }}</td>
                                 <td class="py-2">{{ $survey->start_date }}</td>
                                 <td class="py-2">{{ $survey->end_date }}</td>
                                 <td class="py-2">
                                     <button onclick="openEditModal({{ $survey}})"
-                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
+                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Ubah</button>
                                     <button onclick="showDeleteSurveyModal({{ $survey->id }})"
-                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Delete</button>
+                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Hapus</button>
                                 </td>
                             </tr>
                         @endforeach

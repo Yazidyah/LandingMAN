@@ -21,11 +21,11 @@
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
                         <label for="contentTitle" class="block mb-2 text-sm font-medium text-gray-900">Judul Konten</label>
-                        <input type="text" name="title" id="contentTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <input type="text" name="title" id="contentTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400" placeholder="Masukkan Judul Konten" required>
                     </div>
                     <div class="col-span-1">
                         <label for="contentBody" class="block mb-2 text-sm font-medium text-gray-900">Isi Konten</label>
-                        <textarea name="body" id="contentBody" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required></textarea>
+                        <textarea name="body" id="contentBody" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400" placeholder="Masukkan Isi Konten" required></textarea>
                     </div>
                     <div class="col-span-1">
                         <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900">Kategori</label>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-span-1">
                         <label for="contentFiles" class="block mb-2 text-sm font-medium text-gray-900">Upload Gambar</label>
-                        <input type="file" name="contentFile[]" id="contentFiles" multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                        <input type="file" name="contentFile[]" id="contentFiles" multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400" placeholder="Upload Gambar Konten">
                         <ul id="fileList" class="mt-2 text-sm text-gray-600"></ul>
                     </div>
                 </div>
