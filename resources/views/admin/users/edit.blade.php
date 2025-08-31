@@ -26,17 +26,18 @@ openeditModal<!-- Main modal -->
                 @method('PUT')
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div class="col-span-1">
-                        <label for="editName" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                        <label for="editName" class="block mb-2 text-sm font-medium text-gray-900">Nama User</label>
                         <input type="text" name="name" id="editName" value="{{ $user->name }}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                            placeholder="Enter name" required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400"
+                            placeholder="Masukkan nama" required>
                     </div>
                     <div class="col-span-1">
                         <x-password-input 
                             id="editPassword"
                             name="password"
-                            :label="'Password (leave blank if not changing)'"
-                            placeholder="Enter new password"
+                            :label="'Kata Sandi (biarkan kosong jika tidak ingin mengubah)'"
+                            placeholder="Masukkan kata sandi baru"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400"
                         />
                     </div>
                 </div>
