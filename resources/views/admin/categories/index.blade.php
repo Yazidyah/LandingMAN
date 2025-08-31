@@ -25,9 +25,9 @@
                                 <td class="px-6 py-4 text-tertiary">{{ strtoupper($category->category_name) }}</td>
                                 <td class="px-6 py-4 text-tertiary">
                                     <button onclick="openEditModal({{ $category->id }})"
-                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
+                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Ubah</button>
                                     <button type="button" onclick="document.getElementById('deleteCategoryModal-{{ $category->id }}').classList.remove('hidden')"
-                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded">Delete</button>
+                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded">Hapus</button>
                                     <x-confirm-delete-modal 
                                         :modalId="'deleteCategoryModal-' . $category->id"
                                         :formAction="route('admin.categories.destroy', $category->id)"

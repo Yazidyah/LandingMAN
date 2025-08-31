@@ -15,8 +15,8 @@ class SurveySeeder extends Seeder
     {
         $surveys = [
             [
-                'survey_name' => 'Survey Kepuasan Pelanggan',
-                'description' => 'Survey untuk mengukur kepuasan pelanggan.',
+                'survey_name' => 'Survey Kepuasan Pengguna',
+                'description' => 'Survey untuk mengukur kepuasan pengguna.',
                 'start_date' => '2025-03-01',
                 'end_date'   => '2025-04-30',
             ],

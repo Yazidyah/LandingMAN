@@ -23,13 +23,13 @@
                         @foreach ($unsurs as $unsur)
                             <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
                                 <td class="py-2">{{ $unsur->id }}</td>
-                                <td class="py-2">{{ $unsur->unsur_name }}</td>
-                                <td class="py-2">{{ $unsur->description }}</td>
-                                <td class="py-2">
+                                <td class="py-2 text-left">{{ $unsur->unsur_name }}</td>
+                                <td class="py-2 text-left">{{ $unsur->description }}</td>
+                                <td class="py-2 ">
                                     <button onclick="openEditModal({{ $unsur }})"
-                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Edit</button>
+                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Ubah</button>
                                     <button onclick="showDeleteUnsurModal({{ $unsur->id }})"
-                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Delete</button>
+                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Hapus</button>
                                 </td>
                             </tr>
                         @endforeach
