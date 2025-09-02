@@ -99,7 +99,7 @@
     function showDeleteUsersModal(id) {
         const modal = document.getElementById('deleteUsersModal');
         if (modal) {
-            const form = document.getElementById('deleteUsersModalForm');
+            const form = modal.querySelector('form');
             if (form) {
                 form.action = `/admin/users/${id}`;
             }

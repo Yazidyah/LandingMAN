@@ -56,9 +56,12 @@ class UserController extends Controller
     }
 
     public function destroy($id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
-    }
+        {
+            $user = User::findOrFail($id);
+            if ($user->name === 'superadmin') {
+                return redirect()->route('admin.users.index')->with('error', 'Tidak dapat menghapus superadmin.');
+            }
+            $user->delete();
+            return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+        }
 }
