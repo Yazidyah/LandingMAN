@@ -35,20 +35,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kuesioners as $index => $kuesioner)
-                        <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
-                                <td class="px-6 py-2 w-24">{{ $index + 1 }}</td>
-                                <td class="px-6 py-2 w-64">{{ $kuesioner->survey_name ?? 'N/A' }}</td>
-                                <td class="px-6 py-2 w-64">{{ $kuesioner->unsur_name ?? 'N/A' }}</td>
-                                <td class="px-6 py-2 w-2/5">{{ $kuesioner->question_text }}</td>
-                                <td class="px-6 py-2 text-center">
-                                    <button onclick="openEditModal({{ $kuesioner }})"
-                                        class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Ubah</button>
-                                    <button onclick="showDeleteKuesionerModal({{ $kuesioner->id }})"
-                                        class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Hapus</button>
-                                </td>
+                            @forelse ($kuesioners as $index => $kuesioner)
+                            <tr class="hover:bg-gray-200 transition duration-200 cursor-pointer">
+                                    <td class="px-6 py-2 w-24">{{ $index + 1 }}</td>
+                                    <td class="px-6 py-2 w-64">{{ $kuesioner->survey_name ?? 'N/A' }}</td>
+                                    <td class="px-6 py-2 w-64">{{ $kuesioner->unsur_name ?? 'N/A' }}</td>
+                                    <td class="px-6 py-2 w-2/5">{{ $kuesioner->question_text }}</td>
+                                    <td class="px-6 py-2 text-center">
+                                        <button onclick="openEditModal({{ $kuesioner }})"
+                                            class="bg-tertiary hover:bg-secondary text-white hover:text-tertiary px-4 py-2 rounded">Ubah</button>
+                                        <button onclick="showDeleteKuesionerModal({{ $kuesioner->id }})"
+                                            class="bg-red-900 text-white px-4 py-2 hover:bg-red-500 rounded ml-2">Hapus</button>
+                                    </td>
+                                </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center text-red-600 font-bold py-6">BELUM ADA PERTANYAAN</td>
                             </tr>
-                        @endforeach
+                            @endforelse
                     </tbody>
                 </table>
             </div>
