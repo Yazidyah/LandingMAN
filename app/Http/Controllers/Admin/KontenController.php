@@ -22,8 +22,8 @@ class KontenController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        // Urutkan berdasarkan updated_at terbaru
-        $contents = $query->orderBy('updated_at', 'desc')->get()->map(function ($content) {
+    // Urutkan dari yang paling lama ke yang paling baru berdasarkan created_at
+    $contents = $query->orderBy('created_at', 'asc')->get()->map(function ($content) {
             if ($content->images->isNotEmpty()) {
                 $content->image_url = asset('storage/' . $content->images->first()->image_url);
             }
