@@ -55,10 +55,10 @@ class KuesionerController extends Controller
                 'question_id' => $question->id,
             ]);
 
-            return redirect()->route('admin.kuesioner.index')->with('success', 'Kuesioner created successfully.');
+            return redirect()->route('admin.kuesioner.index', ['survey_id' => $request->survey_id])->with('success', 'Kuesioner created successfully.');
         } catch (\Exception $e) {
             Log::error('Failed to create Kuesioner: ', ['error' => $e->getMessage()]); 
-            return redirect()->route('admin.kuesioner.index')->with('error', 'Failed to create Kuesioner.');
+            return redirect()->route('admin.kuesioner.index', ['survey_id' => $request->survey_id])->with('error', 'Failed to create Kuesioner.');
         }
     }
 
@@ -85,10 +85,10 @@ class KuesionerController extends Controller
                 'question_id' => $kuesioner->id,
             ]);
 
-            return redirect()->route('admin.kuesioner.index')->with('success', 'Kuesioner updated successfully.');
+            return redirect()->route('admin.kuesioner.index', ['survey_id' => $request->survey_id])->with('success', 'Kuesioner updated successfully.');
         } catch (\Exception $e) {
             Log::error('Failed to update Kuesioner: ', ['error' => $e->getMessage()]); 
-            return redirect()->route('admin.kuesioner.index')->with('error', 'Failed to update Kuesioner.');
+            return redirect()->route('admin.kuesioner.index', ['survey_id' => $request->survey_id])->with('error', 'Failed to update Kuesioner.');
         }
     }
 
@@ -105,10 +105,10 @@ class KuesionerController extends Controller
 
         try {
             $kuesioner->delete();
-            return redirect()->route('admin.kuesioner.index')->with('success', 'Kuesioner deleted successfully.');
+            return redirect()->route('admin.kuesioner.index', ['survey_id' => $kuesioner->survey_id])->with('success', 'Kuesioner deleted successfully.');
         } catch (\Exception $e) {
             Log::error('Failed to delete Kuesioner: ', ['error' => $e->getMessage()]); 
-            return redirect()->route('admin.kuesioner.index')->with('error', 'Failed to delete Kuesioner.');
+            return redirect()->route('admin.kuesioner.index', ['survey_id' => $kuesioner->survey_id])->with('error', 'Failed to delete Kuesioner.');
         }
     }
 }

@@ -29,22 +29,22 @@
                     <div class="col-span-1">
                         <label for="EditSurveyId" class="block mb-2 text-sm font-medium text-gray-900">Survey</label>
                         <select name="survey_id" id="EditSurveyId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            @foreach($surveys as $survey)
-                                <option value="{{ $survey->id }}" {{ $survey->id == $kuesioner->survey_id ? 'selected' : '' }}>{{ $survey->survey_name }}</option>
-                            @endforeach
+                                @foreach($surveys as $survey)
+                                    <option value="{{ $survey->id }}">{{ $survey->survey_name }}</option>
+                                @endforeach
                         </select>
                     </div>
                     <div class="col-span-1">
                         <label for="EditElementId" class="block mb-2 text-sm font-medium text-gray-900">Unsur</label>
                         <select name="unsur_id" id="EditElementId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                            @foreach($unsurs as $unsur)
-                                <option value="{{ $unsur->id }}" {{ $unsur->id == $kuesioner->unsur_id ? 'selected' : '' }}>{{ $unsur->unsur_name }}</option>
-                            @endforeach
+                                @foreach($unsurs as $unsur)
+                                    <option value="{{ $unsur->id }}">{{ $unsur->unsur_name }}</option>
+                                @endforeach
                         </select>
                     </div>
                     <div class="col-span-1">
                         <label for="editQuestionText" class="block mb-2 text-sm font-medium text-gray-900">Pertanyaan</label>
-                        <textarea name="question_text" id="editQuestionText" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>{{ $kuesioner->question_text }}</textarea>
+                            <textarea name="question_text" id="editQuestionText" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required></textarea>
                     </div>
                 </div>
                 <div class="flex justify-end">
